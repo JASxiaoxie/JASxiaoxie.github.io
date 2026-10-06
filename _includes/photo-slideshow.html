@@ -1,0 +1,9 @@
+<!-- 只输出首张照片；其余资料留在惰性模板里，脚本按需加载下一张。 -->
+<div class="photo-slot photo-slideshow {{ include.class }}" style="--photo-ratio:{{ include.ratio | default: '1.5' }}" data-photo-slideshow data-slideshow-initial="{{ include.image | relative_url }}" data-slideshow-baseurl="{{ site.baseurl | escape }}" data-slideshow-interval="3000" role="group" aria-roledescription="图片轮播" aria-label="{{ include.title | escape }}" aria-keyshortcuts="ArrowLeft ArrowRight Space"{% unless include.link %} tabindex="0"{% endunless %}>
+  {% if include.link %}<a class="slideshow-link" href="{{ include.image | relative_url }}" data-lightbox data-sequence="{{ include.sequence }}" data-title="{{ include.title | escape }}" data-label="{{ include.label | escape }}" data-note="{{ include.note | escape }}" data-image="{{ include.image | relative_url }}" aria-label="浏览{{ include.title | escape }}">{% endif %}
+  <img class="slideshow-image is-current" src="{{ include.image | relative_url }}" alt="{{ include.title | escape }}" loading="{% if include.eager %}eager{% else %}lazy{% endif %}" decoding="async"{% if include.eager %} fetchpriority="high"{% endif %}>
+  <img class="slideshow-image" alt="" aria-hidden="true" decoding="async">
+  {% if include.link %}</a>{% endif %}
+  <span class="slot-caption"><span data-slideshow-title>{{ include.title }}</span></span>
+  <template data-slideshow-data>{{ include.slides | jsonify | escape }}</template>
+</div>

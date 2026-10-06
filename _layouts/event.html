@@ -1,0 +1,24 @@
+---
+layout: club
+nav: events
+---
+{% assign event = site.data.events | where: 'id', page.event_id | first %}
+{% assign category = site.data.categories | where: 'id', event.category | first %}
+<div class="wrap article-shell{% if event.kind == 'intro' %} activity-page{% endif %}">
+  {% if event.kind == 'intro' %}{% include activity-navigation.html category=event.category %}{% else %}<a class="back-link" href="{{ category.url | relative_url }}">← 返回{{ category.name }}</a>{% endif %}
+  <header class="article-heading"><p class="eyebrow">{{ category.english }}</p><h1>{{ event.title }}</h1><p>{{ event.summary }}</p></header>
+  {% if event.kind == 'intro' %}
+  <!-- 常设活动先说明参与方式，每次活动的介绍与影像在独立的小窗中阅读。 -->
+  <section class="activity-intro" aria-label="{{ event.title }}介绍">
+    <article class="prose">{{ event.body | markdownify }}<div class="activity-intro-links"><a class="text-link" href="#event-album">查看往期活动 ↓</a><a class="text-link" href="{{ '/join/' | relative_url }}">参与活动 ↗</a></div></article>
+    {% assign intro_photos = site.data.albums[event.album].images %}{% include photo-slideshow.html title=event.title ratio='1.5' image=event.image slides=intro_photos class='activity-intro-photo' eager=true %}
+  </section>
+  {% assign archive_title = '每一次' | append: event.title %}
+  {% if event.album %}{% include activity-album.html key=event.album title=archive_title introduction=event.summary description='从最近的一次开始。<br>点开活动，在小窗中查看介绍与照片。' %}{% endif %}
+  {% else %}
+  <div class="event-facts"><div><span>时间 / 状态</span><strong>{% if event.date != '' %}{{ event.date | date: '%Y年%m月%d日' }}{% else %}{{ event.status }}{% endif %}</strong></div>{% if event.location != '' %}<div><span>地点 / 形式</span><strong>{{ event.location }}</strong></div>{% endif %}<div><span>类型</span><strong>{{ category.name }}{% if event.kind == 'archive' %} · {{ event.status }}{% endif %}</strong></div></div>
+  {% include photo-slot.html title='活动现场' ratio='2.1' image=event.image class='article-photo' %}
+  <div class="article-grid"><article class="prose">{{ event.body | markdownify }}<p class="source-note">资料来源：{{ event.source }}</p></article><aside class="article-aside"><p class="eyebrow">CONTINUE EXPLORING</p><h2>从这里继续</h2><a href="{{ category.url | relative_url }}">更多{{ category.name }} →</a><a href="{{ '/observing/guide/' | relative_url }}">第一次观测的准备 →</a><a href="{{ '/join/' | relative_url }}">参与活动与加入协会 →</a></aside></div>
+  {% if event.album %}{% include activity-album.html key=event.album %}{% endif %}
+  {% endif %}
+</div>

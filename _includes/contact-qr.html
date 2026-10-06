@@ -1,0 +1,5 @@
+<!-- 用原图与显示窗口保留二维码像素，避免重绘、调色或压缩损伤识别。 -->
+{% assign qr = include.channel.qr_crop %}
+<div class="contact-qr-frame"{% if qr %} style="--qr-width:{{ qr.image_width | times: 100.0 | divided_by: qr.size }}%;--qr-left:{{ qr.x | times: -100.0 | divided_by: qr.size }}%;--qr-top:{{ qr.y | times: -100.0 | divided_by: qr.size }}%;"{% endif %}>
+  <img src="{{ include.channel.qr_image | relative_url }}" alt="{{ include.channel.platform | escape }}：{{ include.channel.name | escape }}二维码"{% if qr %} width="{{ qr.image_width }}" height="{{ qr.image_height }}"{% endif %}>
+</div>

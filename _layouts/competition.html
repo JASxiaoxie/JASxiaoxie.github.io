@@ -1,0 +1,15 @@
+---
+layout: club
+nav: events
+---
+{% assign event = site.data.events | where: 'id', page.event_id | first %}
+<div class="wrap page-shell competition-page">
+  {% include activity-navigation.html category='competition' %}
+  <header class="page-heading competition-heading"><div><p class="eyebrow">ASTRONOMY COMPETITION / 大天赛</p><h1>把热爱，<br>带上赛场。</h1><p>{{ site.data.competition.introduction }}</p></div>{% include photo-slideshow.html title=event.title image=event.image slides=site.data.albums.competition.images ratio='1.5' class='competition-cover' eager=true %}</header>
+  <nav class="competition-index" aria-label="大天赛记录"><a href="#competition-awards">历届获奖记录 ↘</a><a href="#competition-2025">2025 参赛记录 ↗</a><a href="#competition-2024">2024 参赛记录 ↗</a><a href="#campus-contest-2025">校内天文知识竞赛 ↗</a></nav>
+  <div class="competition-intro"><p class="eyebrow">LEARN · PREPARE · COMPETE</p><h2>一起学，一起答，<br>一起走得更远。</h2><p>东北地区大学生天文知识竞赛中的答题与交流，留下的不只是赛场上的瞬间，还有同伴、旗帜与一路积累的知识。</p></div>
+  {% include competition-awards.html %}
+  {% include activity-album.html key='competition' anchor='competition-albums' %}
+  {% include activity-album.html key='campus-contest' description=site.data.competition.campus_intro anchor='campus-contest' %}
+  <div class="inline-note"><p class="eyebrow">THE STORY CONTINUES</p><h2>从学习到参赛。</h2><p>日常学习、校内交流与团队准备，也都是这段旅程的一部分。</p><a class="text-link" href="{{ '/events/astronomy-class/' | relative_url }}">走进天文学习班 ↗</a></div>
+</div>

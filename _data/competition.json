@@ -1,0 +1,197 @@
+{
+  "introduction": "从一起学习与备赛，到带着协会的旗帜走上赛场。这里记录大天赛中的答题、交流，以及并肩参赛的人。",
+  "editions": [
+    {
+      "year": "2025",
+      "album": "competition-2025",
+      "title": "2025 · 第十一届",
+      "description": "第十一届东北地区大学生天文知识竞赛参赛影像。"
+    },
+    {
+      "year": "2024",
+      "album": "competition-2024",
+      "title": "2024 · 第十届",
+      "description": "第十届东北地区大学生天文知识竞赛。既有活动材料记录，协会六名成员参赛并获得特等奖。"
+    }
+  ],
+  "campus_intro": "校内天文知识竞赛的学习、答题与交流现场。",
+  "awards": [
+    {
+      "year": 2024,
+      "edition": "第十届",
+      "host": "哈尔滨工业大学",
+      "awards": [
+        {
+          "label": "特等奖",
+          "recipient": ""
+        }
+      ],
+      "source": "2024年协会活动记录"
+    },
+    {
+      "year": 2019,
+      "edition": "第九届",
+      "host": "哈尔滨工业大学",
+      "awards": [
+        {
+          "label": "团体亚军奖",
+          "recipient": ""
+        },
+        {
+          "label": "个人二等奖",
+          "recipient": "麦穗丰"
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    },
+    {
+      "year": 2018,
+      "edition": "第八届",
+      "host": "长春理工大学",
+      "awards": [
+        {
+          "label": "团体冠军奖",
+          "recipient": ""
+        },
+        {
+          "label": "个人一等奖",
+          "recipient": "饶文冲"
+        },
+        {
+          "label": "最佳女生奖",
+          "recipient": "徐晨"
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    },
+    {
+      "year": 2017,
+      "edition": "第七届",
+      "host": "东北林业大学",
+      "awards": [
+        {
+          "label": "团体一等奖（第三名）",
+          "recipient": ""
+        },
+        {
+          "label": "个人二等奖",
+          "recipient": "徐晨"
+        },
+        {
+          "label": "最佳新人奖",
+          "recipient": "徐晨"
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    },
+    {
+      "year": 2016,
+      "edition": "第六届",
+      "host": "东北师范大学",
+      "awards": [
+        {
+          "label": "团体冠军奖",
+          "recipient": ""
+        },
+        {
+          "label": "个人一等奖",
+          "recipient": ""
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    },
+    {
+      "year": 2015,
+      "edition": "第五届",
+      "host": "长春理工大学",
+      "awards": [
+        {
+          "label": "团体冠军",
+          "recipient": ""
+        },
+        {
+          "label": "个人一等奖",
+          "recipient": "孙儒"
+        },
+        {
+          "label": "最佳新人奖",
+          "recipient": "张昱晨"
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    },
+    {
+      "year": 2014,
+      "edition": "第四届",
+      "host": "东北林业大学",
+      "awards": [
+        {
+          "label": "团体二等奖",
+          "recipient": ""
+        },
+        {
+          "label": "个人一等奖",
+          "recipient": "闻思源"
+        },
+        {
+          "label": "最佳观测奖",
+          "recipient": "孙儒"
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    },
+    {
+      "year": 2013,
+      "edition": "第三届",
+      "host": "黑龙江大学",
+      "awards": [
+        {
+          "label": "团体一等奖（冠军）",
+          "recipient": ""
+        },
+        {
+          "label": "个人三等奖",
+          "recipient": "刘智超"
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    },
+    {
+      "year": 2012,
+      "edition": "第二届",
+      "host": "东北林业大学",
+      "awards": [
+        {
+          "label": "团体二等奖",
+          "recipient": ""
+        },
+        {
+          "label": "个人三等奖",
+          "recipient": "卢毅"
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    },
+    {
+      "year": 2011,
+      "edition": "第一届",
+      "host": "哈尔滨工业大学",
+      "awards": [
+        {
+          "label": "团体二等奖",
+          "recipient": ""
+        },
+        {
+          "label": "最佳新人奖",
+          "recipient": "卢毅"
+        },
+        {
+          "label": "最佳观测奖",
+          "recipient": "董辰兴"
+        }
+      ],
+      "source": "协会历届获奖汇总（2011—2019）"
+    }
+  ],
+  "awards_source": "协会历届获奖汇总（2011—2019）、2024年协会活动记录"
+}

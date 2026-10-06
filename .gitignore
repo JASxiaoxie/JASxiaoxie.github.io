@@ -1,0 +1,11 @@
+_site/
+.jekyll-cache/
+.sass-cache/
+.bundle/
+vendor/
+local/
+content/
+_config.github-pages.yml
+.DS_Store
+__pycache__/
+*.py[cod]

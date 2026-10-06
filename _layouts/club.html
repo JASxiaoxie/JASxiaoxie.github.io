@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% include seo.html %}
+  <meta name="theme-color" content="#0b1018">
+  <link rel="icon" href="{{ '/images/brand/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/club.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/club.js' | relative_url }}"></script>
+</head>
+<body class="club-site page-{{ page.nav | default: 'article' }}">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <!-- 页面使用正常文档滚动，所有栏目保持可直接分享的地址。 -->
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="吉林大学天文协会首页">
+        <span class="brand-emblem"><img src="{{ '/images/brand/emblem.jpg' | relative_url }}" width="52" height="52" alt="吉林大学天文协会会徽"></span>
+        <span class="brand-name">吉林大学天文协会<small>JILIN UNIVERSITY ASTRONOMY SOCIETY</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">菜单 <span aria-hidden="true">＋</span></button>
+      <nav id="site-nav" class="site-nav" aria-label="主导航">
+        {% for item in site.data.navigation.main %}
+        <a href="{{ item.url | relative_url }}"{% if page.nav == item.key %} aria-current="page"{% endif %}{% if item.key == 'join' %} class="nav-join"{% endif %}>{{ item.title }}{% if item.key == 'join' %}<span aria-hidden="true">↗</span>{% endif %}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </header>
+  <main id="main">{{ content }}</main>
+  <footer class="site-footer">
+    <div class="footer-main wrap">
+      <div><p class="eyebrow">JAS · UNDER THE SAME SKY</p><p class="footer-name">星空很远，我们很近。</p></div>
+      <div class="footer-nav"><a href="{{ '/events/' | relative_url }}">看看活动 ↗</a><a href="{{ '/team/' | relative_url }}">天协的传承 ↗</a><a href="{{ '/join/' | relative_url }}">从这里加入 ↗</a></div>
+    </div>
+    <nav class="footer-contact wrap" aria-label="协会公开联系入口"><span>关注与联系</span>{% for channel in site.data.contact.channels %}<a href="{{ '/join/' | relative_url }}#contact-{{ channel.id }}">{{ channel.platform }} <span aria-hidden="true">↗</span></a>{% endfor %}</nav>
+    <div class="footer-bottom wrap"><p>© {{ site.time | date: '%Y' }} 吉林大学天文协会 <span>·</span> <a href="https://github.com/academicpages/academicpages.github.io" target="_blank" rel="noopener">Academic Pages</a> / Jekyll</p><a href="#main">回到顶部 ↑</a></div>
+  </footer>
+  {% if page.photo_viewer %}
+  <!-- 活动在原页面中打开；每个窗口只浏览所选那一次活动的照片。 -->
+  <dialog class="activity-dialog" id="activity-dialog" aria-labelledby="activity-dialog-title" aria-describedby="activity-dialog-description">
+    <div class="activity-dialog-top"><span class="eyebrow">ACTIVITY RECORD / 活动记录</span><button type="button" class="activity-dialog-close" aria-label="关闭活动窗口">关闭 ×</button></div>
+    <div class="activity-dialog-body">
+      <div class="activity-dialog-info"><p class="eyebrow" id="activity-dialog-date"></p><h2 id="activity-dialog-title"></h2><p id="activity-dialog-description"></p><p class="activity-dialog-count" id="activity-dialog-count" aria-live="polite"></p></div>
+      <div class="activity-dialog-gallery"><div class="activity-photo-stage"><img id="activity-photo-image" alt=""><div id="activity-photo-status" class="activity-photo-status" role="status" hidden></div><div class="activity-photo-controls"><button type="button" class="activity-photo-prev" aria-label="上一张活动照片">←</button><button type="button" class="activity-photo-next" aria-label="下一张活动照片">→</button></div></div><div class="activity-photo-thumbnails" id="activity-photo-thumbnails" role="group" aria-label="选择这次活动的照片"></div></div>
+    </div>
+    <p class="activity-dialog-hint">← → 切换照片 · Esc 关闭</p>
+  </dialog>
+  <!-- 作品大图使用原生对话框，保留完整画幅与键盘焦点约束。 -->
+  <dialog class="lightbox" id="photo-dialog" aria-labelledby="photo-title">
+    <div class="lightbox-top"><span id="photo-count" class="eyebrow"></span><button type="button" class="lightbox-close" aria-label="关闭影像浏览">关闭 ×</button></div>
+    <div class="lightbox-stage"><button type="button" class="photo-prev" aria-label="上一幅">←</button><div class="lightbox-media"><img id="photo-image" alt="" hidden><div id="photo-placeholder" class="photo-placeholder" role="img" aria-label="照片暂未添加"><span class="placeholder-cross" aria-hidden="true"></span><span>影像待补充</span></div></div><button type="button" class="photo-next" aria-label="下一幅">→</button></div>
+    <div class="lightbox-caption"><div><p id="photo-label" class="eyebrow"></p><h2 id="photo-title"></h2><p id="photo-note"></p></div><p class="lightbox-hint">← → 切换 · Esc 关闭</p></div>
+    <dl class="photo-metadata" id="photo-metadata" hidden><div><dt>作者</dt><dd id="photo-author"></dd></div><div><dt>器材</dt><dd id="photo-equipment"></dd></div><div><dt>曝光参数</dt><dd id="photo-exposure"></dd></div><div><dt>拍摄地点</dt><dd id="photo-location"></dd></div><div><dt>拍摄日期</dt><dd id="photo-date"></dd></div><div><dt>后期处理</dt><dd id="photo-processing"></dd></div></dl>
+  </dialog>
+  {% endif %}
+</body>
+</html>

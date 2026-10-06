@@ -1,0 +1,258 @@
+{
+  "name": "北十字天文台",
+  "full_name": "吉林大学天文协会北十字深空观测站",
+  "tagline": "从仰望星空，到亲手建起一座观测站。",
+  "intro": "在吉林省松原市长岭县前进乡，距长春约 180 公里的平原上，北十字为观测与摄影留下了一处固定的场地。打开屋顶，望远镜便能面向更暗、更开阔的夜空。",
+  "story": "一次次搬运设备、奔赴郊外，让大家萌生了建造固定观测站的想法。这里承载着深空摄影，也承载着设备调试、目视观测与天文交流。",
+  "name_story": "“北十字”取自天鹅座在北天呈现的十字形轮廓，也与吉大的天鹅意象相呼应。",
+  "facts": [
+    {
+      "value": "长岭",
+      "label": "观测站所在地",
+      "detail": "吉林省 · 松原市 · 前进乡"
+    },
+    {
+      "value": "2024",
+      "label": "建台年份",
+      "detail": "从选址到钢结构搭建"
+    },
+    {
+      "value": "6 × 7 m",
+      "label": "观测站尺寸",
+      "detail": "钢结构 · 可移动屋顶"
+    },
+    {
+      "value": "5 套",
+      "label": "深空观测设备",
+      "detail": "涵盖折射与牛顿反射系统"
+    }
+  ],
+  "overview_photo": {
+    "id": "photo-6ae11d2cc58e",
+    "image": "/images/photos/photo-6ae11d2cc58e.webp",
+    "thumbnail": "/images/photos/photo-6ae11d2cc58e-thumb.webp",
+    "width": 2200,
+    "height": 1238,
+    "title": "开顶后的观测区",
+    "label": "北十字天文台",
+    "note": "可移动屋顶打开后，观测区里的设备面向夜空。"
+  },
+  "aerial_photo": {
+    "id": "photo-94443cf9f603",
+    "image": "/images/photos/photo-94443cf9f603.webp",
+    "thumbnail": "/images/photos/photo-94443cf9f603-thumb.webp",
+    "width": 554,
+    "height": 311,
+    "title": "从上方看北十字",
+    "label": "观测站航拍",
+    "note": "屋顶打开后的观测站全貌。"
+  },
+  "team_intro": "建设、观测、摄影与科普，需要不同的经验，也需要一起投入时间。",
+  "people": [
+    {
+      "id": "xu-hang",
+      "image": "/images/photos/photo-44974895fd27.webp",
+      "thumbnail": "/images/photos/photo-44974895fd27-thumb.webp",
+      "width": 1712,
+      "height": 2200,
+      "name": "许航",
+      "identity": "2024 级 · 物理学院研究生",
+      "focus": "深空摄影 · 天文观测",
+      "intro": "爱好深空摄影与天文观测，在一次次拍摄和设备调试中积累实践经验。",
+      "role": "吉大天协天文台台长"
+    },
+    {
+      "id": "wang-yinxiang",
+      "image": "/images/photos/photo-6b5fb43c4de5.webp",
+      "thumbnail": "/images/photos/photo-6b5fb43c4de5-thumb.webp",
+      "width": 1500,
+      "height": 2055,
+      "name": "王胤翔",
+      "identity": "2023 级 · 汽车工程学院本科生",
+      "focus": "观测站建设 · 天文实践",
+      "intro": "参与北十字观测站的建设，将对星空的兴趣投入到实际的搭建与观测实践中。",
+      "role": "2025—2026 学年 · 观测部长"
+    },
+    {
+      "id": "wang-hanbing",
+      "image": "/images/photos/photo-f9cbd074308d.webp",
+      "thumbnail": "/images/photos/photo-f9cbd074308d-thumb.webp",
+      "width": 1024,
+      "height": 1366,
+      "name": "王涵冰",
+      "identity": "2024 级 · 材料物理专业研究生",
+      "focus": "星野摄影 · 深空摄影",
+      "intro": "兼修星野与深空天文摄影，拥有丰富的摄影经验，擅长后期处理与色彩把控。"
+    },
+    {
+      "id": "lou-jinchang",
+      "image": "/images/photos/photo-5b67d1224e96.webp",
+      "thumbnail": "/images/photos/photo-5b67d1224e96-thumb.webp",
+      "width": 1308,
+      "height": 1748,
+      "name": "娄锦畅",
+      "identity": "2024 级 · 通信工程专业本科生",
+      "focus": "天文理论 · 科普交流",
+      "intro": "以天文理论知识为基础，参与天文科普活动与观测交流。曾获 2023 年全国中学生天文奥林匹克竞赛（CNAO）铜牌。",
+      "role": "2026—2027 学年 · 协会会长"
+    }
+  ],
+  "construction_intro": "从查阅光污染地图、实地考察，到建模设计、施工与冬季调试，观测站一点点成形。",
+  "timeline": [
+    {
+      "date": "2024 年 6 月",
+      "title": "选址与设计",
+      "description": "对比光污染与气象条件，实地考察后确定前进乡的站址，并完成 3D 建模设计初稿。"
+    },
+    {
+      "date": "2024 年 9 月末",
+      "title": "铺设地基",
+      "description": "铺设水泥地基，为后续钢结构与设备安装准备场地。"
+    },
+    {
+      "date": "2024 年 10 月",
+      "title": "搭起观测站",
+      "description": "10 月 1 日开始搭建钢结构主体，随后数日完成主体搭建，采用彩钢保温层、可移动屋顶与斜拉加固设计。"
+    },
+    {
+      "date": "2024 年底起",
+      "title": "冬季调试",
+      "description": "在寒冬里反复排查设备故障与信号问题，经过两三个月的调试，让设备逐步稳定运行。"
+    }
+  ],
+  "construction_photos": [
+    {
+      "id": "photo-b4fd0cb8e742",
+      "image": "/images/photos/photo-b4fd0cb8e742.webp",
+      "thumbnail": "/images/photos/photo-b4fd0cb8e742-thumb.webp",
+      "width": 1080,
+      "height": 810,
+      "title": "施工中的观测站",
+      "label": "建设记录",
+      "note": "建设过程中的地基与钢结构。"
+    },
+    {
+      "id": "photo-df4b18ab6b11",
+      "image": "/images/photos/photo-df4b18ab6b11.webp",
+      "thumbnail": "/images/photos/photo-df4b18ab6b11-thumb.webp",
+      "width": 1080,
+      "height": 810,
+      "title": "观测站成形",
+      "label": "建设记录",
+      "note": "观测站的钢结构主体与可移动屋顶。"
+    }
+  ],
+  "equipment_intro": "观测站设有五套专业深空观测设备，涵盖折射式、牛顿反射式等光学系统。望远镜、赤道仪与成像设备协同工作，将暗弱天体的光逐渐积累下来。",
+  "instruments": [
+    {
+      "index": "01",
+      "title": "折射式望远镜",
+      "english": "REFRACTOR",
+      "description": "通过透镜收集与汇聚光线，配合成像设备记录星云、星团与星系。"
+    },
+    {
+      "index": "02",
+      "title": "牛顿反射式望远镜",
+      "english": "NEWTONIAN",
+      "description": "由主镜收集光线，再通过次镜折转光路，是观测站深空摄影使用的光学系统之一。"
+    },
+    {
+      "index": "03",
+      "title": "跟踪与成像",
+      "english": "TRACKING & IMAGING",
+      "description": "赤道仪跟踪天体的周日运动，相机通过长时间曝光记录肉眼难以分辨的细节。"
+    }
+  ],
+  "works_intro": "从熟悉的仙女座星系，到暗弱的星云，看看观测团队镜头里的宇宙。",
+  "work_ids": [
+    "wr134",
+    "m31",
+    "soul-bridge"
+  ],
+  "award_note": "观测团队合作拍摄的 WR 134，荣获第十四届全国高校天文摄影大赛一等奖。",
+  "life_intro": "调试设备、等待晴夜，也有镜头之外的相聚。把建设和观测之外的小片段，一起留在这里。",
+  "life_photos": [
+    {
+      "id": "photo-5d0ca12013d7",
+      "image": "/images/photos/photo-5d0ca12013d7.webp",
+      "thumbnail": "/images/photos/photo-5d0ca12013d7-thumb.webp",
+      "width": 1650,
+      "height": 2200,
+      "title": "观测站上的银河",
+      "label": "星空与日常",
+      "note": "抬头看见的夜空。"
+    },
+    {
+      "id": "photo-5881a54dff6b",
+      "image": "/images/photos/photo-5881a54dff6b.webp",
+      "thumbnail": "/images/photos/photo-5881a54dff6b-thumb.webp",
+      "width": 2200,
+      "height": 1238,
+      "title": "台内的夜间画面",
+      "label": "观测站记录",
+      "note": "一张保存下来的台内监控照片。"
+    },
+    {
+      "id": "photo-32d4b6f99cf0",
+      "image": "/images/photos/photo-32d4b6f99cf0.webp",
+      "thumbnail": "/images/photos/photo-32d4b6f99cf0-thumb.webp",
+      "width": 1238,
+      "height": 2200,
+      "title": "夜间留影",
+      "label": "镜头之外",
+      "note": "观测间隙，留下一个有趣的瞬间。"
+    },
+    {
+      "id": "photo-01666b4630c3",
+      "image": "/images/photos/photo-01666b4630c3.webp",
+      "thumbnail": "/images/photos/photo-01666b4630c3-thumb.webp",
+      "width": 1650,
+      "height": 2200,
+      "title": "望远镜的另一种拿法 · 一",
+      "label": "镜头之外",
+      "note": "器材也会成为合影的主角。"
+    },
+    {
+      "id": "photo-91f600c860b7",
+      "image": "/images/photos/photo-91f600c860b7.webp",
+      "thumbnail": "/images/photos/photo-91f600c860b7-thumb.webp",
+      "width": 1650,
+      "height": 2200,
+      "title": "望远镜的另一种拿法 · 二",
+      "label": "镜头之外",
+      "note": "器材也会成为合影的主角。"
+    },
+    {
+      "id": "photo-b91492cc60bd",
+      "image": "/images/photos/photo-b91492cc60bd.webp",
+      "thumbnail": "/images/photos/photo-b91492cc60bd-thumb.webp",
+      "width": 2200,
+      "height": 1238,
+      "title": "一桌好饭",
+      "label": "日常相聚",
+      "note": "星空之外，也记下这些相聚的时刻。"
+    },
+    {
+      "id": "photo-f53359bfc748",
+      "image": "/images/photos/photo-f53359bfc748.webp",
+      "thumbnail": "/images/photos/photo-f53359bfc748-thumb.webp",
+      "width": 2200,
+      "height": 1238,
+      "title": "围坐一桌",
+      "label": "日常相聚",
+      "note": "星空之外，也记下这些相聚的时刻。"
+    },
+    {
+      "id": "photo-4165a9553a7d",
+      "image": "/images/photos/photo-4165a9553a7d.webp",
+      "thumbnail": "/images/photos/photo-4165a9553a7d-thumb.webp",
+      "width": 2200,
+      "height": 1238,
+      "title": "相聚的另一帧",
+      "label": "日常相聚",
+      "note": "星空之外，也记下这些相聚的时刻。"
+    }
+  ],
+  "source_url": "https://mp.weixin.qq.com/s/XUCsH0MaqW9UcG-dYTY-1g",
+  "source_note": "内容依据用户提供的推文正文与远程台照片整理；成员并列展示，作品作者及拍摄参数留空。"
+}

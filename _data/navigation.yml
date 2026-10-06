@@ -1,0 +1,9 @@
+# 一级导航使用独立地址，供公众号和下一届管理层直接分享。
+main:
+  - {title: 首页, url: /, key: home}
+  - {title: 活动, url: /events/, key: events}
+  - {title: 北十字天文台, url: /observatory/, key: observatory}
+  - {title: 星空影像, url: /gallery/, key: gallery}
+  - {title: 历届管理层, url: /team/, key: team}
+  - {title: 关于天协, url: /about/, key: about}
+  - {title: 加入我们, url: /join/, key: join}

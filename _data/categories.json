@@ -1,0 +1,47 @@
+[
+  {
+    "id": "sidewalk",
+    "index": "01",
+    "name": "路边天文",
+    "english": "SIDEWALK ASTRONOMY",
+    "summary": "在校园里，把望远镜对准月亮与行星，让第一次观测成为日常。",
+    "url": "/events/sidewalk-astronomy/",
+    "image": "/images/photos/photo-68a73cee6041-thumb.webp"
+  },
+  {
+    "id": "class",
+    "index": "02",
+    "name": "天文学习班",
+    "english": "ASTRONOMY CLASS",
+    "summary": "围绕天文知识，一起学习、提问与交流。",
+    "url": "/events/astronomy-class/",
+    "image": "/images/photos/photo-c2ddd6abe892-thumb.webp"
+  },
+  {
+    "id": "joint",
+    "index": "03",
+    "name": "联合活动",
+    "english": "TOGETHER UNDER THE SKY",
+    "summary": "与兄弟院校及市天协一起交流、观测，让星空连接更多朋友。",
+    "url": "/events/joint-events/",
+    "image": "/images/photos/photo-9a217ad63dcb-thumb.webp"
+  },
+  {
+    "id": "field",
+    "index": "04",
+    "name": "野外观测",
+    "english": "INTO THE NIGHT",
+    "summary": "通常每学期一次，离开城市灯光，去看更完整的夜空。",
+    "url": "/events/field-observing/",
+    "image": "/images/photos/photo-713b77a61bfa-thumb.webp"
+  },
+  {
+    "id": "competition",
+    "index": "05",
+    "name": "大天赛",
+    "english": "ASTRONOMY COMPETITION",
+    "summary": "把天文知识带上赛场，也把并肩参赛的故事留下。",
+    "url": "/competition/",
+    "image": "/images/photos/photo-4d9bef7926d5-thumb.webp"
+  }
+]

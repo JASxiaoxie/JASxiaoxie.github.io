@@ -1,0 +1,44 @@
+# 正式网站使用协会账号；本地预览通过 local/preview.yml 覆盖网址。
+title: 吉林大学天文协会
+name: 吉林大学天文协会
+description: 从路边天文到野外观测，从学习与交流到亲手建设天文台，一起探索星空。
+title_separator: "·"
+locale: zh-CN
+url: https://jasxiaoxie.github.io
+baseurl: ""
+timezone: Asia/Shanghai
+encoding: utf-8
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+include:
+  - _pages
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - MAINTENANCE.md
+  - UPSTREAM.md
+  - AGENTS.md
+  - scripts
+  - content
+  - local
+  - vendor
+  - .bundle
+  - node_modules
+  - output
+  - 启动本地预览.command
+  - .DS_Store
+  - .github
+  - _config.github-pages.yml
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: club
+      image_placeholders: true
+social:
+  type: Organization
+  name: 吉林大学天文协会
+  links: []

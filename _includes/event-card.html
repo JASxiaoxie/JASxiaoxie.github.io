@@ -1,0 +1,12 @@
+{% assign category = site.data.categories | where: 'id', include.event.category | first %}
+{% assign event_path = '/events/' | append: include.event.id | append: '/' %}
+{% if include.event.url %}{% assign event_path = include.event.url %}{% endif %}
+<article class="event-card reveal" data-category="{{ include.event.category }}" data-kind="{{ include.event.kind }}">
+  <a href="{{ event_path | relative_url }}" class="event-link">
+    {% assign event_preview = include.event.thumbnail | default: include.event.image %}{% include photo-slot.html title=category.name ratio='1.65' image=event_preview %}
+    <div class="card-meta"><span>{{ category.name }}</span><span>{% if include.event.date != '' %}{{ include.event.date | date: '%Y.%m.%d' }}{% else %}{{ include.event.status }}{% endif %}</span></div>
+    <h3>{{ include.event.title }}<span aria-hidden="true">↗</span></h3>
+    <p>{{ include.event.summary }}</p>
+    <div class="card-bottom"><span>{{ include.event.location }}</span><span>{% if include.event.kind == 'archive' %}查看记录{% else %}介绍与往期活动{% endif %} →</span></div>
+  </a>
+</article>

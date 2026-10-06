@@ -1,0 +1,68 @@
+name: 发布天协网站
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# 构建只读取仓库，正式发布任务才拥有 Pages 部署权限。
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: 获取网站源码
+        uses: actions/checkout@v6
+      - name: 配置 GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: 准备 Ruby 和依赖
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: 生成活动页面和正式网址配置
+        env:
+          PAGES_ORIGIN: ${{ steps.pages.outputs.origin }}
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          python3 scripts/prepare_content.py
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          # Pages 元数据兼容根站点、项目子目录和以后绑定的独立域名。
+          config = {'url': os.environ['PAGES_ORIGIN'], 'baseurl': os.environ['PAGES_BASE_PATH']}
+          Path('_config.github-pages.yml').write_text(json.dumps(config), encoding='utf-8')
+          PY
+      - name: 构建并检查页面和图片
+        env:
+          JEKYLL_ENV: production
+        run: |
+          bundle exec jekyll build --config _config.yml,_config.github-pages.yml --strict_front_matter
+          python3 scripts/check_site.py _site
+      - name: 保存待发布网站
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 发布到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

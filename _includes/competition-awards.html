@@ -1,0 +1,14 @@
+{% if site.data.competition.awards.size > 0 %}
+<section class="competition-awards" id="competition-awards" aria-labelledby="competition-awards-heading">
+  <div class="section-heading"><div><p class="eyebrow">THROUGH THE YEARS / 赛场上的足迹</p><h2 id="competition-awards-heading">历届获奖记录</h2></div><div class="section-side"><p>从团体荣誉，到个人成绩，<br>记下每一次并肩参赛的收获。</p></div></div>
+  <!-- 年份与届次合并为一栏；手机按每届记录重排，保留表格的阅读顺序。 -->
+  <table class="awards-table" role="table">
+    <caption>东北地区大学生天文知识竞赛</caption>
+    <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">年份 / 届次</th><th scope="col" role="columnheader">承办学校</th><th scope="col" role="columnheader">获奖情况</th></tr></thead>
+    <tbody role="rowgroup">{% assign award_records = site.data.competition.awards | sort: 'year' | reverse %}{% for record in award_records %}
+      <tr role="row"><th scope="row" role="rowheader"><span class="award-year">{{ record.year }}</span><span class="award-edition">{{ record.edition }}</span></th><td class="award-host" role="cell">{{ record.host }}</td><td class="award-results" role="cell"><ul>{% for award in record.awards %}<li><span class="award-name">{{ award.label }}</span>{% if award.recipient != '' %}<span class="award-recipient">{{ award.recipient }}</span>{% endif %}</li>{% endfor %}</ul></td></tr>
+    {% endfor %}</tbody>
+  </table>
+  <p class="source-note">资料来源：{{ site.data.competition.awards_source }}</p>
+</section>
+{% endif %}

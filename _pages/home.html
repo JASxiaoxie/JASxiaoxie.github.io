@@ -1,0 +1,25 @@
+---
+title: 首页
+permalink: /
+nav: home
+photo_viewer: true
+---
+<section class="hero wrap">
+  <div class="hero-copy"><p class="eyebrow hero-eyebrow">JILIN UNIVERSITY ASTRONOMY SOCIETY</p><h1>在吉大，<br>一起看见<br><span>更远的星空。</span></h1><p class="hero-description">{{ site.data.club.description }}</p><div class="hero-actions"><a class="button button-primary" href="{{ '/events/' | relative_url }}">看看我们的活动 <span>↗</span></a><a class="button button-quiet" href="{{ '/join/' | relative_url }}">从这里加入 <span>→</span></a></div><p class="hero-footnote"><span class="small-star" aria-hidden="true">✦</span> 从一次仰望开始，和一群人一起探索。</p></div>
+  <div class="hero-visual"><div class="hero-visual-top"><span>THE NIGHT, TOGETHER</span><span>JAS / 01</span></div>{% assign hero_work = site.data.gallery | where: 'id', 'galactic-center' | first %}{% include photo-slideshow.html title=hero_work.title image=hero_work.image slides=site.data.gallery ratio='0.98' class='hero-photo' eager=true %}<div class="hero-visual-bottom"><span>UNDER THE SAME SKY</span><a href="{{ '/gallery/' | relative_url }}">走进星空影像 ↗</a></div></div>
+</section>
+<div class="intro-strip"><div class="wrap intro-strip-inner"><span class="eyebrow">HELLO, STARGAZERS</span><p>观测、学习、相聚。<br class="mobile-break">星空让我们在这里遇见。</p><a href="{{ '/about/' | relative_url }}">认识天协 ↗</a></div></div>
+<section class="section wrap" id="activities">
+  <div class="section-heading reveal"><div><p class="eyebrow">01 / WHAT WE DO</p><h2>我们的日常，<br>总有一部分属于星空。</h2></div><div class="section-side"><p>在校园里，也在更暗的夜空下。<br>用五种方式，让兴趣成为经历。</p><a class="text-link" href="{{ '/events/' | relative_url }}">全部活动 ↗</a></div></div>
+  <div class="category-grid">{% for category in site.data.categories %}<a class="category-card reveal" href="{{ category.url | relative_url }}">{% include photo-slot.html title=category.name number=category.index ratio='1.42' image=category.image %}<p class="eyebrow">{{ category.english }}</p><h3>{{ category.name }}<span>↗</span></h3><p>{{ category.summary }}</p></a>{% endfor %}</div>
+  <div class="announcement reveal"><span class="status-dot" aria-hidden="true"></span><p>从日常观测到知识竞赛，一起留下我们的活动记录。</p><a href="{{ '/events/' | relative_url }}">看看活动影像 →</a></div>
+</section>
+<section class="observatory-feature section wrap reveal">
+  <div class="feature-image">{% include photo-slot.html title='北十字天文台实景' image=site.data.observatory.overview_photo.image ratio='1.12' number='02' %}</div><div class="feature-copy"><p class="eyebrow">02 / NORTH CROSS OBSERVATORY</p><p class="feature-kicker">北十字天文台</p><h2>从仰望星空，<br>到亲手建起<br>一座观测站。</h2><p>在长岭的夜空下，观测与摄影有了固定的场地。<br>认识北十字的伙伴、器材与建设故事。</p><a class="text-link" href="{{ '/observatory/' | relative_url }}">了解北十字天文台 ↗</a></div>
+</section>
+<section class="section gallery-feature wrap">
+  <div class="section-heading reveal"><div><p class="eyebrow">03 / THROUGH OUR LENSES</p><h2>把一夜星光，<br>留在下一次相遇之前。</h2></div><div class="section-side"><p>遥远天体，身边的夜晚，<br>以及一起仰望的人。</p><a class="text-link" href="{{ '/gallery/' | relative_url }}">进入星空影像 ↗</a></div></div>
+  <div class="featured-gallery">{% assign featured = site.data.gallery | where: 'featured', true %}{% for work in featured %}{% include gallery-card.html work=work %}{% endfor %}</div>
+</section>
+<section class="heritage-section"><div class="wrap heritage-inner"><div class="heritage-copy reveal"><p class="eyebrow">04 / THE STORY CONTINUES</p><h2>一届又一届，<br>把星空交给后来的人。</h2><p>从早期天文爱好者协会，到天体组，再到今天的天协。不同阶段的故事，在这里被记下。</p><a class="text-link" href="{{ '/team/' | relative_url }}">历届管理层 ↗</a><a class="text-link second-link" href="{{ '/about/' | relative_url }}#history">读读天协的历史 →</a></div><div class="heritage-years reveal"><div><span>1999</span><p>最初的仰望</p></div><div><span>2006</span><p>天体组的日子</p></div><div><span>2012</span><p>吉林大学天文协会</p></div><p class="heritage-note">沿着热爱，继续向前。</p></div></div></section>
+<section class="join-feature wrap section reveal"><div class="join-feature-copy"><p class="eyebrow">YOUR FIRST NIGHT STARTS HERE</p><h2>星空不需要门槛，<br>好奇就能出发。</h2><p>第一次参加观测，听一场学习班，<br>或者找一个喜欢的部门一起做点事。</p><a class="button button-primary" href="{{ '/join/' | relative_url }}">认识你的天协 <span>↗</span></a></div><div class="mascot-frame"><img src="{{ '/images/brand/xiaoxie.png' | relative_url }}" width="400" height="400" alt="天协看板娘小邪" loading="lazy"><span>小邪 · 吉大天协看板娘</span></div></section>

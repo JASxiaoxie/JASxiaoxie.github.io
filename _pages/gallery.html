@@ -1,0 +1,9 @@
+---
+title: 星空影像
+permalink: /gallery/
+nav: gallery
+photo_viewer: true
+---
+<div class="wrap page-shell"><header class="page-heading"><p class="eyebrow">THROUGH OUR LENSES / 星空影像</p><h1>星光，<br>和收集星光的人。</h1><p>银河、星云、星系，以及太阳系里的来客。<br>让一瞬间的仰望，有可以重访的形状。</p></header>
+<div class="gallery-toolbar"><div class="filter-group" role="group" aria-label="影像类别"><button type="button" data-gallery-filter="all" aria-pressed="true">全部</button><button type="button" data-gallery-filter="nightscape" aria-pressed="false">星野与银河</button><button type="button" data-gallery-filter="deep-sky" aria-pressed="false">星云与星系</button><button type="button" data-gallery-filter="solar-system" aria-pressed="false">太阳系与彗星</button></div><p id="gallery-count" aria-live="polite">{{ site.data.gallery.size }} 幅作品</p></div>
+<div class="gallery-grid">{% for work in site.data.gallery %}{% include gallery-card.html work=work %}{% endfor %}</div><p class="gallery-endnote">点击作品查看完整画幅。<a class="text-link" href="{{ '/events/' | relative_url }}">一起经历的夜晚，去活动影像里重访 ↗</a></p></div>

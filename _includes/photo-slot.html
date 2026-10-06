@@ -1,0 +1,6 @@
+<!-- 网页副本负责展示；尚无素材的区块继续保留画幅。 -->
+<div class="photo-slot {{ include.class }}"{% if include.ratio %} style="--photo-ratio:{{ include.ratio }}"{% endif %}>
+  {% if include.image and include.image != '' %}<img src="{{ include.image | relative_url }}" alt="{{ include.title | escape }}" loading="{% if include.eager %}eager{% else %}lazy{% endif %}" decoding="async"{% if include.eager %} fetchpriority="high"{% endif %}{% if include.width %} width="{{ include.width }}" height="{{ include.height }}"{% endif %}>
+  {% else %}<span class="slot-corner slot-corner-tl" aria-hidden="true"></span><span class="slot-corner slot-corner-br" aria-hidden="true"></span><span class="slot-mark" aria-hidden="true">＋</span>{% endif %}
+  <span class="slot-caption">{{ include.title | default: '影像' }}{% if include.number %}<span>{{ include.number }}</span>{% endif %}</span>
+</div>

@@ -1,0 +1,14 @@
+{% assign photo = include.photo %}
+{% assign display_image = photo.thumbnail %}{% if include.eager %}{% assign display_image = photo.image %}{% endif %}
+<!-- 实景照片沿用完整画幅浏览；无脚本时链接仍可直接打开图片。 -->
+{% if include.slides %}
+<div class="observatory-photo {{ include.class }}">
+  {% include photo-slideshow.html title=photo.title image=photo.image slides=include.slides ratio=include.ratio eager=include.eager link=true sequence=include.sequence label=photo.label note=photo.note %}
+  {% if include.caption %}<div class="observatory-photo-caption"><span data-slideshow-caption>{{ photo.title }}</span><span aria-hidden="true">↗</span></div>{% endif %}
+</div>
+{% else %}
+<a class="observatory-photo {{ include.class }}" href="{{ photo.image | relative_url }}" data-lightbox data-sequence="{{ include.sequence }}" data-title="{{ photo.title | escape }}" data-label="{{ photo.label | escape }}" data-note="{{ photo.note | escape }}" data-image="{{ photo.image | relative_url }}" aria-label="浏览{{ photo.title | escape }}">
+  {% include photo-slot.html image=display_image title=photo.title ratio=include.ratio eager=include.eager width=photo.width height=photo.height %}
+  {% if include.caption %}<div class="observatory-photo-caption"><span>{{ photo.title }}</span><span aria-hidden="true">↗</span></div>{% endif %}
+</a>
+{% endif %}

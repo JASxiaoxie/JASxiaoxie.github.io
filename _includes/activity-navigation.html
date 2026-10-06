@@ -1,0 +1,4 @@
+<nav class="activity-nav" aria-label="活动类别"{% if include.overview %} data-activity-overview{% endif %}>
+  <a href="{{ '/events/' | relative_url }}"{% unless include.category %} aria-current="page"{% endunless %}>全部活动</a>
+  {% for activity_category in site.data.categories %}<a href="{{ activity_category.url | relative_url }}" data-activity-category="{{ activity_category.id }}"{% if include.category == activity_category.id %} aria-current="page"{% endif %}>{{ activity_category.name }}</a>{% endfor %}
+</nav>

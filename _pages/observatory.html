@@ -1,0 +1,52 @@
+---
+title: 北十字天文台
+description: 认识吉林大学天文协会北十字深空观测站、观测团队、建设过程、器材与摄影作品。
+permalink: /observatory/
+nav: observatory
+photo_viewer: true
+---
+{% assign observatory = site.data.observatory %}
+{% assign observatory_slides = '' | split: ',' | push: observatory.overview_photo | push: observatory.aerial_photo %}
+<div class="wrap page-shell observatory-page">
+  <!-- 六个区块按介绍、成员、建设、器材、作品、日常排列，资料保存在独立数据文件。 -->
+  <section id="overview" class="observatory-overview" aria-labelledby="observatory-title">
+    <header class="observatory-title"><p class="eyebrow">NORTH CROSS OBSERVATORY / 吉大天协</p><h1 id="observatory-title">{{ observatory.name }}</h1><p class="observatory-full-name">{{ observatory.full_name }}</p><p class="observatory-tagline">{{ observatory.tagline }}</p></header>
+    {% include observatory-photo.html photo=observatory.overview_photo slides=observatory_slides sequence='observatory-overview' ratio='1.78' class='observatory-overview-image' eager=true %}
+    <p class="observatory-overview-copy">{{ observatory.intro }}</p>
+  </section>
+  <div class="observatory-facts">{% for fact in observatory.facts %}<div><span>{{ fact.label }}</span><strong>{{ fact.value }}</strong><p>{{ fact.detail }}</p></div>{% endfor %}</div>
+  <nav class="observatory-page-index" aria-label="天文台页内导航"><a href="#overview">总览与介绍 ↘</a><a href="#the-team">观测团队 ↘</a><a href="#construction">建设过程 ↘</a><a href="#instruments">器材介绍 ↘</a><a href="#observatory-works">摄影作品 ↘</a><a href="#observatory-life">台子日常 ↘</a></nav>
+  <div class="observatory-introduction reveal"><div><p class="eyebrow">A PLACE FOR THE NIGHT</p><h2>让每一次观测，<br>有一个可以回来的地方。</h2><p>{{ observatory.story }}</p><p>{{ observatory.name_story }}</p></div>{% include observatory-photo.html photo=observatory.aerial_photo slides=observatory_slides sequence='observatory-overview' ratio='1.78' caption=true %}</div>
+
+  <section class="observatory-section" id="the-team" aria-labelledby="observatory-team-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">01 / THE PEOPLE</p><h2 id="observatory-team-title">一起观测的人。</h2></div><div class="section-side"><p>{{ observatory.team_intro }}</p></div></div>
+    <div class="observatory-people">{% for person in observatory.people %}
+      <!-- 四位成员使用相同画幅、字号与信息层级，不划分创办者和后来加入者。 -->
+      <a class="observatory-person reveal" href="{{ person.image | relative_url }}" data-lightbox data-sequence="observatory-people" data-title="{{ person.name | escape }}" data-label="{{ person.identity | escape }}{% if person.role %} · {{ person.role | escape }}{% endif %}" data-note="{{ person.intro | escape }}" data-image="{{ person.image | relative_url }}" aria-label="了解{{ person.name }}">
+        <div class="observatory-portrait"><img src="{{ person.thumbnail | relative_url }}" alt="{{ person.name }}的照片" width="{{ person.width }}" height="{{ person.height }}" loading="lazy" decoding="async"></div>
+        <h3>{{ person.name }}<span aria-hidden="true">↗</span></h3><p class="person-identity">{{ person.identity }}</p><p class="person-focus">{{ person.role | default: person.focus }}</p><p class="person-intro">{{ person.intro }}</p>
+      </a>{% endfor %}
+    </div>
+  </section>
+
+  <section class="observatory-section" id="construction" aria-labelledby="observatory-construction-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">02 / THE MAKING</p><h2 id="observatory-construction-title">一步步，把它搭起来。</h2></div><div class="section-side"><p>{{ observatory.construction_intro }}</p></div></div>
+    <div class="observatory-construction"><ol class="observatory-timeline reveal">{% for node in observatory.timeline %}<li><p>{{ node.date }}</p><h3>{{ node.title }}</h3><p>{{ node.description }}</p></li>{% endfor %}</ol><div class="observatory-construction-photos reveal">{% for photo in observatory.construction_photos %}{% include observatory-photo.html photo=photo sequence='observatory-construction' ratio='1.5' caption=true %}{% endfor %}</div></div>
+  </section>
+
+  <section class="observatory-section" id="instruments" aria-labelledby="observatory-instruments-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">03 / THE INSTRUMENTS</p><h2 id="observatory-instruments-title">镜筒里的世界。</h2></div><div class="section-side"><p>不同的光学系统，<br>共同面向更暗弱的星光。</p></div></div>
+    <div class="observatory-equipment-layout reveal">{% include observatory-photo.html photo=observatory.overview_photo sequence='observatory-equipment' ratio='1.78' caption=true %}<div><p class="observatory-equipment-intro">{{ observatory.equipment_intro }}</p><div class="observatory-instruments">{% for instrument in observatory.instruments %}<article><p class="eyebrow">{{ instrument.index }} / {{ instrument.english }}</p><h3>{{ instrument.title }}</h3><p>{{ instrument.description }}</p></article>{% endfor %}</div></div></div>
+  </section>
+
+  <section class="observatory-section" id="observatory-works" aria-labelledby="observatory-works-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">04 / THROUGH OUR LENSES</p><h2 id="observatory-works-title">观测团队的星空。</h2></div><div class="section-side"><p>{{ observatory.works_intro }}</p><a class="text-link" href="{{ '/gallery/' | relative_url }}">进入星空影像 ↗</a></div></div>
+    <div class="observatory-works">{% for work_id in observatory.work_ids %}{% assign work = site.data.gallery | where: 'id', work_id | first %}{% include gallery-card.html work=work sequence='observatory-works' %}{% endfor %}</div>
+    <p class="observatory-award-note reveal"><span aria-hidden="true">✦</span>{{ observatory.award_note }}</p>
+  </section>
+
+  <section class="observatory-section observatory-life" id="observatory-life" aria-labelledby="observatory-life-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">05 / BETWEEN THE EXPOSURES</p><h2 id="observatory-life-title">台子日常，<br>也有一些有趣的瞬间。</h2></div><div class="section-side"><p>{{ observatory.life_intro }}</p></div></div>
+    <div class="observatory-life-grid">{% for photo in observatory.life_photos %}{% assign original_ratio = photo.width | times: 1.0 | divided_by: photo.height %}{% include observatory-photo.html photo=photo sequence='observatory-life' ratio=original_ratio class='reveal' caption=true %}{% endfor %}</div>
+  </section>
+</div>

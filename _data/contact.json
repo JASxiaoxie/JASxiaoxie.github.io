@@ -1,0 +1,48 @@
+{
+  "heading": "找到我们，一起看星空。",
+  "intro": "在群里相遇，在推文里了解天协，也在视频中一起学习。",
+  "updated": "2026-10-06",
+  "channels": [
+    {
+      "id": "qq",
+      "platform": "QQ 群",
+      "english": "MEET & CHAT",
+      "name": "吉林大学天文协会2026",
+      "description": "加入群聊，认识一起看星空的伙伴，留意当期活动与招新通知。",
+      "value": "298485520",
+      "value_label": "群号",
+      "copy_label": "复制群号",
+      "instruction": "用 QQ 扫描二维码，或搜索群号加入。",
+      "qr_image": "/images/contact/qq-group-2026.jpg",
+      "qr_crop": {"image_width": 1348, "image_height": 2397, "x": 184, "y": 775, "size": 980},
+      "url": "",
+      "url_label": ""
+    },
+    {
+      "id": "wechat",
+      "platform": "微信公众号",
+      "english": "NEWS & STORIES",
+      "name": "JAS天协的小邪",
+      "description": "活动消息、天文资讯与协会故事，都在这里。",
+      "value": "JAS天协的小邪",
+      "copy_label": "复制公众号名称",
+      "instruction": "用微信扫描二维码，或搜索“JAS天协的小邪”关注。",
+      "qr_image": "/images/contact/wechat-qr.png",
+      "url": "",
+      "url_label": ""
+    },
+    {
+      "id": "bilibili",
+      "platform": "B站",
+      "english": "WATCH & LEARN",
+      "name": "天协的小邪",
+      "description": "观看天文学习班、知识竞赛与社团视频，把一次相遇延续下去。",
+      "value": "天协的小邪",
+      "copy_label": "复制B站账号名",
+      "instruction": "打开天协的 B站主页，关注账号，查看往期视频。",
+      "qr_image": "",
+      "url": "https://space.bilibili.com/103719333",
+      "url_label": "打开B站主页"
+    }
+  ]
+}

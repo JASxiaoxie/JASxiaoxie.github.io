@@ -1,0 +1,24 @@
+<section class="contact-section" id="contact" aria-labelledby="contact-heading">
+  <div class="section-heading"><div><p class="eyebrow">STAY IN OUR ORBIT / 关注与联系</p><h2 id="contact-heading">{{ site.data.contact.heading }}</h2></div><div class="section-side"><p>{{ site.data.contact.intro }}</p></div></div>
+  <div class="contact-grid">
+    {% for channel in site.data.contact.channels %}
+    <article class="contact-channel contact-channel-{{ channel.id }}" id="contact-{{ channel.id }}">
+      <div class="contact-channel-header"><span class="contact-platform-mark" aria-hidden="true">{% case channel.id %}{% when 'qq' %}QQ{% when 'wechat' %}<svg viewBox="0 0 32 32"><path d="M13 5C6.9 5 2 8.7 2 13.3c0 2.5 1.5 4.9 4.1 6.4l-.8 3.1 3.7-1.7c1.2.3 2.6.5 4 .5 6.1 0 11-3.7 11-8.3S19.1 5 13 5Z"/><path d="M22 15c-4.4 0-8 2.6-8 5.8s3.6 5.8 8 5.8c1 0 2-.1 2.9-.4l2.7 1.3-.6-2.4c1.8-1.1 3-2.7 3-4.3S26.4 15 22 15Z"/><circle cx="9" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></svg>{% when 'bilibili' %}<svg viewBox="0 0 32 32"><rect x="4" y="9" width="24" height="18" rx="4"/><path d="m10 3 5 6m7-6-5 6M10 16v5m12-5v5"/></svg>{% endcase %}</span><div><p class="eyebrow">{{ channel.english }}</p><p class="contact-platform">{{ channel.platform }}</p></div></div>
+      <h3>{{ channel.name }}</h3><p class="contact-channel-description">{{ channel.description }}</p>
+      {% if channel.qr_image != '' %}<figure class="contact-qr"><a href="{{ channel.qr_image | relative_url }}" data-open-contact-qr="{{ channel.id }}" aria-label="放大{{ channel.platform }}二维码">{% include contact-qr.html channel=channel %}</a><figcaption>{% if channel.id == 'qq' %}扫描加入群聊{% else %}扫描关注公众号{% endif %} · 点击放大</figcaption></figure>{% else %}<a class="contact-video-tile" href="{{ channel.url | escape }}" target="_blank" rel="noopener" aria-label="在B站观看天协视频"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="19" width="44" height="32" rx="7"/><path d="m20 8 10 11m14-11L34 19M22 31v9m20-9v9"/></svg><span>一起学习，<br>也一起记录。</span><small>WATCH JAS ON BILIBILI ↗</small></a>{% endif %}
+      {% if channel.value_label %}<p class="contact-number"><span>{{ channel.value_label }}</span><strong>{{ channel.value }}</strong></p>{% endif %}
+      <p class="contact-instruction">{{ channel.instruction }}</p>
+      <div class="contact-actions"><button class="button button-quiet" type="button" data-copy-text="{{ channel.value | escape }}" data-copy-status="copy-status-{{ channel.id }}" hidden>{{ channel.copy_label }} <span aria-hidden="true">＋</span></button>{% if channel.url != '' %}<a class="text-link" href="{{ channel.url | escape }}" target="_blank" rel="noopener">{{ channel.url_label }} ↗</a>{% endif %}</div>
+      <p class="contact-copy-status" id="copy-status-{{ channel.id }}" role="status" aria-live="polite"></p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% for channel in site.data.contact.channels %}{% if channel.qr_image != '' %}
+<dialog class="contact-qr-dialog" id="contact-qr-dialog-{{ channel.id }}" aria-labelledby="contact-qr-title-{{ channel.id }}">
+  <div class="contact-qr-dialog-top"><p class="eyebrow">{{ channel.platform }} / {{ channel.english }}</p><button class="button button-quiet" type="button" data-close-contact-qr aria-label="关闭{{ channel.platform }}二维码">关闭 ×</button></div>
+  <h2 id="contact-qr-title-{{ channel.id }}">{{ channel.name }}</h2>{% if channel.value_label %}<p class="contact-qr-dialog-number">{{ channel.value_label }} {{ channel.value }}</p>{% endif %}
+  {% include contact-qr.html channel=channel %}
+  <p class="contact-qr-dialog-hint">{{ channel.instruction }}</p><a class="text-link" href="{{ channel.qr_image | relative_url }}" download>保存二维码 ↓</a>
+</dialog>
+{% endif %}{% endfor %}

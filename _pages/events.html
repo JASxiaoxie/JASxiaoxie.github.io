@@ -1,0 +1,13 @@
+---
+title: 活动
+permalink: /events/
+nav: events
+---
+{% assign listed_events = site.data.events | where_exp: 'event', 'event.show_in_list != false' %}
+<div class="wrap page-shell"><header class="page-heading"><p class="eyebrow">WHAT WE DO / 活动</p><h1>把仰望，<br>变成一起经历的夜晚。</h1><p>路边天文、学习班、联合活动、野外观测、大天赛。<br>从身边的校园，走向更辽阔的星空。</p></header>
+  <section id="activity-list" class="listing-section">
+    {% include activity-navigation.html overview=true %}
+    <div class="list-summary"><p>{{ site.data.categories.size }} 类活动 · 介绍与往期影像</p><span>野外观测通常每学期一次</span></div>
+    <div class="event-grid">{% for event in listed_events %}{% include event-card.html event=event %}{% endfor %}</div>
+  </section><div class="inline-note"><p class="eyebrow">A LITTLE PREPARATION</p><h2>第一次参加观测？</h2><p>先从一份简单的准备清单开始。</p><a class="text-link" href="{{ '/observing/guide/' | relative_url }}">查看观测指南 ↗</a></div>
+</div>
