@@ -9,7 +9,7 @@ nav: team
 <!-- 根据当前任期匹配人物资料，换届时不把网站作者自动当作现任会长。 -->
 {% if president %}
 <section class="president-card reveal" id="current-president" aria-labelledby="president-name">
-  <div class="president-portrait"><img src="{{ president.image | relative_url }}" alt="{{ president.name | escape }}的照片" width="{{ president.width }}" height="{{ president.height }}" loading="lazy"></div>
+  <div class="president-portrait"><img src="{{ president.image | relative_url }}" alt="{{ president.name | escape }}的照片" width="210" height="280" loading="lazy"></div>
   <div class="president-copy">
     <p class="eyebrow">CURRENT PRESIDENT / 现任会长</p>
     <h2 id="president-name">{{ president.name }}</h2>

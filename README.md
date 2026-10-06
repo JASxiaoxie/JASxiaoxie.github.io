@@ -1,16 +1,52 @@
 # 吉林大学天文协会网站
 
-基于 Academic Pages/Jekyll 的独立本地网站。已完成框架与视觉交互，并加入 134 张活动照片、28 幅摄影作品和 16 张北十字天文台照片，会徽与小邪保留各自的品牌用途。
+> 在吉大，一起看见更远的星空。
 
-每类活动先展示活动介绍，下面按日期列出每次活动，点开某次活动后，介绍与照片在页面中央的小窗中呈现。日期由新到旧排列，关闭小窗回到原列表。
+欢迎来到吉大天协。这里是协会网站的源码仓库，也是我们保存活动、影像与社团记忆的地方。这份说明写给刚认识天协的新同学，也写给以后接手网站的管理层。
 
-首页主图每 3 秒循环摄影作品；五类活动介绍页的大图轮播各自相册；天文台总览与下方介绍图循环器材全景和航拍图。鼠标悬停时暂停，移开后继续；画面不叠加序号与按钮。
+**[访问天协网站](https://jasxiaoxie.github.io/)** · **[网站维护与交接指南](MAINTENANCE.md)**
 
-网站有首页、活动、北十字天文台、星空影像、历届管理层、关于天协、加入我们七个主要页面，以及独立大天赛页面、观测指南和活动详情。
+## 给第一次来到天协的同学
 
-## 本地预览
+没有天文基础也没关系。学习班、校园里的望远镜和一次次观测，都是认识星空的起点。
 
-需要 Ruby 3.3、Bundler 和 Python 3。首次在新环境使用时：
+在网站里，可以先从这些地方逛起：
+
+- **[我们的活动](https://jasxiaoxie.github.io/events/)**：路边天文、天文学习班、联合活动与野外观测。点开一场活动，就能看到那一次的介绍和照片；[大天赛](https://jasxiaoxie.github.io/competition/)也有自己的页面。
+- **[北十字天文台](https://jasxiaoxie.github.io/observatory/)**：认识观测团队，看看天文台的建设过程、器材和日常。
+- **[星空影像](https://jasxiaoxie.github.io/gallery/)**：浏览协会成员的天文摄影作品。
+- **[历届管理层](https://jasxiaoxie.github.io/team/)**与**[关于天协](https://jasxiaoxie.github.io/about/)**：了解现在的天协，也看看前辈们留下的名字与故事。
+- **[加入我们](https://jasxiaoxie.github.io/join/)**：找到协会 QQ 群、微信公众号和 B站账号，留意最新活动通知。
+
+**不入会也可以正常参加协会的各类活动。** 部分名额受限的活动中，会员会享有优先权，例如天气寒冷、野外观测人数有限时。具体参与方式和安排以当次通知为准。
+
+## 给接手网站的管理层
+
+网站会随着协会继续更新。接手以后，最常做的事情是补充一次活动、上传几张照片、更新管理层名单，以及维护群聊与新媒体入口。
+
+日常内容主要保存在 `_data/` 中，页面会自动读取这些资料。先找到对应文件，再修改内容；详细字段、照片归档和换届步骤请看 [维护与交接指南](MAINTENANCE.md)。
+
+| 想更新什么 | 从哪里开始 |
+| --- | --- |
+| 各类活动的介绍与参与说明 | [`_data/events.json`](_data/events.json) |
+| 每一次活动的日期、介绍与照片 | [`_data/albums.json`](_data/albums.json) |
+| 大天赛介绍、参赛记录与获奖情况 | [`_data/competition.json`](_data/competition.json) |
+| 当前与历届管理层名单 | [`_data/team.json`](_data/team.json) |
+| 现任会长的人物资料、照片与个人主页 | [`_data/people.json`](_data/people.json) |
+| 北十字天文台的团队、建设、器材与日常 | [`_data/observatory.json`](_data/observatory.json) |
+| 摄影作品、作者与拍摄参数 | [`_data/gallery.json`](_data/gallery.json) |
+| 协会简介、部门、入会说明与常见问题 | [`_data/club.json`](_data/club.json) |
+| QQ 群、公众号二维码与 B站入口 | [`_data/contact.json`](_data/contact.json) |
+| 协会历史中的重要节点 | [`_data/history.json`](_data/history.json) |
+| 网站制作署名与源码仓库地址 | [`_data/website.json`](_data/website.json) |
+
+页面结构在 [`_pages/`](_pages/)，样式和交互在 [`assets/`](assets/)。少量文字可以通过 GitHub 的文件编辑功能更新；照片或布局有较多变化时，建议先在本地预览。
+
+整理内容时，请保留历届记录。没有确认的作者和拍摄参数先留空；活动只知道年份，就写年份。把准备公开展示的照片副本放进 `images/`，原始照片另存备份。会员信息、财务资料与私密联系方式不放进公开仓库。
+
+## 在自己的电脑上预览
+
+先获取这个仓库并进入项目目录，准备好 Ruby 3.3、Bundler 和 Python 3。第一次使用时运行：
 
 ```sh
 bundle config set --local path vendor/bundle
@@ -18,30 +54,11 @@ bundle install
 python3 scripts/preview.py
 ```
 
-默认地址：http://127.0.0.1:4173/ 。修改 HTML、CSS 或数据后，Jekyll 会重新构建，刷新浏览器查看。
+打开 [本地预览](http://127.0.0.1:4173/)，就能看到网站。修改内容后，等待程序重新构建，再刷新浏览器；按 `Ctrl+C` 可以结束预览。
 
-有现成 Ruby 依赖缓存时，可使用 `python3 scripts/preview.py --bundle-path <依赖缓存目录>`。此参数只影响本机启动，不影响网站数据和迁移。
+本地预览适用于 macOS 和 Linux。有现成依赖缓存时，也可以使用 `python3 scripts/preview.py --bundle-path <依赖缓存目录>`。
 
-## 内容入口
-
-- `_data/events.json`：五类活动、历史回顾、独立详情正文。
-- `_data/team.json`：当前与历届管理层、前身天体组。
-- `_data/people.json`：人物照片、简短介绍与个人主页，供现任会长介绍和制作署名使用。
-- `_data/website.json`：网站制作署名、制作时的任期与协会源码仓库地址。
-- `_data/gallery.json`：摄影作品、作者与拍摄参数（目前留空）。
-- `_data/albums.json`：各类活动及比赛年份的照片与日期抽屉。
-- `_data/competition.json`：大天赛页面介绍与年份索引。
-- `content/media-selection.json`：选片清单与相对来源。
-- `content/media-provenance.json`：网页副本、原始文件校验值与尺寸记录。
-- `_data/observatory.json`：北十字天文台总览、四位成员、建设时间线、器材介绍、作品索引与日常照片。
-- `_data/club.json`：简介、部门、入会与常见问题。
-- `_data/contact.json`：QQ群、公众号二维码与 B站主页入口。
-- `_pages/`：页面框架。
-- `assets/css/club.css`、`assets/js/club.js`：视觉与交互。
-
-交接与更新步骤见 [MAINTENANCE.md](MAINTENANCE.md)。
-
-## 导出与正式发布
+提交前，在项目目录里检查一次正式构建：
 
 ```sh
 python3 scripts/prepare_content.py
@@ -49,8 +66,22 @@ bundle exec jekyll build --strict_front_matter --destination local/export
 python3 scripts/check_site.py local/export
 ```
 
-`local/export/` 为可部署的静态网站。正式发布目标为协会账号 `JASxiaoxie` 的仓库 `JASxiaoxie.github.io`，默认网址 `https://jasxiaoxie.github.io/`。本地预览仍使用 `http://127.0.0.1:4173/`。
+检查通过后，再核对文字、照片、日期和链接是否正确。`local/export/` 是生成的静态网站，不需要提交到仓库。
 
-仓库的 Settings → Pages 中选择 GitHub Actions。`.github/workflows/pages.yml` 会在 `main` 更新后自动生成活动页、构建网站、检查图片与链接，再发布。构建失败时不会覆盖上一版网站。未来绑定协会域名时，Pages 配置会将网址传给构建流程。
+## 把更新发布到网站
 
-Git 上传排除 `content/`、`local/`、Ruby 依赖与本机缓存，公开仓库只保留网站源码、公开展示的图片和维护说明。现阶段仍通过数据文件维护内容。
+网站使用协会账号 **JASxiaoxie** 管理，正式地址是 **[jasxiaoxie.github.io](https://jasxiaoxie.github.io/)**。
+
+将修改提交到 `main` 分支后，[GitHub Actions](https://github.com/JASxiaoxie/JASxiaoxie.github.io/actions) 中的“发布天协网站”会自动构建、检查并发布。发布成功后，打开网站核对这次变化；如果失败，先查看失败步骤的日志，修正问题后再提交。构建失败时，上一版网站会继续保留。
+
+发布流程保存在 [`.github/workflows/pages.yml`](.github/workflows/pages.yml)。现有仓库已经配置好 GitHub Pages，日常更新只需要提交内容。
+
+## 换届时，把网站一起交接
+
+请把协会账号与仓库权限、网站维护说明、原始照片和本地素材清单一起交给下一届。公开仓库已包含网页展示所需的图片副本；原始材料和本地整理记录需要另行备份与交接。
+
+换届后，更新本届名单、会长介绍和联系入口，保留过去的任期与活动记录。网站制作署名记录的是制作时的贡献，不随现任会长更替而改写。
+
+网站由 **2026—2027 学年协会会长 [娄锦畅](https://astrotorpedo.github.io/)** 设计制作，后续由管理层接续维护。希望每一届都能在这里留下自己的活动，也让新同学有机会认识此前的天协。
+
+网站基于 Academic Pages/Jekyll。更新时请继续保留上游署名与许可证，相关说明见 [UPSTREAM.md](UPSTREAM.md) 和 [LICENSE](LICENSE)。

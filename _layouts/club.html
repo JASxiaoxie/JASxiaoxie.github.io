@@ -6,8 +6,10 @@
   {% include seo.html %}
   <meta name="theme-color" content="#0b1018">
   <link rel="icon" href="{{ '/images/brand/favicon.svg' | relative_url }}" type="image/svg+xml">
-  <link rel="stylesheet" href="{{ '/assets/css/club.css' | relative_url }}">
-  <script defer src="{{ '/assets/js/club.js' | relative_url }}"></script>
+  <!-- 每次发布更新资源版本，避免新页面沿用浏览器缓存中的旧样式和脚本。 -->
+  {% assign asset_version = site.time | date: '%Y%m%d%H%M%S' %}
+  <link rel="stylesheet" href="{{ '/assets/css/club.css' | relative_url }}?v={{ asset_version }}">
+  <script defer src="{{ '/assets/js/club.js' | relative_url }}?v={{ asset_version }}"></script>
 </head>
 <body class="club-site page-{{ page.nav | default: 'article' }}">
   <a class="skip-link" href="#main">跳到正文</a>
