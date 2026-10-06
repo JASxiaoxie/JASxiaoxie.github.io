@@ -80,6 +80,29 @@
     });
   }
 
+  // 角色动图默认静止，主动点击才播放；离开画面或切换标签页时回到静态首帧。
+  document.querySelectorAll('[data-play-art]').forEach(button => {
+    const art = document.getElementById(button.dataset.playArt);
+    const image = art?.querySelector('[data-art-animation]');
+    if (!image) return;
+    const setPlaying = playing => {
+      image.src = playing ? image.dataset.artAnimation : image.dataset.artStill;
+      button.setAttribute('aria-pressed', String(playing));
+      button.textContent = playing ? '暂停动图 Ⅱ' : '播放动图 ▷';
+    };
+    button.hidden = false;
+    button.addEventListener('click', () => setPlaying(button.getAttribute('aria-pressed') !== 'true'));
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting && button.getAttribute('aria-pressed') === 'true') setPlaying(false);
+      }).observe(art);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && button.getAttribute('aria-pressed') === 'true') setPlaying(false);
+    });
+    reducedMotion.addEventListener('change', () => {if (reducedMotion.matches) setPlaying(false);});
+  });
+
   // 旧分类地址直接进入介绍与日期归档页；新入口使用正常链接，无脚本也能导航。
   const activityOverview = document.querySelector('[data-activity-overview]');
   if (activityOverview) {

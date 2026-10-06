@@ -1,0 +1,413 @@
+{
+  "name": "小邪",
+  "role": "吉林大学天文协会看板娘",
+  "tagline": "曾经想征服宇宙，现在陪我们一起看星星。",
+  "intro": "在小邪的角色故事里，这位宇宙大魔王被地球上的温暖与天协里的相遇打动，选择留在吉林大学，成为了我们的看板娘。",
+  "hero": {
+    "id": "art-392f1374e8d6",
+    "key": "hero",
+    "title": "小邪",
+    "label": "吉大天协看板娘",
+    "alt": "蓝色双马尾的小邪捧着吉大天协会徽",
+    "note": "",
+    "image": "/images/mascot/art-392f1374e8d6.webp",
+    "thumbnail": "/images/mascot/art-392f1374e8d6-thumb.webp",
+    "width": 2200,
+    "height": 2200
+  },
+  "motifs": [
+    {
+      "index": "01",
+      "name": "月亮",
+      "feature": "不对称的发卡",
+      "description": "觉得月亮太孤单，就把它变成一对发卡。"
+    },
+    {
+      "index": "02",
+      "name": "土星环",
+      "feature": "眼底的瞳孔",
+      "description": "凝望过的瑰丽星环，留在她的眼睛里。"
+    },
+    {
+      "index": "03",
+      "name": "棒旋星系",
+      "feature": "摇曳的双马尾",
+      "description": "挽起遥远的星系，变成自己的双马尾。"
+    },
+    {
+      "index": "04",
+      "name": "一颗星星",
+      "feature": "A 字领带",
+      "description": "来到地球时，摘下一颗星星作为领带。"
+    }
+  ],
+  "story": [
+    {
+      "index": "01",
+      "title": "她曾名为“邪”",
+      "text": "小邪，曾是纵横多元宇宙的邪恶大魔王，其名号为“邪”。她觉得月亮太过孤单，就信手将其撕成两半，化作不对称的发卡别在鬓边；因为迷恋土星环的美丽，她索性将整颗星球摘下，久久凝视，直至那瑰丽星环沉淀为她眼底深邃的瞳孔；最后，她瞥见遥远宇宙中那壮丽的棒旋星系，一时兴起，便随手将它挽起，成了自己摇曳生辉的双马尾。"
+    },
+    {
+      "index": "02",
+      "title": "一颗湛蓝的“新收藏品”",
+      "text": "在征服诸天的旅途中，她来到了我们这个宇宙，并被一颗湛蓝的星球深深吸引——这里生命的喧嚣与情感的复杂，是她那井然有序却又冰冷寂寥的王国里从未有过的风景。于是，她化名“小邪”，随手摘一颗星星化作她的“A”字领带，便收敛起毁天灭地的力量，潜入吉林大学，想近距离看看这个“新收藏品”。"
+    },
+    {
+      "index": "03",
+      "title": "星图、热饮与笑声",
+      "text": "然而，在与吉林大学天文协会成员们的日常相处中，她第一次真正“接触”而非“观测”生命。有人会为她耐心讲解她早已熟知的星图（因为那里已经被她统治了），有人会在深夜观测时为她递上一杯热饮，有人会因为她的一个无心之举而开怀大笑。这些微不足道的温暖，像涓流汇入她亿万年来孤寂的心。她第一次发现，原来“拥有”不等于“快乐”。"
+    },
+    {
+      "index": "04",
+      "title": "宇宙金币在地球不通用",
+      "text": "她被大家的热情与真诚所打动，第一次产生了“居住”而非“统治”的念头。由于积蓄（宇宙金币在地球不通用）告罄，这位前宇宙大魔王，不得不屈尊成为吉大天协的看板娘，靠给协会打工维持生计。"
+    },
+    {
+      "index": "05",
+      "title": "今天，换她讲星辰的故事",
+      "text": "现在的小邪，是吉大天协的看板娘。她能用最生动的故事讲述星辰的秘密，因为她曾亲眼见证它们的诞生与寂灭。她有时候会飞到月亮上，将她的光辉洒向大家。偶尔也会对着土星模型发呆，然后小声嘀咕：“还是我那个比较亮……”"
+    },
+    {
+      "index": "06",
+      "title": "新的“征服宇宙”计划",
+      "text": "不过请注意，大魔王的秉性难移。她那“征服全宇宙”的野心，如今微妙地转变成了“收集全宇宙看板娘芳心”的癖好。她的列表里，藏着全国乃至世界各地天文社团的看板娘。如果你在其他高校的天协活动里也看到了她的身影，不用怀疑，那正是她“邪恶”本性的体现——她正在践行她新的“宇宙级海王”计划。"
+    }
+  ],
+  "illustrations": [
+    {
+      "id": "art-e7e635864d41",
+      "key": "emblem",
+      "title": "捧起一片星空",
+      "label": "小邪插画",
+      "alt": "蓝色双马尾的小邪捧着吉大天协会徽，身后是星月图案",
+      "note": "",
+      "image": "/images/mascot/art-e7e635864d41.webp",
+      "thumbnail": "/images/mascot/art-e7e635864d41-thumb.webp",
+      "width": 2000,
+      "height": 2000
+    },
+    {
+      "id": "art-1fef6f6358b9",
+      "key": "starry",
+      "title": "手握会徽",
+      "label": "小邪插画",
+      "alt": "小邪在星空中举起会徽，周围有星星和兔子",
+      "note": "",
+      "image": "/images/mascot/art-1fef6f6358b9.webp",
+      "thumbnail": "/images/mascot/art-1fef6f6358b9-thumb.webp",
+      "width": 1461,
+      "height": 2150
+    },
+    {
+      "id": "art-39ce4bf0c48b",
+      "key": "demon",
+      "title": "宇宙大魔王",
+      "label": "小邪插画",
+      "alt": "穿着黑色服装的小邪站在紫色窗前",
+      "note": "",
+      "image": "/images/mascot/art-39ce4bf0c48b.webp",
+      "thumbnail": "/images/mascot/art-39ce4bf0c48b-thumb.webp",
+      "width": 2000,
+      "height": 2000
+    },
+    {
+      "id": "art-27f6b6a2b70d",
+      "key": "birthday",
+      "title": "星光里的生日",
+      "label": "生贺插画",
+      "alt": "小邪捧着生日蛋糕，身后是月亮和星光",
+      "note": "",
+      "image": "/images/mascot/art-27f6b6a2b70d.webp",
+      "thumbnail": "/images/mascot/art-27f6b6a2b70d-thumb.webp",
+      "width": 2200,
+      "height": 1650
+    },
+    {
+      "id": "art-a69d8586fd79",
+      "key": "jacket",
+      "title": "穿上花袄的小邪",
+      "label": "小邪插画",
+      "alt": "小邪穿着红色花袄，身边散落花朵与星星",
+      "note": "",
+      "image": "/images/mascot/art-a69d8586fd79.webp",
+      "thumbnail": "/images/mascot/art-a69d8586fd79-thumb.webp",
+      "width": 2200,
+      "height": 2200
+    },
+    {
+      "id": "art-17941b7fe7a7",
+      "key": "chibi",
+      "title": "小小的小邪",
+      "label": "Q 版形象",
+      "alt": "小邪的 Q 版形象，保留月亮发卡与 A 字领带",
+      "note": "",
+      "image": "/images/mascot/art-17941b7fe7a7.webp",
+      "thumbnail": "/images/mascot/art-17941b7fe7a7-thumb.webp",
+      "width": 1080,
+      "height": 1080
+    }
+  ],
+  "band": {
+    "id": "art-5f10985ceb47",
+    "key": "band",
+    "title": "少女乐队",
+    "label": "联动插画",
+    "alt": "夜晚的舞台上，多位天文社团角色一起演奏乐器",
+    "note": "",
+    "image": "/images/mascot/art-5f10985ceb47.webp",
+    "thumbnail": "/images/mascot/art-5f10985ceb47-thumb.webp",
+    "width": 2200,
+    "height": 1287
+  },
+  "collaborations": [
+    {
+      "id": "art-cdb02f554b1d",
+      "key": "nannan",
+      "title": "小邪与南南",
+      "label": "南信联动",
+      "alt": "小邪与南南并肩站在粉色星光背景中",
+      "note": "",
+      "image": "/images/mascot/art-cdb02f554b1d.webp",
+      "thumbnail": "/images/mascot/art-cdb02f554b1d-thumb.webp",
+      "width": 2200,
+      "height": 1996
+    },
+    {
+      "id": "art-8cb9920db873",
+      "key": "xiaotian",
+      "title": "星海拾信",
+      "label": "哈工大联动",
+      "alt": "小邪与小天一起抱着小浣熊",
+      "note": "",
+      "image": "/images/mascot/art-8cb9920db873.webp",
+      "thumbnail": "/images/mascot/art-8cb9920db873-thumb.webp",
+      "width": 1870,
+      "height": 2000
+    },
+    {
+      "id": "art-e4f53875d040",
+      "key": "nuist-camera",
+      "title": "一起记录星光",
+      "label": "南信联动 · 动图",
+      "alt": "Q 版小邪与南南拿着相机",
+      "note": "",
+      "image": "/images/mascot/art-e4f53875d040.webp",
+      "thumbnail": "/images/mascot/art-e4f53875d040-thumb.webp",
+      "width": 1897,
+      "height": 1299,
+      "animation": "/images/mascot/art-e4f53875d040.gif"
+    },
+    {
+      "id": "art-469632ee88ef",
+      "key": "hit-camera",
+      "title": "镜头前的朋友",
+      "label": "哈工大联动 · 动图",
+      "alt": "Q 版小邪与小天拿着相机",
+      "note": "",
+      "image": "/images/mascot/art-469632ee88ef.webp",
+      "thumbnail": "/images/mascot/art-469632ee88ef-thumb.webp",
+      "width": 1841,
+      "height": 1273,
+      "animation": "/images/mascot/art-469632ee88ef.gif"
+    },
+    {
+      "id": "art-35123e8f3784",
+      "key": "xiaoling",
+      "title": "小邪与小聆",
+      "label": "联动插画",
+      "alt": "Q 版小邪抱着小聆，背景为粉色",
+      "note": "",
+      "image": "/images/mascot/art-35123e8f3784.webp",
+      "thumbnail": "/images/mascot/art-35123e8f3784-thumb.webp",
+      "width": 2200,
+      "height": 1753
+    },
+    {
+      "id": "art-0a81b140bcb4",
+      "key": "bike",
+      "title": "和南南骑车玩",
+      "label": "联动插画",
+      "alt": "小邪骑着自行车，南南坐在后座",
+      "note": "",
+      "image": "/images/mascot/art-0a81b140bcb4.webp",
+      "thumbnail": "/images/mascot/art-0a81b140bcb4-thumb.webp",
+      "width": 2200,
+      "height": 1753
+    },
+    {
+      "id": "art-c53d79a79ecc",
+      "key": "pumpkin",
+      "title": "和南瓜比个心",
+      "label": "南工程联动",
+      "alt": "小邪与戴着女巫帽的南瓜一起比心",
+      "note": "",
+      "image": "/images/mascot/art-c53d79a79ecc.webp",
+      "thumbnail": "/images/mascot/art-c53d79a79ecc-thumb.webp",
+      "width": 2200,
+      "height": 1834
+    },
+    {
+      "id": "art-8f7a22cf7a57",
+      "key": "pumpkin-chibi",
+      "title": "小邪与南瓜",
+      "label": "南工程联动 · Q 版",
+      "alt": "Q 版小邪与南瓜，画面标有 JLU × NJIT",
+      "note": "",
+      "image": "/images/mascot/art-8f7a22cf7a57.webp",
+      "thumbnail": "/images/mascot/art-8f7a22cf7a57-thumb.webp",
+      "width": 1000,
+      "height": 1000
+    },
+    {
+      "id": "art-db86e97d26b8",
+      "key": "shaoxuan",
+      "title": "小邪与芍璇",
+      "label": "南医联动",
+      "alt": "小邪与芍璇在渐变星光背景中的合影",
+      "note": "",
+      "image": "/images/mascot/art-db86e97d26b8.webp",
+      "thumbnail": "/images/mascot/art-db86e97d26b8-thumb.webp",
+      "width": 1015,
+      "height": 2200
+    },
+    {
+      "id": "art-c67230f8dc76",
+      "key": "friends-hug",
+      "title": "朋友们的拥抱",
+      "label": "川师成信联动",
+      "alt": "三位 Q 版角色抱在一起",
+      "note": "",
+      "image": "/images/mascot/art-c67230f8dc76.webp",
+      "thumbnail": "/images/mascot/art-c67230f8dc76-thumb.webp",
+      "width": 742,
+      "height": 530
+    },
+    {
+      "id": "art-972c12f52001",
+      "key": "friends-flowers",
+      "title": "把花冠送给你",
+      "label": "川师成信联动",
+      "alt": "小邪给朋友戴上花冠",
+      "note": "",
+      "image": "/images/mascot/art-972c12f52001.webp",
+      "thumbnail": "/images/mascot/art-972c12f52001-thumb.webp",
+      "width": 655,
+      "height": 599
+    },
+    {
+      "id": "art-b4804f49e472",
+      "key": "panda",
+      "title": "小邪与冰墩墩",
+      "label": "联动插画",
+      "alt": "小邪抱着冰墩墩",
+      "note": "",
+      "image": "/images/mascot/art-b4804f49e472.webp",
+      "thumbnail": "/images/mascot/art-b4804f49e472-thumb.webp",
+      "width": 2200,
+      "height": 2200
+    },
+    {
+      "id": "art-8ec0cbaf1943",
+      "key": "fanart",
+      "title": "与南南的手绘合影",
+      "label": "同人作品",
+      "alt": "蓝色纸面上的小邪与南南手绘合影",
+      "note": "原素材标注：谷文君同人。",
+      "image": "/images/mascot/art-8ec0cbaf1943.webp",
+      "thumbnail": "/images/mascot/art-8ec0cbaf1943-thumb.webp",
+      "width": 2200,
+      "height": 1604
+    }
+  ],
+  "sketches": [
+    {
+      "key": "mascot-sketch-emblem",
+      "title": "捧起会徽",
+      "draft": {
+        "id": "art-a44cddf826c7",
+        "key": "draft-emblem",
+        "title": "捧会徽 · 草稿",
+        "label": "草稿",
+        "alt": "小邪捧会徽的角色线稿",
+        "note": "",
+        "image": "/images/mascot/art-a44cddf826c7.webp",
+        "thumbnail": "/images/mascot/art-a44cddf826c7-thumb.webp",
+        "width": 1170,
+        "height": 1137
+      },
+      "finished": {
+        "id": "art-e7e635864d41",
+        "key": "emblem",
+        "title": "捧会徽 · 成稿",
+        "label": "成稿",
+        "alt": "蓝色双马尾的小邪捧着吉大天协会徽，身后是星月图案",
+        "note": "",
+        "image": "/images/mascot/art-e7e635864d41.webp",
+        "thumbnail": "/images/mascot/art-e7e635864d41-thumb.webp",
+        "width": 2000,
+        "height": 2000
+      }
+    },
+    {
+      "key": "mascot-sketch-starry",
+      "title": "走进星空",
+      "draft": {
+        "id": "art-bd5d2ba736fa",
+        "key": "draft-starry",
+        "title": "手握会徽 · 草稿",
+        "label": "草稿",
+        "alt": "小邪举起会徽的构图草稿",
+        "note": "",
+        "image": "/images/mascot/art-bd5d2ba736fa.webp",
+        "thumbnail": "/images/mascot/art-bd5d2ba736fa-thumb.webp",
+        "width": 1461,
+        "height": 2150
+      },
+      "finished": {
+        "id": "art-1fef6f6358b9",
+        "key": "starry",
+        "title": "手握会徽 · 成稿",
+        "label": "成稿",
+        "alt": "小邪在星空中举起会徽，周围有星星和兔子",
+        "note": "",
+        "image": "/images/mascot/art-1fef6f6358b9.webp",
+        "thumbnail": "/images/mascot/art-1fef6f6358b9-thumb.webp",
+        "width": 1461,
+        "height": 2150
+      }
+    },
+    {
+      "key": "mascot-sketch-nannan",
+      "title": "与朋友相遇",
+      "draft": {
+        "id": "art-d16d071a2647",
+        "key": "draft-nannan",
+        "title": "小邪与南南 · 草稿",
+        "label": "草稿",
+        "alt": "小邪与南南的联动草稿",
+        "note": "",
+        "image": "/images/mascot/art-d16d071a2647.webp",
+        "thumbnail": "/images/mascot/art-d16d071a2647-thumb.webp",
+        "width": 2200,
+        "height": 1996
+      },
+      "finished": {
+        "id": "art-cdb02f554b1d",
+        "key": "nannan",
+        "title": "小邪与南南 · 成稿",
+        "label": "成稿",
+        "alt": "小邪与南南并肩站在粉色星光背景中",
+        "note": "",
+        "image": "/images/mascot/art-cdb02f554b1d.webp",
+        "thumbnail": "/images/mascot/art-cdb02f554b1d-thumb.webp",
+        "width": 2200,
+        "height": 1996
+      }
+    }
+  ],
+  "source": {
+    "story": "小邪背景人设.docx",
+    "artwork": "管理层提供的小邪插画与联动稿",
+    "notes": "沿用已提供的角色故事与素材标注；未确认的画师、日期和合作背景不补写。"
+  }
+}

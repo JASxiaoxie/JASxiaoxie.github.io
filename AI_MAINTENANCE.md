@@ -43,6 +43,7 @@ git status --short --branch
 | [`_data/categories.json`](_data/categories.json) | 五类活动的名称、介绍、入口与卡片图 |
 | [`_data/competition.json`](_data/competition.json) | 大天赛介绍、届次与获奖记录 |
 | [`_data/gallery.json`](_data/gallery.json) | 摄影作品、作者、拍摄参数与首页推荐作品 |
+| [`_data/mascot.json`](_data/mascot.json) | 小邪的角色介绍、六段背景、插画、联动与草稿对照；页面为 `/xiaoxie/` |
 | [`_data/observatory.json`](_data/observatory.json) | 天文台概况、四位成员、建设、设备、作品引用与日常照片 |
 | [`_data/team.json`](_data/team.json) | 历届管理层与前身天体组；`generations` 最后一条为当前任期 |
 | [`_data/people.json`](_data/people.json) | 人物照片、简介与个人主页；当前会长按姓名匹配 |
@@ -72,6 +73,7 @@ git status --short --branch
 - 天文台顺序为总览与介绍 → 四位成员 → 建设过程 → 器材 → 摄影作品 → 台子日常。许航、王胤翔、王涵冰、娄锦畅使用同等人物版式，不突出两位创办者。
 - 首页主图循环摄影作品；活动介绍大图循环各自相册；天文台页面两处介绍图循环器材全景与航拍图。间隔 3 秒，悬停暂停，不显示右下角序号与按钮。保留键盘、减少动态偏好、无脚本阅读及移动端支持。
 - 会徽为 `images/brand/emblem.jpg`；小邪形象单独使用，不替换会徽。
+- 小邪的故事明确作为角色设定，素材保持完整画幅与签名，透明背景不铺底。联动动图默认静态，主动点击播放，离开画面或切换标签页时暂停；不推断画师、生日或合作背景。
 - 30 元入会说明须同时保留：不入会也可正常参加各类活动；名额受限时会员可能享有优先权，例如寒冷天气下的野外观测。简介、常见问题与参与说明应一致。
 - 当前会长随名录更新；网站制作署名“娄锦畅”及个人主页记录制作贡献，不随换届替换。保留 Academic Pages / Minimal Mistakes 署名及许可证。
 - 原图保持只读，网页使用副本。公开仓库不放会员表、财务、私密联系方式、密码或令牌。二维码使用维护者提供的真实图片，不生成或猜测。
@@ -144,6 +146,8 @@ python3 scripts/preview.py
 视觉改动优先复用 `club.css`、`club.js` 和已有组件。布局中的 CSS / JS 地址含基于构建时间的版本号，用于避免旧缓存；不要移除它。人物照片既有 CSS 尺寸限制，也有小尺寸 HTML 默认值，图片的原始像素宽高不能直接当成前台展示尺寸。
 
 ### 可选资料导入脚本
+
+小邪插画使用 `scripts/import_mascot.py`：清单编号为 `art-` 加原稿 SHA-256 前 12 位，生成完整画幅的 WebP 大图与缩略图，保留透明通道；GIF 只复制原始字节，并生成静态首帧。清单 `content/mascot-selection.json` 和来源记录 `content/mascot-media-provenance.json` 需要另行交接。它不修改 `mascot.json`；导入后按 [维护说明](MAINTENANCE.md#小邪的故事与插画) 更新数据，再核对入口、放大窗口与动图按钮。不要把角色插画加入天文摄影作品相册。
 
 `scripts/import_photos.py` 需要 Pillow、原始素材以及选片清单。它核对原图 SHA-256，以 `photo-` 加前 12 位摘要作为编号，生成两种网页副本，并写入本地来源记录。它**不会**自动给相册或作品新增记录；导入后仍需编辑 JSON。
 

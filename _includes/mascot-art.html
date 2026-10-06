@@ -1,0 +1,12 @@
+{% assign art = include.art %}
+{% capture art_dom_id %}{{ include.sequence }}-{{ art.id }}{% endcapture %}
+{% assign art_preview = art.thumbnail %}
+{% if include.wide %}{% assign art_preview = art.image %}{% endif %}
+<!-- 插画始终完整展示；动图由读者主动播放，默认使用静态首帧。 -->
+<figure class="mascot-art reveal{% if include.wide %} mascot-art-wide{% endif %}" id="{{ art_dom_id }}">
+  <a class="mascot-art-image" href="{{ art.image | relative_url }}" data-lightbox data-sequence="{{ include.sequence }}" data-title="{{ art.title | escape }}" data-label="{{ art.label | escape }}" data-note="{{ art.note | escape }}" data-image="{{ art.image | relative_url }}" data-metadata="false" aria-label="放大查看{{ art.title }}">
+    <img src="{{ art_preview | relative_url }}" alt="{{ art.alt | escape }}" width="{{ art.width }}" height="{{ art.height }}" loading="lazy" decoding="async"{% if art.animation %} data-art-animation="{{ art.animation | relative_url }}" data-art-still="{{ art_preview | relative_url }}"{% endif %}>
+  </a>
+  <figcaption><div><p class="eyebrow">{{ art.label }}</p><h3>{{ art.title }}</h3></div><span aria-hidden="true">↗</span></figcaption>
+  {% if art.animation %}<div class="mascot-art-motion"><button type="button" data-play-art="{{ art_dom_id }}" aria-pressed="false" hidden>播放动图 <span aria-hidden="true">▷</span></button><a href="{{ art.animation | relative_url }}" target="_blank" rel="noopener">打开动图 ↗</a></div>{% endif %}
+</figure>

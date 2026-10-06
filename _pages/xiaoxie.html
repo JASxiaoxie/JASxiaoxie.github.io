@@ -1,0 +1,45 @@
+---
+title: 小邪
+description: 认识吉大天协看板娘小邪，读读她的宇宙来客故事，看看插画与高校天文社团的联动作品。
+permalink: /xiaoxie/
+nav: xiaoxie
+photo_viewer: true
+---
+{% assign mascot = site.data.mascot %}
+<div class="wrap mascot-page">
+  <header class="mascot-hero">
+    <div class="mascot-hero-copy"><p class="eyebrow">MEET XIAOXIE / 吉大天协看板娘</p><h1>小邪，<br><span>我们的宇宙来客。</span></h1><p class="mascot-hero-lead">{{ mascot.tagline }}</p><p>{{ mascot.intro }}</p><a class="text-link" href="#story">读读她的故事 ↓</a></div>
+    <div class="mascot-hero-art"><span class="mascot-orbit" aria-hidden="true"></span><img src="{{ mascot.hero.image | relative_url }}" alt="{{ mascot.hero.alt | escape }}" width="540" height="540" fetchpriority="high"><span class="mascot-hero-sign">XIAOXIE · JAS</span></div>
+  </header>
+  <nav class="mascot-index" aria-label="小邪页内导航"><a href="#character">角色设定 ↓</a><a href="#story">小邪的故事 ↓</a><a href="#illustrations">插画集 ↓</a><a href="#collaborations">小邪与朋友们 ↓</a><a href="#sketches">从草稿到画面 ↓</a></nav>
+
+  <section class="mascot-design section reveal" id="character" aria-labelledby="mascot-design-title">
+    <div class="section-heading"><div><p class="eyebrow">01 / A LITTLE UNIVERSE</p><h2 id="mascot-design-title">把宇宙，<br>藏进她的模样里。</h2></div><div class="section-side"><p>月亮、土星、星系与星星，<br>组成了小邪的角色设定。</p></div></div>
+    <dl class="mascot-motifs">{% for motif in mascot.motifs %}<div><dt><span>{{ motif.index }}</span>{{ motif.name }}</dt><dd><strong>{{ motif.feature }}</strong><p>{{ motif.description }}</p></dd></div>{% endfor %}</dl>
+  </section>
+
+  <section class="mascot-origin section" id="story" aria-labelledby="mascot-story-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">02 / HER STORY · 角色故事</p><h2 id="mascot-story-title">从宇宙大魔王，<br>到天协看板娘。</h2></div><div class="section-side"><p>这位宇宙来客，<br>最后选择留在我们身边。</p></div></div>
+    <div class="mascot-story-layout">
+      <aside class="mascot-story-portrait reveal">{% assign portrait = mascot.illustrations | where: 'key', 'demon' | first %}{% include mascot-art.html art=portrait sequence='mascot-story' %}<blockquote>原来“拥有”不等于“快乐”。</blockquote><p>—— 小邪的地球发现</p></aside>
+      <div class="mascot-chapters">{% for chapter in mascot.story %}<article class="mascot-chapter reveal"><span class="mascot-chapter-number" aria-hidden="true">{{ chapter.index }}</span><div><h3>{{ chapter.title }}</h3><p>{{ chapter.text }}</p></div></article>{% endfor %}</div>
+    </div>
+  </section>
+
+  <section class="section mascot-collection" id="illustrations" aria-labelledby="mascot-illustrations-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">03 / XIAOXIE IN COLOUR</p><h2 id="mascot-illustrations-title">今天的小邪，<br>是哪一种模样？</h2></div><div class="section-side"><p>会徽、星空、蛋糕与花袄。<br>点开插画，看看完整画面。</p></div></div>
+    <div class="mascot-art-grid">{% for art in mascot.illustrations %}{% include mascot-art.html art=art sequence='mascot-illustrations' %}{% endfor %}</div>
+  </section>
+
+  <section class="section mascot-collection" id="collaborations" aria-labelledby="mascot-collaborations-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">04 / FRIENDS UNDER THE SAME SKY</p><h2 id="mascot-collaborations-title">她的宇宙，<br>也住着许多朋友。</h2></div><div class="section-side"><p>小邪走进了更多天文社团的故事，<br>也把朋友们带进自己的画面。</p></div></div>
+    {% include mascot-art.html art=mascot.band sequence='mascot-collaborations' wide=true %}
+    <div class="mascot-art-grid">{% for art in mascot.collaborations %}{% include mascot-art.html art=art sequence='mascot-collaborations' %}{% endfor %}</div>
+  </section>
+
+  <section class="section mascot-collection" id="sketches" aria-labelledby="mascot-sketches-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">05 / FROM THE FIRST LINE</p><h2 id="mascot-sketches-title">从第一条线，<br>到一个熟悉的身影。</h2></div><div class="section-side"><p>留下几张草稿，<br>也留下小邪被画出来的过程。</p></div></div>
+    <div class="mascot-sketch-grid">{% for pair in mascot.sketches %}<article class="mascot-sketch-pair"><h3>{{ pair.title }}</h3><div>{% include mascot-art.html art=pair.draft sequence=pair.key %}{% include mascot-art.html art=pair.finished sequence=pair.key %}</div></article>{% endfor %}</div>
+  </section>
+  <div class="mascot-endnote reveal"><p>星空很远，小邪和我们都在这里。</p><a class="text-link" href="{{ '/join/' | relative_url }}">认识你的天协 ↗</a></div>
+</div>

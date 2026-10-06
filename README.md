@@ -15,6 +15,7 @@
 - **[我们的活动](https://jasxiaoxie.github.io/events/)**：路边天文、天文学习班、联合活动与野外观测。点开一场活动，就能看到那一次的介绍和照片；[大天赛](https://jasxiaoxie.github.io/competition/)也有自己的页面。
 - **[北十字天文台](https://jasxiaoxie.github.io/observatory/)**：认识观测团队，看看天文台的建设过程、器材和日常。
 - **[星空影像](https://jasxiaoxie.github.io/gallery/)**：浏览协会成员的天文摄影作品。
+- **[小邪](https://jasxiaoxie.github.io/xiaoxie/)**：认识天协看板娘，读读她的宇宙来客故事，看看插画和与朋友们的联动作品。
 - **[历届管理层](https://jasxiaoxie.github.io/team/)**与**[关于天协](https://jasxiaoxie.github.io/about/)**：了解现在的天协，也看看前辈们留下的名字与故事。
 - **[加入我们](https://jasxiaoxie.github.io/join/)**：找到协会 QQ 群、微信公众号和 B站账号，留意最新活动通知。
 
@@ -35,6 +36,7 @@
 | 现任会长的人物资料、照片与个人主页 | [`_data/people.json`](_data/people.json) |
 | 北十字天文台的团队、建设、器材与日常 | [`_data/observatory.json`](_data/observatory.json) |
 | 摄影作品、作者与拍摄参数 | [`_data/gallery.json`](_data/gallery.json) |
+| 小邪的角色故事、插画、联动与草稿 | [`_data/mascot.json`](_data/mascot.json) |
 | 协会简介、部门、入会说明与常见问题 | [`_data/club.json`](_data/club.json) |
 | QQ 群、公众号二维码与 B站入口 | [`_data/contact.json`](_data/contact.json) |
 | 协会历史中的重要节点 | [`_data/history.json`](_data/history.json) |

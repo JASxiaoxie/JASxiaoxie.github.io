@@ -43,7 +43,25 @@
 
 ## 会徽与品牌图形
 
-网站会徽统一使用 `images/brand/emblem.jpg`，来源为指定的星月会徽原图副本，不使用带小邪的会徽版本。看板娘小邪单独用于角色介绍与入会页面。
+网站会徽统一使用 `images/brand/emblem.jpg`，来源为指定的星月会徽原图副本，不使用带小邪的会徽版本。看板娘小邪有独立的 `/xiaoxie/` 页面，也用于协会介绍与入会页面。
+
+## 小邪的故事与插画
+
+小邪页在 `_pages/xiaoxie.html`，文字和作品维护在 `_data/mascot.json`。导航、首页的小邪图片与“关于天协”都能进入该页；角色故事与实际协会历史分开描述。
+
+- `intro`、`tagline`、`hero` 为角色概况与主图；`motifs` 是月亮、土星环、棒旋星系与星星四项形象设定。
+- `story` 保留六段角色背景，来自《小邪背景人设.docx》；`index` 为章节序号，`title`、`text` 为标题与正文。
+- `illustrations` 为单人插画，`band` 为宽幅乐队作品，`collaborations` 为联动作品；`sketches` 每组保存 `key`、`title`、`draft` 与 `finished`。
+- 每幅作品包含唯一的素材 `id`、便于引用的 `key`、`title`、`label`、`alt`、`image`、`thumbnail`、实际大图 `width` / `height` 与可选 `note`。重复展示同一作品时，浏览序列使用不同的键。未确认的画师、生日日期或合作背景不猜测。
+- 插画和草稿完整显示，保留原图中的字样与签名，透明背景保留透明通道。`animation` 可指向真实 GIF，默认显示静态首帧，点“播放动图”后播放，点“暂停动图”或离开画面后恢复静态；无脚本时仍可打开原动图。
+
+新增插画时先准备网页副本，放入 `images/mascot/`，再更新数据。静态大图最长边 2200、缩略图 800 像素，WebP 质量 90；原稿只读，GIF 原样复制。需要重建时，在有 Pillow 的 Python 环境中运行：
+
+```sh
+python3 scripts/import_mascot.py /小邪素材的实际路径 --selection /选片清单的实际路径.json
+```
+
+选片清单格式为 `{"assets": [{"id": "art-原稿SHA256前12位", "source": "相对素材路径"}]}`。本地清单与来源记录位于 `content/mascot-selection.json`、`content/mascot-media-provenance.json`，原始故事依据在 `content/references/xiaoxie-source-notes.md`；这些本地文件不随网站发布，交接时另行保存。脚本只生成副本，不自动向 `mascot.json` 增加作品。
 
 ## 更新群聊与新媒体入口
 
