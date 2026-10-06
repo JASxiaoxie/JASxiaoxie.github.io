@@ -19,6 +19,7 @@ exclude:
   - Gemfile.lock
   - README.md
   - MAINTENANCE.md
+  - AI_MAINTENANCE.md
   - UPSTREAM.md
   - AGENTS.md
   - scripts
