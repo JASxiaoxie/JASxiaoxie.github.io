@@ -4,15 +4,22 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const menu = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#site-nav');
-  const closeMenu = () => {
-    nav?.classList.remove('is-open');
-    menu?.setAttribute('aria-expanded', 'false');
-  };
-  menu?.addEventListener('click', () => {
-    const opening = menu.getAttribute('aria-expanded') !== 'true';
+  const narrowHeader = window.matchMedia('(max-width: 1000px)');
+  // 显隐由 CSS 过渡；关闭时立即停用菜单内的点击和键盘焦点，不依赖动画计时器。
+  const setMenu = opening => {
+    if (!nav || !menu) return;
+    if (!opening && nav.contains(document.activeElement)) menu.focus({preventScroll:true});
+    nav.classList.toggle('is-open', opening);
     menu.setAttribute('aria-expanded', String(opening));
-    nav?.classList.toggle('is-open', opening);
+    nav.inert = narrowHeader.matches && !opening;
+  };
+  const closeMenu = () => setMenu(false);
+  menu?.addEventListener('click', () => {
+    setMenu(menu.getAttribute('aria-expanded') !== 'true');
   });
+  // 切回桌面时恢复导航可用性，缩回手机时保持收起；快速连点也能自然反向过渡。
+  narrowHeader.addEventListener('change', closeMenu);
+  closeMenu();
   nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
   const header = document.querySelector('.site-header');
