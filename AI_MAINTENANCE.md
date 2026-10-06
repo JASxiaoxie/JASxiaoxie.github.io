@@ -111,7 +111,7 @@ python3 scripts/preview.py
 2. 准备网页大图与缩略图副本，放进 `images/photos/`；保留原图与来源。当前图片规格为最长边 2200 / 800 像素，完整画幅，WebP 质量 88。
 3. 在 `albums.json` 的 `sidewalk`、`class`、`joint` 或 `field` 相册的 `images` 数组追加照片记录。同一场活动的照片共用 `drawer_key`、日期、`activity_title` 和可选的 `activity_description`。
 4. 图片保留 `id`、`title`、`image`、`thumbnail`、实际大图 `width` / `height` 等现有字段。JSON 布尔值使用 `true` / `false`，未知文字通常使用空字符串，参照邻近记录。
-5. `date_label` 是对外文字；`sort_date` 为归档资料；`date_precision` 是 `day`、`year` 或 `unknown`。只有年份时可用 `2027 年`、`2027-00-00`、`year`，不要编造月日。
+5. `date_label` 是对外文字；`sort_date` 为归档资料；`date_precision` 是 `day`、`month`、`year` 或 `unknown`。只知道年月时可用 `2024 年 5 月`、`2024-05-00`、`month`；只有年份时可用 `2027 年`、`2027-00-00`、`year`，不要编造月日。
 6. **模板实际按 `drawer_key` 分组并倒序排列**，不是直接按 `sort_date` 排列。普通活动的键沿用“类别-补齐位数的年月日-稳定标识”形式；年份记录使用 `00` 月日。同类前缀保持一致，不同场次的键不同。只调整 `sort_date` 不会改变现有顺序。
 7. 检查新活动只有一条日期记录，小窗只包含本场照片，封面、标题与介绍正确。不要为了新增一场路边天文或学习班重复创建类型入口。
 

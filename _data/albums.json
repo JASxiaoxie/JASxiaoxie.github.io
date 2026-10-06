@@ -1808,6 +1808,23 @@
         "date_precision": "day",
         "activity_title": "野外观测",
         "drawer_key": "field-2025-09-20-c2a61e5d48"
+      },
+      {
+        "id": "photo-1bc68b383cca",
+        "title": "野外观测合影",
+        "label": "2024 年 5 月",
+        "note": "",
+        "image": "/images/photos/photo-1bc68b383cca.webp",
+        "thumbnail": "/images/photos/photo-1bc68b383cca-thumb.webp",
+        "width": 1280,
+        "height": 853,
+        "metadata": false,
+        "date_label": "2024 年 5 月",
+        "sort_date": "2024-05-00",
+        "date_precision": "month",
+        "activity_title": "野外观测",
+        "activity_description": "2024 年 5 月，协会成员参加野外观测，在星空下合影留念。",
+        "drawer_key": "field-2024-05-00-1bc68b383c"
       }
     ]
   },
