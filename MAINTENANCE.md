@@ -55,6 +55,10 @@ QQ群原图副本存放在 `images/contact/qq-group-2026.jpg`。页面只用 CSS
 
 在 `_data/team.json` 的 `generations` 末尾追加一届，保留原届次。年份与任期按真实资料填写；网站将最后一届显示为当前任期。
 
+管理层页顶部的现任会长介绍从 `_data/people.json` 中按本届会长姓名匹配，包含照片、简短介绍与个人主页。换届时增添新会长的资料；没有对应资料时不展示人物介绍。历史人物资料继续保留，不覆盖旧记录；导入新版 Word 名录也不会改写这些人物资料。
+
+页脚和“关于天协”页面的网站制作署名使用 `_data/website.json` 的 `creator_id`，对应 `_data/people.json` 中的人物编号。`creator_term` 记录制作网站时的任期，不随换届修改；`repository_url` 为协会网站源码地址。现任会长与网站制作署名分别维护。
+
 不要把未记录的信息改写为“没有”。`predecessors` 是前身天体组，单独保存。
 
 已有更新的 Word 名录时，可运行：

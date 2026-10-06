@@ -26,6 +26,8 @@ python3 scripts/preview.py
 
 - `_data/events.json`：五类活动、历史回顾、独立详情正文。
 - `_data/team.json`：当前与历届管理层、前身天体组。
+- `_data/people.json`：人物照片、简短介绍与个人主页，供现任会长介绍和制作署名使用。
+- `_data/website.json`：网站制作署名、制作时的任期与协会源码仓库地址。
 - `_data/gallery.json`：摄影作品、作者与拍摄参数（目前留空）。
 - `_data/albums.json`：各类活动及比赛年份的照片与日期抽屉。
 - `_data/competition.json`：大天赛页面介绍与年份索引。

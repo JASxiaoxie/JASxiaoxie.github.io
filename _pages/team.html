@@ -4,5 +4,21 @@ permalink: /team/
 nav: team
 ---
 <div class="wrap page-shell"><header class="page-heading"><p class="eyebrow">THE STORY CONTINUES / 历届管理层</p><h1>把这片星空，<br>交给后来的人。</h1><p>记下每一届的名字，也记下社团一路走来的阶段。<br>资料依据：历任管理层名录 14.0，截止 2026 年 5 月。</p></header>
+{% assign current = site.data.team.generations | last %}
+{% assign president = site.data.people | where: 'name', current.president | first %}
+<!-- 根据当前任期匹配人物资料，换届时不把网站作者自动当作现任会长。 -->
+{% if president %}
+<section class="president-card reveal" id="current-president" aria-labelledby="president-name">
+  <div class="president-portrait"><img src="{{ president.image | relative_url }}" alt="{{ president.name | escape }}的照片" width="{{ president.width }}" height="{{ president.height }}" loading="lazy"></div>
+  <div class="president-copy">
+    <p class="eyebrow">CURRENT PRESIDENT / 现任会长</p>
+    <h2 id="president-name">{{ president.name }}</h2>
+    <p class="president-term">{{ current.term }} 学年 · 吉林大学天文协会会长</p>
+    <p class="president-identity">{{ president.identity }}</p>
+    <p class="president-intro">{{ president.intro }}</p>
+    <div class="president-links"><a class="text-link" href="{{ president.homepage | escape }}" target="_blank" rel="noopener">{{ president.name }}的个人主页 ↗</a><a class="text-link" href="#team-{{ current.id }}">本届管理层 ↓</a></div>
+  </div>
+</section>
+{% endif %}
 <div class="team-layout"><aside class="year-index"><p class="eyebrow">BY ACADEMIC YEAR</p>{% assign ordered = site.data.team.generations | reverse %}{% for generation in ordered %}<a href="#team-{{ generation.id }}">{{ generation.term }}{% if forloop.first %}<span>本届</span>{% endif %}</a>{% endfor %}<a href="#predecessors">前身天体组 →</a></aside><div class="team-timeline">{% for generation in ordered %}<details class="generation reveal" id="team-{{ generation.id }}"{% if forloop.first %} open{% endif %}><summary><div><p class="eyebrow">第{{ generation.number }}届{% if forloop.first %} · 当前任期{% endif %}</p><h2>{{ generation.term }}</h2><p>{{ generation.president }}</p></div><span class="expand-icon" aria-hidden="true">＋</span></summary><div class="generation-content"><div class="leadership"><div><span>会长</span><strong>{{ generation.president }}</strong></div><div><span>副会长 / 理事长</span><strong>{{ generation.vice }}</strong></div></div>{% if generation.note != '' %}<p class="generation-note">{{ generation.note }}</p>{% endif %}<div class="department-roster">{% for department in generation.departments %}<div><h3>{{ department.name }}</h3><p>{{ department.members | escape | newline_to_br }}</p></div>{% endfor %}</div></div></details>{% endfor %}</div></div>
 <section class="section predecessor-section" id="predecessors"><div class="section-heading"><div><p class="eyebrow">BEFORE JAS / 2006—2012</p><h2>天体组的日子。</h2></div><div class="section-side"><p>物理人科技联盟天体组的任职记录，<br>作为协会前身单独保存。</p></div></div><div class="predecessor-table"><table><thead><tr><th>学年</th><th>组长</th><th>副组长</th></tr></thead><tbody>{% for item in site.data.team.predecessors %}<tr><td>{{ item.term }}</td><td>{{ item.leader }}</td><td>{{ item.vice }}</td></tr>{% endfor %}</tbody></table></div></section><p class="source-note">名录保留原有职务与任期信息；历史材料中未记录的项目标为“暂无记录”。</p></div>

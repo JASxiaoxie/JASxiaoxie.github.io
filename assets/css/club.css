@@ -300,3 +300,26 @@
 .contact-qr-dialog>.text-link{font-size:11px;margin-top:13px}
 @media(max-width:1000px){.contact-grid{grid-template-columns:1fr 1fr;gap:18px}.contact-channel{padding:25px 24px 15px}.contact-channel-bilibili{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:0 35px}.contact-channel-bilibili h3{min-height:0}.contact-channel-bilibili .contact-video-tile{grid-column:2;grid-row:1/7;align-self:center}.contact-section .section-heading h2{font-size:30px}}
 @media(max-width:700px){.contact-section{padding-block:30px 36px}.contact-section .section-heading h2{font-size:27px}.contact-grid{grid-template-columns:1fr;gap:19px}.contact-channel,.contact-channel-bilibili{display:flex;grid-column:auto;padding:23px 23px 15px;scroll-margin-top:95px}.contact-channel h3{font-size:24px;margin-top:17px;min-height:0}.contact-channel-description{font-size:12px;min-height:0}.contact-platform-mark{width:40px;height:40px}.contact-channel-header .eyebrow{font-size:8px}.contact-instruction{font-size:11px}.contact-qr{width:min(235px,100%)}.contact-video-tile{width:min(235px,100%)}.footer-contact{gap:6px 22px;padding-bottom:21px;font-size:10px}.footer-contact>span{flex-basis:100%;margin-bottom:4px}.contact-qr-dialog{padding:19px 20px 24px}.contact-qr-dialog h2{font-size:21px}.contact-qr-dialog-top .eyebrow{font-size:8px}.contact-qr-dialog-hint{font-size:11px}.contact-panel-actions .button{font-size:12px;gap:20px}}
+
+/* 会长介绍随任期更新，制作署名作为长期记录保留；照片展示原有竖幅。 */
+.president-card{display:grid;grid-template-columns:210px minmax(0,1fr);gap:55px;align-items:center;padding-block:36px;margin-bottom:65px;border-block:1px solid var(--line);scroll-margin-top:115px}
+.president-portrait{aspect-ratio:3/4;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.president-portrait img{width:100%;height:100%;object-fit:cover}
+.president-copy{max-width:680px}
+.president-copy h2{font:500 38px/1.5 var(--serif);margin-top:13px}
+.president-term{font-size:13px;color:var(--blue);margin-top:7px}
+.president-identity{font-size:12px;color:var(--dim);margin-top:15px}
+.president-intro{font-size:14px;line-height:2;color:var(--muted);margin-top:15px;max-width:580px}
+.president-links,.website-note-links{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:22px}
+.website-note{display:grid;grid-template-columns:1fr 1.5fr;gap:70px;border-top:1px solid var(--line);padding-block:45px 10px;scroll-margin-top:115px}
+.website-note h2{font:500 30px/1.6 var(--serif);margin-top:15px}
+.website-note-copy{max-width:650px}
+.website-note-copy>p{font-size:13px;line-height:2;color:var(--muted)}
+.website-note-copy>p+p{margin-top:16px}
+.website-note-copy>p>a{color:var(--blue);text-decoration:underline;text-underline-offset:4px}
+.footer-credits{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px 28px}
+.footer-bottom .footer-creator{color:var(--muted)}
+.footer-bottom .footer-creator a{color:var(--blue)}
+.footer-bottom>a{flex-shrink:0;align-self:start}
+@media(max-width:1000px){.president-card{gap:35px}.website-note{gap:40px;grid-template-columns:1fr 1.4fr}}
+@media(max-width:700px){.president-card{grid-template-columns:1fr;gap:25px;padding-block:27px;margin-bottom:40px}.president-portrait{width:min(210px,100%)}.president-copy h2{font-size:31px;margin-top:11px}.president-term{font-size:12px}.president-identity{font-size:11px;margin-top:13px}.president-intro{font-size:12px;margin-top:13px}.president-links,.website-note-links{gap:10px 24px;margin-top:17px}.president-links .text-link,.website-note-links .text-link{font-size:12px}.website-note{grid-template-columns:1fr;gap:22px;padding-block:30px 0}.website-note h2{font-size:27px;margin-top:12px}.website-note-copy>p{font-size:12px}.footer-credits{display:block}.footer-credits>p+p{margin-top:7px}}
