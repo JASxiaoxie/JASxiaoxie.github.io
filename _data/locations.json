@@ -1,0 +1,62 @@
+{
+  "map": {
+    "tile_url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "attribution": "© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a> contributors",
+    "max_zoom": 18
+  },
+  "places": [
+    {
+      "id": "campus",
+      "number": "01",
+      "name": "吉林大学前卫南区",
+      "short_name": "前卫南区",
+      "kind": "校园",
+      "address": "吉林省长春市前进大街 2699 号",
+      "description": "从校园里的一次仰望开始。",
+      "latitude": 43.8206879,
+      "longitude": 125.2711103,
+      "coordinate_system": "WGS84",
+      "coordinate_source": "OpenStreetMap 校区范围中心（way 298032902），用于总览定位，不代表具体活动集合点。",
+      "zoom": 14,
+      "page_url": "/events/",
+      "page_label": "看看校园活动"
+    },
+    {
+      "id": "observatory",
+      "number": "02",
+      "name": "北十字天文台",
+      "short_name": "北十字天文台",
+      "kind": "天文台",
+      "address": "吉林省松原市长岭县前进乡前高家村",
+      "description": "在更暗的夜空下，让观测有一个归处。",
+      "latitude": 44.00892,
+      "longitude": 124.27826,
+      "coordinate_system": "WGS84",
+      "coordinate_source": "维护者提供的手机照片定位，2026-10-07 确认来源；地图反查与松原市前进乡相符，未独立确认建筑物位置。",
+      "zoom": 14,
+      "page_url": "/observatory/",
+      "page_label": "认识北十字"
+    },
+    {
+      "id": "field",
+      "number": "03",
+      "name": "野外观测地点",
+      "short_name": "大酱缸村农家乐",
+      "kind": "野外观测",
+      "address": "吉林省四平市伊通满族自治县大酱缸村农家乐",
+      "description": "一起走出城市，等待一个晴朗的夜晚。",
+      "latitude": 43.1024669,
+      "longitude": 125.6461507,
+      "coordinate_system": "WGS84",
+      "coordinate_source": "2026-10-07 维护者在高德卫星图重新选点：东经 125.652192、北纬 43.104785（GCJ-02）；主干道支路尽头的两幢民房／农家乐。WGS84 通过 eviltransform gcj2wgs_exact 逆转换，用于本站底图；高德导航保留原始 GCJ-02 坐标。",
+      "zoom": 14,
+      "page_url": "/events/field-observing/",
+      "page_label": "看看野外观测",
+      "navigation": {
+        "latitude": 43.104785,
+        "longitude": 125.652192,
+        "coordinate_system": "GCJ02"
+      }
+    }
+  ]
+}

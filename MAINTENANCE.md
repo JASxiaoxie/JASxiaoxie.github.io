@@ -41,6 +41,31 @@
 
 历届获奖记录维护在 `competition.json` 的 `awards` 数组中。每条包含 `year` 年份、`edition` 届次、`host` 承办学校、`awards` 奖项列表和 `source` 资料来源。每个奖项保存原文 `label` 与获奖者 `recipient`；缺失姓名留空。页面按年份由新到旧展示，目前已录入 2011—2019 年汇总与既有的 2024 年特等奖记录。原始获奖表截图保存在 `content/references/competition-awards-2011-2019.png`，仅作为本地维护依据，不参与网站导出。
 
+## 更新观测地点与地图
+
+地点统一保存在 `_data/locations.json` 的 `places` 中。首页 `/#our-sky` 展示三处总览；天文台 `/observatory/#observatory-location` 和野外观测 `/events/field-observing/#field-location` 各显示自己的地点。修改同一条记录后，地图、地址与高德地图入口一起更新。
+
+| 字段 | 填写方式 |
+| --- | --- |
+| `id` | 稳定编号；目前为 `campus`、`observatory`、`field`，页面用它筛选地点 |
+| `name` / `short_name` | 完整展示名称 / 地图中的简短名称 |
+| `number` / `kind` | 列表序号 / 地点类型 |
+| `address` / `description` | 已确认的公开地址 / 简短介绍 |
+| `latitude` / `longitude` | 纬度 / 经度，JSON 数字，不能互换 |
+| `coordinate_system` | 目前必须为 `WGS84`；高德、腾讯或百度坐标须先正确转换，不能直接改标签 |
+| `coordinate_source` | 坐标来源、精度和核对范围，便于后来的人追查 |
+| `zoom` | 地点视角的缩放级别，目前为 14；乡村底图较稀疏，放大不一定有更多信息 |
+| `page_url` / `page_label` | 首页地点卡片进入相应栏目的站内地址 / 链接文字 |
+| `navigation` | 可选的导航原始坐标，包含 `latitude`、`longitude` 和 `coordinate_system`（`WGS84` 或 `GCJ02`）；高德重新选点时保留 GCJ02 原值，无此字段则使用主坐标 |
+
+2026-10-07 录入：前卫南区使用 OpenStreetMap 校区范围中心，仅用于总览，不代表活动集合点；天文台使用维护者提供的手机照片 GPS 定位 `44.00892, 124.27826`。野外观测最初的照片坐标稍偏，维护者后来在高德卫星图重新选定农家乐，主干道支路尽头有两幢民房：东经 `125.652192`、北纬 `43.104785`（GCJ-02）。导航保留这组原值，本站底图使用 [eviltransform 的逆转换算法](https://github.com/googollee/eviltransform)得到 WGS84 主坐标，算法换算不能描述成实地测量。活动出行仍以当期通知为准，不把大酱缸村自动标成每场历史活动的地点。
+
+地图组件为 `_includes/location-map.html`，样式与交互在 `assets/css/maps.css`、`assets/js/maps.js`。首页与天文台用页面头部 `location_map: true` 加载地图资源；野外观测由布局按 `page.event_id == 'field-observing'` 加载。新增带地图的页面也须开启这个字段，不能只插入组件。
+
+Leaflet 1.9.4 在 `assets/lib/leaflet/` 自托管，保留上游许可证；页面底图来自 OpenStreetMap，无需申请密钥。`map.tile_url`、`map.attribution` 和 `map.max_zoom` 集中维护供应商配置；保留画面内署名，遵守[瓦片使用政策](https://operations.osmfoundation.org/policies/tiles/)，不要预取或下载离线地图。切换供应商时同时核对许可、署名与坐标系统。地址、导航入口与加载失败提示独立于底图，第三方地图网络不可用时仍可阅读。
+
+手机端默认让页面正常滚动，轻触“探索地图”后才能拖动；“结束浏览”恢复页面滚动。地图不截获鼠标滚轮，支持缩放按钮、地点切换与减少动态偏好。修改后检查三个页面、地点选中、总览复位、手机开关和高德链接，再按现有流程构建与发布。
+
 ## 会徽与品牌图形
 
 网站会徽统一使用 `images/brand/emblem.jpg`，来源为指定的星月会徽原图副本，不使用带小邪的会徽版本。看板娘小邪有独立的 `/xiaoxie/` 页面，也用于协会介绍与入会页面。

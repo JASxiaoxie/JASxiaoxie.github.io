@@ -13,6 +13,7 @@ nav: events
     <article class="prose">{{ event.body | markdownify }}<div class="activity-intro-links"><a class="text-link" href="#event-album">查看往期活动 ↓</a><a class="text-link" href="{{ '/join/' | relative_url }}">参与活动 ↗</a></div></article>
     {% assign intro_photos = site.data.albums[event.album].images %}{% include photo-slideshow.html title=event.title ratio='1.5' image=event.image slides=intro_photos class='activity-intro-photo' eager=true %}
   </section>
+  {% if event.category == 'field' %}{% include location-map.html id='field-location' place='field' title='走向更暗的夜空。' description='伊通满族自治县大酱缸村，<br>我们一起观测的一处地点。' note='每次活动的集合地点、出行方式与观测安排，以当期通知为准。' %}{% endif %}
   {% assign archive_title = '每一次' | append: event.title %}
   {% if event.album %}{% include activity-album.html key=event.album title=archive_title introduction=event.summary description='从最近的一次开始。<br>点开活动，在小窗中查看介绍与照片。' %}{% endif %}
   {% else %}

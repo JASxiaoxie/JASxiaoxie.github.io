@@ -35,6 +35,7 @@
 | 当前与历届管理层名单 | [`_data/team.json`](_data/team.json) |
 | 现任会长的人物资料、照片与个人主页 | [`_data/people.json`](_data/people.json) |
 | 北十字天文台的团队、建设、器材与日常 | [`_data/observatory.json`](_data/observatory.json) |
+| 首页总览、天文台与野外观测地图中的地点 | [`_data/locations.json`](_data/locations.json) |
 | 摄影作品、作者与拍摄参数 | [`_data/gallery.json`](_data/gallery.json) |
 | 小邪的角色故事、插画、联动与草稿 | [`_data/mascot.json`](_data/mascot.json) |
 | 协会简介、部门、入会说明与常见问题 | [`_data/club.json`](_data/club.json) |

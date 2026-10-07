@@ -1,0 +1,56 @@
+/* 与深夜蓝页面保持同一层级，地图内部层叠不越过网站导航与照片窗口。 */
+.location-section{padding-block:55px 48px;border-block:1px solid var(--line);margin-top:60px;scroll-margin-top:115px}
+.location-home{padding-block:75px;margin-top:0;border-top:0}
+.location-section .section-heading{margin-bottom:35px}
+.location-section h2{font:400 34px/1.55 var(--serif)}
+.location-layout{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.6fr);gap:38px;align-items:start}
+.location-list{min-width:0}
+.location-card{display:grid;grid-template-columns:25px minmax(0,1fr);gap:16px;padding:20px 18px;border-top:1px solid var(--line);transition:background .2s,border-color .2s;background:transparent}
+.location-card.is-selected{background:var(--surface);border-color:var(--blue)}
+.location-number{color:var(--gold);font-size:10px;letter-spacing:.08em;padding-top:3px}
+.location-kind{font:10px/1.5 var(--sans);color:var(--dim);letter-spacing:.06em}
+.location-card h3{margin-top:6px}
+.location-card h3 button{display:flex;gap:15px;align-items:center;justify-content:space-between;width:100%;min-height:35px;padding:0;text-align:left;background:transparent;color:var(--ink);font:400 21px/1.5 var(--serif)}
+.location-card h3 button:disabled{opacity:1;cursor:default}
+.location-card h3 span{font:16px/1 var(--sans);color:var(--blue)}
+.location-address{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.8}
+.location-description{font-size:11px;color:var(--dim);margin-top:7px}
+.location-links{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:12px;font-size:11px;color:var(--blue)}
+.location-links a{padding-block:4px;border-bottom:1px solid var(--line)}
+.location-links a:hover{border-color:var(--blue)}
+.location-note{font-size:11px;color:var(--dim);line-height:1.9;margin:17px 0 0;padding-inline:18px}
+.location-layout-single{grid-template-columns:minmax(250px,.75fr) minmax(0,1.65fr)}
+.location-map-panel{min-width:0}
+.location-map-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:0 0 14px;color:var(--dim);font-size:10px;min-height:43px}
+.location-map-toolbar>div{display:flex;gap:16px;flex-shrink:0}
+.location-map-toolbar button{padding:4px 0;background:transparent;color:var(--blue);font-size:11px}
+.location-map-frame{position:relative;border:1px solid var(--line);isolation:isolate;background:var(--surface)}
+.location-map-canvas{height:440px;width:100%;z-index:0;background:#141e29;font-family:var(--sans)}
+.location-layout-single .location-map-canvas{height:350px}
+.location-map-canvas .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) saturate(.45) brightness(.72) contrast(.95)}
+.location-map-canvas .leaflet-control-attribution{background:rgba(11,16,24,.88);color:var(--muted);font:9px/1.7 var(--sans);padding:2px 5px}
+.location-map-canvas .leaflet-control-attribution a{color:var(--blue)}
+.location-map-canvas .leaflet-bar{border:1px solid var(--line);box-shadow:none;border-radius:0}
+.location-map-canvas .leaflet-bar a{width:34px;height:34px;line-height:34px;background:var(--surface);color:var(--blue);border-radius:0;border-color:var(--line)}
+.location-map-canvas .leaflet-bar a:hover{background:#233243}
+.location-map-canvas .leaflet-bar a.leaflet-disabled{background:var(--surface);color:var(--dim)}
+.location-pin{display:grid;place-items:center;background:transparent;border:0}
+.location-pin-core{display:grid;place-items:center;width:29px;height:29px;border:1px solid var(--blue);border-radius:50%;background:#111e2b;color:var(--blue);font:18px/1 var(--sans);box-shadow:0 0 0 5px rgba(168,204,234,.1),0 3px 18px rgba(0,0,0,.6);transition:background .2s,color .2s}
+.location-pin.is-selected .location-pin-core{background:var(--blue);color:#102233}
+.location-map-canvas .leaflet-tooltip{color:var(--ink);background:#111e2b;border:1px solid var(--line);box-shadow:none;font:11px/1.6 var(--sans);padding:6px 10px}
+.location-map-canvas .leaflet-tooltip-top:before{border-top-color:#111e2b}
+.location-map-canvas .leaflet-popup-content-wrapper,.location-map-canvas .leaflet-popup-tip{background:#111923;color:var(--ink);border-radius:0;box-shadow:0 7px 24px rgba(0,0,0,.35)}
+.location-map-canvas .leaflet-popup-content{margin:19px 23px 17px 18px;line-height:1.8}
+.location-map-canvas .location-popup p{margin:8px 0;color:var(--muted);font-size:11px}
+.location-map-canvas .location-popup .location-kind{margin:0 0 6px;color:var(--gold);font-size:9px}
+.location-popup strong{font:400 19px/1.7 var(--serif)}
+.location-popup a{display:inline-block;color:var(--blue);font-size:11px;margin-top:3px}
+.location-map-canvas .leaflet-popup-close-button{color:var(--muted);font-size:22px;right:3px;top:3px}
+.location-map-status{font-size:10px;line-height:1.9;color:var(--dim);margin-top:11px;min-height:20px}
+.location-map-status.is-error{color:var(--gold)}
+.location-map-activate{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;background:transparent;padding:0 0 30px;color:var(--ink)}
+.location-map-activate span{background:rgba(11,16,24,.92);border:1px solid var(--line);padding:8px 16px;font-size:12px;box-shadow:0 4px 18px rgba(0,0,0,.2)}
+.location-map-activate small{font-size:10px;background:rgba(11,16,24,.92);padding:1px 12px 5px;color:var(--muted)}
+@media(max-width:1000px){.location-layout,.location-layout-single{grid-template-columns:minmax(230px,.8fr) minmax(0,1.4fr);gap:25px}.location-card{padding-inline:10px;gap:9px}.location-card h3 button{font-size:19px}.location-map-canvas{height:460px}.location-note{padding-inline:10px}}
+@media(max-width:700px){.location-section{margin-top:40px;padding-block:38px;scroll-margin-top:90px}.location-home{margin-top:0;padding-block:45px}.location-section h2{font-size:29px}.location-section .section-heading{margin-bottom:25px}.location-layout,.location-layout-single{grid-template-columns:1fr;gap:23px}.location-map-panel{grid-row:1}.location-map-canvas,.location-layout-single .location-map-canvas{height:330px}.location-card{padding:18px 12px;grid-template-columns:25px minmax(0,1fr);gap:12px}.location-card h3 button{font-size:21px}.location-description{font-size:12px}.location-map-frame[data-interactive="false"] .location-map-canvas{touch-action:pan-y!important}.location-map-frame[data-interactive="true"] .location-map-canvas{touch-action:none!important}.location-map-toolbar{font-size:10px;padding-bottom:10px}.location-map-toolbar>div{gap:14px}.location-map-status{font-size:10px}.location-note{padding-inline:12px}}
+@media(prefers-reduced-motion:reduce){.location-card,.location-pin-core{transition:none}}

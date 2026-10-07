@@ -4,6 +4,7 @@ description: 认识吉林大学天文协会北十字深空观测站、观测团�
 permalink: /observatory/
 nav: observatory
 photo_viewer: true
+location_map: true
 ---
 {% assign observatory = site.data.observatory %}
 {% assign observatory_slides = '' | split: ',' | push: observatory.overview_photo | push: observatory.aerial_photo %}
@@ -15,8 +16,10 @@ photo_viewer: true
     <p class="observatory-overview-copy">{{ observatory.intro }}</p>
   </section>
   <div class="observatory-facts">{% for fact in observatory.facts %}<div><span>{{ fact.label }}</span><strong>{{ fact.value }}</strong><p>{{ fact.detail }}</p></div>{% endfor %}</div>
-  <nav class="observatory-page-index" aria-label="天文台页内导航"><a href="#overview">总览与介绍 ↘</a><a href="#the-team">观测团队 ↘</a><a href="#construction">建设过程 ↘</a><a href="#instruments">器材介绍 ↘</a><a href="#observatory-works">摄影作品 ↘</a><a href="#observatory-life">台子日常 ↘</a></nav>
+  <nav class="observatory-page-index" aria-label="天文台页内导航"><a href="#overview">总览与介绍 ↘</a><a href="#observatory-location">天文台位置 ↘</a><a href="#the-team">观测团队 ↘</a><a href="#construction">建设过程 ↘</a><a href="#instruments">器材介绍 ↘</a><a href="#observatory-works">摄影作品 ↘</a><a href="#observatory-life">台子日常 ↘</a></nav>
   <div class="observatory-introduction reveal"><div><p class="eyebrow">A PLACE FOR THE NIGHT</p><h2>让每一次观测，<br>有一个可以回来的地方。</h2><p>{{ observatory.story }}</p><p>{{ observatory.name_story }}</p></div>{% include observatory-photo.html photo=observatory.aerial_photo slides=observatory_slides sequence='observatory-overview' ratio='1.78' caption=true %}</div>
+
+  {% include location-map.html id='observatory-location' place='observatory' title='北十字，在这里。' description='吉林省松原市长岭县，<br>前进乡前高家村。' note='前往天文台前，请先与协会联系，了解当次安排。' %}
 
   <section class="observatory-section" id="the-team" aria-labelledby="observatory-team-title">
     <div class="section-heading reveal"><div><p class="eyebrow">01 / THE PEOPLE</p><h2 id="observatory-team-title">一起观测的人。</h2></div><div class="section-side"><p>{{ observatory.team_intro }}</p></div></div>

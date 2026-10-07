@@ -2,7 +2,7 @@
 
 这份文档用于帮助以后接手的 AI 理解吉林大学天文协会网站，并完成从资料整理到上线的工作。维护者可以把仓库链接和本次需求一起交给 AI；不需要提供此前聊天记录。
 
-文档按 2026 年 10 月 6 日的仓库整理。开始工作时仍须读取当前文件：后续管理层可能已更新数据、依赖或发布方式。具体字段见 [MAINTENANCE.md](MAINTENANCE.md)，项目约定见 [AGENTS.md](AGENTS.md)，新同学与维护者的入口见 [README.md](README.md)。
+文档按 2026 年 10 月 7 日的仓库整理。开始工作时仍须读取当前文件：后续管理层可能已更新数据、依赖或发布方式。具体字段见 [MAINTENANCE.md](MAINTENANCE.md)，项目约定见 [AGENTS.md](AGENTS.md)，新同学与维护者的入口见 [README.md](README.md)。
 
 ## 1. 先确认项目与本次任务
 
@@ -45,6 +45,7 @@ git status --short --branch
 | [`_data/gallery.json`](_data/gallery.json) | 摄影作品、作者、拍摄参数与首页推荐作品 |
 | [`_data/mascot.json`](_data/mascot.json) | 小邪的角色介绍、六段背景、插画、联动与草稿对照；页面为 `/xiaoxie/` |
 | [`_data/observatory.json`](_data/observatory.json) | 天文台概况、四位成员、建设、设备、作品引用与日常照片 |
+| [`_data/locations.json`](_data/locations.json) | 校园、天文台与野外观测地点，WGS84 坐标、导航入口与地图供应商配置 |
 | [`_data/team.json`](_data/team.json) | 历届管理层与前身天体组；`generations` 最后一条为当前任期 |
 | [`_data/people.json`](_data/people.json) | 人物照片、简介与个人主页；当前会长按姓名匹配 |
 | [`_data/website.json`](_data/website.json) | 网站制作署名、制作时的任期和仓库地址 |
@@ -145,6 +146,18 @@ python3 scripts/preview.py
 
 视觉改动优先复用 `club.css`、`club.js` 和已有组件。布局中的 CSS / JS 地址含基于构建时间的版本号，用于避免旧缓存；不要移除它。人物照片既有 CSS 尺寸限制，也有小尺寸 HTML 默认值，图片的原始像素宽高不能直接当成前台展示尺寸。
 
+### 更新地点与地图
+
+地点唯一来源为 `locations.json`，具体字段见 [维护说明](MAINTENANCE.md#更新观测地点与地图)。不要在三个页面中各存一份坐标。当前组件在 `_includes/location-map.html`，样式与脚本为 `assets/css/maps.css`、`assets/js/maps.js`；地图库 Leaflet 1.9.4 自托管在 `assets/lib/leaflet/`，保留上游许可证。首页与天文台通过 `location_map: true` 加载资源；野外观测按 `page.event_id` 加载。普通页面不引入地图，底图在组件接近可视区域时才请求。
+
+首页地图在摄影作品区块后、历史传承区块前；天文台地图在总览介绍之后、人物之前；野外观测在类型介绍之后、活动日期列表之前。列表保留公开地址、正常站内链接与高德地图入口，地图加载失败不阻碍阅读。手机先轻触探索，再开启拖动；结束浏览恢复页面滚动。保留减少动态偏好与可见的地图署名。
+
+数据分开保存 `latitude` 纬度、`longitude` 经度，底图主坐标使用 WGS84。高德导航 URI 显式选择坐标系统：没有 `navigation` 时用主坐标及 `coordinate=wgs84`；`navigation` 保存 GCJ02 原始选点时用其数值及 `coordinate=gaode`，避免二次偏移。野外农家乐已用维护者在高德重新选定的原始坐标，WGS84 由 [eviltransform gcj2wgs_exact](https://github.com/googollee/eviltransform)逆转换，导航则保留原值。手机照片 GPS 的坐标按 WGS84 处理，来自高德、腾讯、百度或来源不明的新坐标先核对，转换后再录入，不能直接改坐标系标签。度分秒换算按 `度 + 分/60 + 秒/3600`，南纬、西经为负值。来源与精度记入 `coordinate_source`；校区范围中心不能描述成集合点，一个常用地点不能自动套到全部历史活动。
+
+当前底图为 OpenStreetMap；供应商配置集中在 `map` 中。遵守[瓦片使用政策](https://operations.osmfoundation.org/policies/tiles/)，保留署名，只请求普通可视地图，不做离线下载或批量预取。正式页面没有地址搜索或反查 API；若以后核对地点，优先查维护者资料与地图供应商，不能把免费的反查服务擅自变成网站通用搜索接口。
+
+修改后核对坐标范围、三个页面的地点筛选、导航 URI 中经纬度顺序、地图选择与复位、手机滚动开关。`check_site.py` 检查页面内地图 JSON 的坐标、编号、坐标系统与供应商配置；不证明现实地址或坐标转换准确。额外地点若要出现在独立页，先明确组件引用与资源加载条件。
+
 ### 可选资料导入脚本
 
 小邪插画使用 `scripts/import_mascot.py`：清单编号为 `art-` 加原稿 SHA-256 前 12 位，生成完整画幅的 WebP 大图与缩略图，保留透明通道；GIF 只复制原始字节，并生成静态首帧。清单 `content/mascot-selection.json` 和来源记录 `content/mascot-media-provenance.json` 需要另行交接。它不修改 `mascot.json`；导入后按 [维护说明](MAINTENANCE.md#小邪的故事与插画) 更新数据，再核对入口、放大窗口与动图按钮。不要把角色插画加入天文摄影作品相册。
@@ -226,6 +239,7 @@ gh run list --repo JASxiaoxie/JASxiaoxie.github.io --workflow pages.yml --limit 
 | 活动没有新记录或混在一起 | 是否编辑了正确相册；同场是否共用键，不同场是否误用了同一个 `drawer_key` |
 | 活动年份显示或顺序不对 | `date_label`、精度与分组键；尤其注意模板排序依据为键名 |
 | 新图片为空或轮播后续帧空白 | 大图、缩略图路径及大小写，是否实际提交图片；运行资源检查 |
+| 地图没有底图或位置偏移 | 先分清底图网络失败与坐标错误；检查地图资源、供应商、WGS84、经纬度顺序与来源，不用换地址掩盖加载失败 |
 | 新会长不显示 | `generations` 最后一条、`president` 姓名与 `people.json` 是否完全匹配 |
 | 照片突然铺满页面或新样式未生效 | 样式请求、带版本号的 URL、CSS 尺寸和 HTML 默认宽高；核对线上已部署的内容 |
 | 线上仍是旧内容 | 本次提交是否在远端 `main`、对应 Actions 是否成功、实际网页或浏览器缓存 |

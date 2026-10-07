@@ -1,0 +1,28 @@
+{% assign map_places = site.data.locations.places %}
+{% if include.place %}{% assign map_places = map_places | where: 'id', include.place %}{% endif %}
+<!-- 地址和导航保留在正文中，地图或脚本不可用时仍能找到地点。 -->
+<section id="{{ include.id }}" class="location-section {{ include.class }}" aria-labelledby="{{ include.id }}-title" data-location-map>
+  <div class="section-heading"><div><p class="eyebrow">{{ include.eyebrow | default: 'UNDER THE SAME SKY / 观测地点' }}</p><h2 id="{{ include.id }}-title">{{ include.title }}</h2></div><div class="section-side"><p>{{ include.description }}</p></div></div>
+  <div class="location-layout{% if include.place %} location-layout-single{% endif %}">
+    <div class="location-list" aria-label="地图中的地点">
+      {% for place in map_places %}
+      {% assign navigation = place.navigation | default: place %}{% assign navigation_system = 'wgs84' %}{% if navigation.coordinate_system == 'GCJ02' %}{% assign navigation_system = 'gaode' %}{% endif %}
+      <article class="location-card" data-place-id="{{ place.id }}">
+        <span class="location-number" aria-hidden="true">{{ place.number }}</span><div>
+          <p class="location-kind">{{ place.kind }}</p><h3><button type="button" data-map-select="{{ place.id }}" aria-pressed="false" aria-label="在地图上查看{{ place.name }}" disabled>{{ place.name }} <span aria-hidden="true">↗</span></button></h3>
+          <p class="location-address">{{ place.address }}</p><p class="location-description">{{ place.description }}</p>
+          <div class="location-links">{% unless include.place %}<a href="{{ place.page_url | relative_url }}">{{ place.page_label }} ↗</a>{% endunless %}<a class="location-navigation" href="https://uri.amap.com/marker?position={{ navigation.longitude }},{{ navigation.latitude }}&amp;name={{ place.name | url_encode }}&amp;src=JLAS&amp;coordinate={{ navigation_system }}&amp;callnative=1" target="_blank" rel="noopener">高德地图 ↗</a></div>
+        </div>
+      </article>
+      {% endfor %}
+      {% if include.note %}<p class="location-note">{{ include.note }}</p>{% endif %}
+    </div>
+    <div class="location-map-panel">
+      <div class="location-map-toolbar"><p class="location-map-selection">{% if include.place %}{{ map_places.first.short_name }}{% else %}校园 · 天文台 · 野外观测{% endif %}</p><div><button type="button" data-map-reset disabled>{% if include.place %}回到地点{% else %}查看总览{% endif %}</button><button type="button" data-map-lock hidden>结束浏览</button></div></div>
+      <div class="location-map-frame" data-interactive="false"><div class="location-map-canvas" role="region" aria-label="{{ include.title | strip_html | escape }}互动地图"></div><button class="location-map-activate" type="button" data-map-activate hidden><span>轻触探索地图</span><small>开启拖动与缩放</small></button></div>
+      <p class="location-map-status" role="status">正在准备地图。也可以直接打开高德地图查看地点。</p>
+      <noscript><p class="location-note">互动地图需要 JavaScript，地点与高德地图入口可直接使用。</p></noscript>
+    </div>
+  </div>
+  <script type="application/json" data-location-map-data>{"places": {{ map_places | jsonify }}, "map": {{ site.data.locations.map | jsonify }}}</script>
+</section>
