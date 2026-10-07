@@ -160,6 +160,16 @@ python3 scripts/preview.py
 
 修改后核对坐标范围、三个页面的地点筛选、导航 URI 中经纬度顺序、地图选择与复位、手机滚动开关。`check_site.py` 检查页面内地图 JSON 的坐标、编号、坐标系统、同源数据地址，以及底图文件摘要、非空要素、有限几何坐标、范围覆盖与 ODbL 许可；不证明现实地址或坐标转换准确。额外地点若要出现在独立页，先明确组件引用与资源加载条件。
 
+### 查看和维护访问统计
+
+Cloudflare Web Analytics 已接入，站点为 `jasxiaoxie.github.io`。配置唯一来源是 `_config.yml` 的 `analytics.cloudflare_token`，公共布局末尾引用 `_includes/analytics.html`。这是网页公开的收集标识，不是登录密码或 API 密钥；更换标识须使用 Cloudflare 为真实站点生成的值，停用时设为空字符串并发布。
+
+组件只在 `jekyll.environment == 'production'` 时输出；GitHub Actions 已设置 `JEKYLL_ENV=production`，`scripts/preview.py` 强制 `development`，避免本机预览污染数据。保留维护者提供的模块脚本安装方式，每个页面只加载一次；统计独立于本站菜单、照片与地图，不等待统计服务才能初始化它们。当前没有小窗、单张照片或按钮事件统计，不要把页面计数说成活动参与人数。
+
+管理层在 Cloudflare 的 Observability → Analytics → Web analytics 选择本站查看数据，换届交接对应账号或权限。`Page views` 是浏览次数，`Visits` 是从其他网站或直接链接进入的访问次数，不是去重人数；以 [官方指标定义](https://developers.cloudflare.com/web-analytics/data-metrics/high-level-metrics/) 为准。数据从接入后开始，网络和拦截工具可能导致漏计。
+
+改动后分别构建正式与开发版本，检查前者每页只有一份脚本、站点标识正确，后者不输出脚本；空标识也应不输出。发布后核对正式页面源码，在有浏览器网络检查能力时检查 `static.cloudflareinsights.com/beacon.min.js` 加载及 `cloudflareinsights.com/cdn-cgi/rum` 上报。不要把统计失败处理绑到照片加载逻辑。没有 Cloudflare 后台权限时，不声称数据已到账；维护电脑可访问也不证明国内无 VPN 的访问均被统计。更完整说明见 [人工维护指南](MAINTENANCE.md#查看和维护访问统计)。
+
 ### 可选资料导入脚本
 
 小邪插画使用 `scripts/import_mascot.py`：清单编号为 `art-` 加原稿 SHA-256 前 12 位，生成完整画幅的 WebP 大图与缩略图，保留透明通道；GIF 只复制原始字节，并生成静态首帧。清单 `content/mascot-selection.json` 和来源记录 `content/mascot-media-provenance.json` 需要另行交接。它不修改 `mascot.json`；导入后按 [维护说明](MAINTENANCE.md#小邪的故事与插画) 更新数据，再核对入口、放大窗口与动图按钮。不要把角色插画加入天文摄影作品相册。
@@ -176,7 +186,7 @@ python3 scripts/preview.py
 
 ```sh
 python3 scripts/prepare_content.py
-bundle exec jekyll build --strict_front_matter --destination local/export
+JEKYLL_ENV=production bundle exec jekyll build --strict_front_matter --destination local/export
 python3 scripts/check_site.py local/export
 git diff --check
 git diff --stat

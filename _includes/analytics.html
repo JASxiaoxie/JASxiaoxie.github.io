@@ -1,0 +1,5 @@
+{% if jekyll.environment == 'production' and site.analytics.cloudflare_token and site.analytics.cloudflare_token != '' %}
+<!-- 正式构建统一加载统计；本地预览不计入协会网站的访问数据。 -->
+{% capture cf_beacon %}{"token":{{ site.analytics.cloudflare_token | jsonify }}}{% endcapture %}
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{{ cf_beacon | strip | escape }}"></script>
+{% endif %}

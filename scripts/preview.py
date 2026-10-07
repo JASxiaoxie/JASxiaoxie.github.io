@@ -25,6 +25,8 @@ def main():
     if not shutil.which("bundle"):
         raise SystemExit("未找到 bundle。请先安装 Ruby 与 Bundler，参见 README.md。")
     environment = os.environ.copy()
+    # 即使终端继承正式构建环境，本机预览也不发送访问统计。
+    environment["JEKYLL_ENV"] = "development"
     if args.bundle_path:
         environment["BUNDLE_PATH"] = str(args.bundle_path.resolve(strict=True))
     configuration = ROOT / "local/preview.yml"

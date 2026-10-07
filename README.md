@@ -43,6 +43,7 @@
 | QQ 群、公众号二维码与 B站入口 | [`_data/contact.json`](_data/contact.json) |
 | 协会历史中的重要节点 | [`_data/history.json`](_data/history.json) |
 | 网站制作署名与源码仓库地址 | [`_data/website.json`](_data/website.json) |
+| 访问统计的站点标识与启用方式 | [`_config.yml`](_config.yml)、[统计维护说明](MAINTENANCE.md#查看和维护访问统计) |
 
 页面结构在 [`_pages/`](_pages/)，样式和交互在 [`assets/`](assets/)。少量文字可以通过 GitHub 的文件编辑功能更新；照片或布局有较多变化时，建议先在本地预览。
 
@@ -76,7 +77,7 @@ python3 scripts/preview.py
 
 ```sh
 python3 scripts/prepare_content.py
-bundle exec jekyll build --strict_front_matter --destination local/export
+JEKYLL_ENV=production bundle exec jekyll build --strict_front_matter --destination local/export
 python3 scripts/check_site.py local/export
 ```
 
@@ -89,6 +90,12 @@ python3 scripts/check_site.py local/export
 将修改提交到 `main` 分支后，[GitHub Actions](https://github.com/JASxiaoxie/JASxiaoxie.github.io/actions) 中的“发布天协网站”会自动构建、检查并发布。发布成功后，打开网站核对这次变化；如果失败，先查看失败步骤的日志，修正问题后再提交。构建失败时，上一版网站会继续保留。
 
 发布流程保存在 [`.github/workflows/pages.yml`](.github/workflows/pages.yml)。现有仓库已经配置好 GitHub Pages，日常更新只需要提交内容。
+
+## 看看网站有多少访问
+
+网站已接入 Cloudflare Web Analytics。管理层登录 [Cloudflare 后台](https://dash.cloudflare.com/)，进入 Observability → Analytics → Web analytics，选择 `jasxiaoxie.github.io`，即可按日期查看浏览量、访问次数和各页面的情况。
+
+`Page views` 是页面浏览次数，`Visits` 是进入网站的访问次数，并不是去重后的真人数。统计从接入后开始，本地预览不计入；网络或广告拦截工具可能造成漏计。具体维护、排查与口径见 [访问统计说明](MAINTENANCE.md#查看和维护访问统计)。换届时，也请交接这个统计站点所在的 Cloudflare 账号或访问权限。
 
 ## 换届时，把网站一起交接
 

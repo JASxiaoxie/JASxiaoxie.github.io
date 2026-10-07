@@ -177,12 +177,27 @@ python3 scripts/import_photos.py /素材根目录的实际路径
 
 未来租用空间时，域名、托管账号和续费联系人由协会共同管理，记录交接日期与责任人。网站源码与原始图像另存备份，避免只保留托管平台中的一份。
 
+## 查看和维护访问统计
+
+2026-10-07 接入 Cloudflare Web Analytics，统计站点为 `jasxiaoxie.github.io`。登录 [Cloudflare 后台](https://dash.cloudflare.com/)，进入 Observability → Analytics → Web analytics，选择站点和日期范围；查看某个页面时，按路径筛选，例如 `/observatory/` 或 `/events/field-observing/`。统计数据由 Cloudflare 保存，换届时交接对应账号或访问权限。
+
+- `Page views`：页面浏览次数，同一个人打开多个页面或重新加载会产生多次浏览。
+- `Visits`：从其他网站或直接链接进入本站的访问次数，一次访问可以包含多个页面；不能把它当作去重访客人数。口径以 [Cloudflare 官方说明](https://developers.cloudflare.com/web-analytics/data-metrics/high-level-metrics/) 为准。
+- 数据从接入后开始，之前的访问量无法补算。统计脚本被网络、广告拦截工具或浏览器设置阻止时会漏计。
+- 活动小窗和摄影作品小窗属于所在页面，当前只统计页面访问，没有额外上报按钮点击或每张照片的浏览事件。
+
+站点标识保存在 `_config.yml` 的 `analytics.cloudflare_token`。这是由 Cloudflare 提供、随网页公开的收集标识，不是账号密码或 API 密钥。脚本由 `_includes/analytics.html` 在公共布局 `_layouts/club.html` 的 `</body>` 前加载，沿用维护者提供的 `type="module"` 安装代码。只在 `JEKYLL_ENV=production` 构建且标识非空时启用；GitHub Actions 已设置正式构建环境，`scripts/preview.py` 明确使用 `development`，避免本机维护计入统计。停用时将标识改为 `""` 并发布；更换站点时从 Cloudflare 的 Manage site 获取真实新标识，不自行生成。
+
+统计加载失败不影响照片、菜单或本站地图。访客需要访问 `https://static.cloudflareinsights.com/beacon.min.js` 和 `https://cloudflareinsights.com/cdn-cgi/rum`；本站地图依然使用自己的文件。脚本及上报地址见 [Cloudflare 数据收集说明](https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/)，不要把上报接口下载成静态文件或换成猜测的域名。
+
+检查时先确认本次 Actions 发布成功，再在正式网页源码中检查每页只有一份统计脚本且标识正确；浏览器中核对脚本加载和上报请求。测试访问后等待几分钟，再查看后台日期、站点和路径筛选。国内访问需在实际不使用 VPN 的环境核对上报，不能仅凭维护电脑可连通就保证所有访客都计入。没有后台访问权限时，只说明已经验证的脚本或请求，不声称统计数据已到账。
+
 ## GitHub Pages 发布与交接
 
 网站发布到协会账号 `JASxiaoxie` 的 `JASxiaoxie.github.io` 仓库，网址为 `https://jasxiaoxie.github.io/`。管理层更替时交接协会账号与仓库权限，维护者使用自己的协作账号更新内容，不依赖某一位同学的个人仓库。
 
 仓库 Settings → Pages 的发布来源选择 GitHub Actions。修改 `_data/`、页面或图片后，提交到 `main`；Actions 中的“发布天协网站”会构建并检查资源，通过后自动上线。更新失败时查看失败步骤的日志，上一版网站继续保留。
 
-本地提交前运行 `python3 scripts/prepare_content.py`、`bundle exec jekyll build --strict_front_matter --destination local/export` 和 `python3 scripts/check_site.py local/export`。`content/` 中的选片记录与原始资料不上传 GitHub，交接时单独备份；公开仓库已经包含展示所需的图片副本，日常更新不需要原始资料。
+本地提交前运行 `python3 scripts/prepare_content.py`、`JEKYLL_ENV=production bundle exec jekyll build --strict_front_matter --destination local/export` 和 `python3 scripts/check_site.py local/export`。`content/` 中的选片记录与原始资料不上传 GitHub，交接时单独备份；公开仓库已经包含展示所需的图片副本，日常更新不需要原始资料。
 
 在线编辑后台与报名同步尚未建设；本地预览仍只在本机访问。
