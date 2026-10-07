@@ -1,0 +1,6 @@
+{
+  "overview": {"title": "长春及周边总览", "bbox": [123.6, 42.7, 126.15, 44.55], "detail": false, "simplify_m": 35, "min_zoom": 8, "max_zoom": 17},
+  "campus": {"title": "前卫南区周边", "bbox": [125.245, 43.804, 125.297, 43.838], "detail": true, "simplify_m": 1.5, "min_zoom": 12, "max_zoom": 17},
+  "observatory": {"title": "北十字天文台周边", "bbox": [124.235, 43.976, 124.321, 44.042], "detail": true, "simplify_m": 2, "min_zoom": 12, "max_zoom": 17},
+  "field": {"title": "大酱缸村农家乐周边", "bbox": [125.598, 43.067, 125.694, 43.138], "detail": true, "simplify_m": 2, "min_zoom": 12, "max_zoom": 17}
+}

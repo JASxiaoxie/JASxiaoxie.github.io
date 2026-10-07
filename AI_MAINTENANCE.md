@@ -45,7 +45,7 @@ git status --short --branch
 | [`_data/gallery.json`](_data/gallery.json) | 摄影作品、作者、拍摄参数与首页推荐作品 |
 | [`_data/mascot.json`](_data/mascot.json) | 小邪的角色介绍、六段背景、插画、联动与草稿对照；页面为 `/xiaoxie/` |
 | [`_data/observatory.json`](_data/observatory.json) | 天文台概况、四位成员、建设、设备、作品引用与日常照片 |
-| [`_data/locations.json`](_data/locations.json) | 校园、天文台与野外观测地点，WGS84 坐标、导航入口与地图供应商配置 |
+| [`_data/locations.json`](_data/locations.json) | 校园、天文台与野外观测地点，WGS84 坐标、导航入口与本地地图配置 |
 | [`_data/team.json`](_data/team.json) | 历届管理层与前身天体组；`generations` 最后一条为当前任期 |
 | [`_data/people.json`](_data/people.json) | 人物照片、简介与个人主页；当前会长按姓名匹配 |
 | [`_data/website.json`](_data/website.json) | 网站制作署名、制作时的任期和仓库地址 |
@@ -154,9 +154,11 @@ python3 scripts/preview.py
 
 数据分开保存 `latitude` 纬度、`longitude` 经度，底图主坐标使用 WGS84。高德导航 URI 显式选择坐标系统：没有 `navigation` 时用主坐标及 `coordinate=wgs84`；`navigation` 保存 GCJ02 原始选点时用其数值及 `coordinate=gaode`，避免二次偏移。野外农家乐已用维护者在高德重新选定的原始坐标，WGS84 由 [eviltransform gcj2wgs_exact](https://github.com/googollee/eviltransform)逆转换，导航则保留原值。手机照片 GPS 的坐标按 WGS84 处理，来自高德、腾讯、百度或来源不明的新坐标先核对，转换后再录入，不能直接改坐标系标签。度分秒换算按 `度 + 分/60 + 秒/3600`，南纬、西经为负值。来源与精度记入 `coordinate_source`；校区范围中心不能描述成集合点，一个常用地点不能自动套到全部历史活动。
 
-当前底图为 OpenStreetMap；供应商配置集中在 `map` 中。遵守[瓦片使用政策](https://operations.osmfoundation.org/policies/tiles/)，保留署名，只请求普通可视地图，不做离线下载或批量预取。正式页面没有地址搜索或反查 API；若以后核对地点，优先查维护者资料与地图供应商，不能把免费的反查服务擅自变成网站通用搜索接口。
+底图为本站托管的 OpenStreetMap 矢量快照，文件在 `assets/maps/`，通过 `map.data_url` 引用清单；组件会将其转换成含 `baseurl` 和构建版本的地址。页面只请求同源 JSON，不能重新引入外部瓦片、地图 CDN 或运行时 Overpass 查询，否则可能重现不使用 VPN 时空白的问题。OSM 数据与衍生数据库使用 ODbL，独立于代码 MIT 许可，保留可见署名及 [地图数据说明](assets/maps/README.md)。
 
-修改后核对坐标范围、三个页面的地点筛选、导航 URI 中经纬度顺序、地图选择与复位、手机滚动开关。`check_site.py` 检查页面内地图 JSON 的坐标、编号、坐标系统与供应商配置；不证明现实地址或坐标转换准确。额外地点若要出现在独立页，先明确组件引用与资源加载条件。
+`build_maps.py` 从原始缓存生成 GeoJSON，查询与范围在 `scripts/map-regions.json`；仅显式 `--download` 时才读取未缓存的有限区域。需刷新数据时使用新缓存目录，例如 `--download --cache local/maps/raw-2027-10`，保留旧缓存。原始响应不发布；四个 GeoJSON 和 `manifest.json` 与源码一起提交。清单含查询、OSM 时间、范围、摘要和大小。简化线段但不补画未收录的小路或建筑；同属性线段分组不代表互相连通。总览不显示所有乡镇或匝道，放大才显示更多细节。有限区域内允许拖动缩放，不能将其描述为完整在线地图或导航系统。地点变更超出范围时，补充真实数据后再发布。正式页面没有地址搜索或反查 API，不把公共查询服务变成网站后台。
+
+修改后核对坐标范围、三个页面的地点筛选、导航 URI 中经纬度顺序、地图选择与复位、手机滚动开关。`check_site.py` 检查页面内地图 JSON 的坐标、编号、坐标系统、同源数据地址，以及底图文件摘要、非空要素、有限几何坐标、范围覆盖与 ODbL 许可；不证明现实地址或坐标转换准确。额外地点若要出现在独立页，先明确组件引用与资源加载条件。
 
 ### 可选资料导入脚本
 
@@ -239,7 +241,7 @@ gh run list --repo JASxiaoxie/JASxiaoxie.github.io --workflow pages.yml --limit 
 | 活动没有新记录或混在一起 | 是否编辑了正确相册；同场是否共用键，不同场是否误用了同一个 `drawer_key` |
 | 活动年份显示或顺序不对 | `date_label`、精度与分组键；尤其注意模板排序依据为键名 |
 | 新图片为空或轮播后续帧空白 | 大图、缩略图路径及大小写，是否实际提交图片；运行资源检查 |
-| 地图没有底图或位置偏移 | 先分清底图网络失败与坐标错误；检查地图资源、供应商、WGS84、经纬度顺序与来源，不用换地址掩盖加载失败 |
+| 地图没有底图或位置偏移 | 先分清本站地图文件加载失败与坐标错误；检查底图清单与文件、WGS84、经纬度顺序与来源，不用换地址掩盖加载失败 |
 | 新会长不显示 | `generations` 最后一条、`president` 姓名与 `people.json` 是否完全匹配 |
 | 照片突然铺满页面或新样式未生效 | 样式请求、带版本号的 URL、CSS 尺寸和 HTML 默认宽高；核对线上已部署的内容 |
 | 线上仍是旧内容 | 本次提交是否在远端 `main`、对应 Actions 是否成功、实际网页或浏览器缓存 |

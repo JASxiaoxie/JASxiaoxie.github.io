@@ -36,6 +36,7 @@
 | 现任会长的人物资料、照片与个人主页 | [`_data/people.json`](_data/people.json) |
 | 北十字天文台的团队、建设、器材与日常 | [`_data/observatory.json`](_data/observatory.json) |
 | 首页总览、天文台与野外观测地图中的地点 | [`_data/locations.json`](_data/locations.json) |
+| 随网站托管的地图数据、范围与更新方法 | [`assets/maps/README.md`](assets/maps/README.md) |
 | 摄影作品、作者与拍摄参数 | [`_data/gallery.json`](_data/gallery.json) |
 | 小邪的角色故事、插画、联动与草稿 | [`_data/mascot.json`](_data/mascot.json) |
 | 协会简介、部门、入会说明与常见问题 | [`_data/club.json`](_data/club.json) |
@@ -97,4 +98,4 @@ python3 scripts/check_site.py local/export
 
 网站由 **2026—2027 学年协会会长 [娄锦畅](https://astrotorpedo.github.io/)** 设计制作，后续由管理层接续维护。希望每一届都能在这里留下自己的活动，也让新同学有机会认识此前的天协。
 
-网站基于 Academic Pages/Jekyll。更新时请继续保留上游署名与许可证，相关说明见 [UPSTREAM.md](UPSTREAM.md) 和 [LICENSE](LICENSE)。
+网站基于 Academic Pages/Jekyll。更新时请继续保留上游署名与许可证，相关说明见 [UPSTREAM.md](UPSTREAM.md) 和 [LICENSE](LICENSE)。地图数据另按 ODbL 许可提供，详见 [地图数据说明](assets/maps/README.md)。

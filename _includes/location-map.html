@@ -24,5 +24,6 @@
       <noscript><p class="location-note">互动地图需要 JavaScript，地点与高德地图入口可直接使用。</p></noscript>
     </div>
   </div>
-  <script type="application/json" data-location-map-data>{"places": {{ map_places | jsonify }}, "map": {{ site.data.locations.map | jsonify }}}</script>
+  {% assign map_version = site.time | date: '%s' %}{% assign map_data_url = site.data.locations.map.data_url | relative_url | append: '?v=' | append: map_version %}
+  <script type="application/json" data-location-map-data>{"places": {{ map_places | jsonify }}, "map": {{ site.data.locations.map | jsonify }}, "data_url": {{ map_data_url | jsonify }}}</script>
 </section>

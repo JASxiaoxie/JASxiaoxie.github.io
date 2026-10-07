@@ -54,7 +54,7 @@
 | `latitude` / `longitude` | 纬度 / 经度，JSON 数字，不能互换 |
 | `coordinate_system` | 目前必须为 `WGS84`；高德、腾讯或百度坐标须先正确转换，不能直接改标签 |
 | `coordinate_source` | 坐标来源、精度和核对范围，便于后来的人追查 |
-| `zoom` | 地点视角的缩放级别，目前为 14；乡村底图较稀疏，放大不一定有更多信息 |
+| `zoom` | 地点默认缩放级别；校园和农家乐为 14，天文台为 12，便于同时看到前进乡与周边道路 |
 | `page_url` / `page_label` | 首页地点卡片进入相应栏目的站内地址 / 链接文字 |
 | `navigation` | 可选的导航原始坐标，包含 `latitude`、`longitude` 和 `coordinate_system`（`WGS84` 或 `GCJ02`）；高德重新选点时保留 GCJ02 原值，无此字段则使用主坐标 |
 
@@ -62,7 +62,11 @@
 
 地图组件为 `_includes/location-map.html`，样式与交互在 `assets/css/maps.css`、`assets/js/maps.js`。首页与天文台用页面头部 `location_map: true` 加载地图资源；野外观测由布局按 `page.event_id == 'field-observing'` 加载。新增带地图的页面也须开启这个字段，不能只插入组件。
 
-Leaflet 1.9.4 在 `assets/lib/leaflet/` 自托管，保留上游许可证；页面底图来自 OpenStreetMap，无需申请密钥。`map.tile_url`、`map.attribution` 和 `map.max_zoom` 集中维护供应商配置；保留画面内署名，遵守[瓦片使用政策](https://operations.osmfoundation.org/policies/tiles/)，不要预取或下载离线地图。切换供应商时同时核对许可、署名与坐标系统。地址、导航入口与加载失败提示独立于底图，第三方地图网络不可用时仍可阅读。
+Leaflet 1.9.4 和底图均随网站自托管，无需申请密钥。`map.data_url` 指向 `assets/maps/manifest.json`，`map.attribution` 保存画面内署名；访客浏览时只请求本站文件，不连接第三方底图或查询服务。底图采用 OpenStreetMap 的原始矢量数据，按 ODbL 许可提供，来源、范围和更新方法见 [地图数据说明](assets/maps/README.md)。
+
+总览显示细线主要路网与城市名称；放大后增加乡镇、村屯与道路名称，并在三个地点周边叠加详图。数据是有限区域的快照，不会自动更新，乡村小路和建筑可能未被收录，导航仍使用高德入口。地图数据变更后随源码一起提交；地点超出已有范围时，还需补充真实地图数据。
+
+日常预览无需重新制作底图。有原始缓存时运行 `python3 scripts/build_maps.py`；首次提取或更新使用 `--download`，更新可指定新的 `--cache` 目录保留旧缓存。范围与容差维护在 `scripts/map-regions.json`。脚本只读取少数固定区域的原始数据，不下载公共地图瓦片。原始响应放在 `local/maps/raw/`，生成的四个 GeoJSON、清单和数据许可说明保存在 `assets/maps/`。地址、导航入口与加载失败提示独立于地图。
 
 手机端默认让页面正常滚动，轻触“探索地图”后才能拖动；“结束浏览”恢复页面滚动。地图不截获鼠标滚轮，支持缩放按钮、地点切换与减少动态偏好。修改后检查三个页面、地点选中、总览复位、手机开关和高德链接，再按现有流程构建与发布。
 

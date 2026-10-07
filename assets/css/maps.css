@@ -27,7 +27,10 @@
 .location-map-frame{position:relative;border:1px solid var(--line);isolation:isolate;background:var(--surface)}
 .location-map-canvas{height:440px;width:100%;z-index:0;background:#141e29;font-family:var(--sans)}
 .location-layout-single .location-map-canvas{height:350px}
-.location-map-canvas .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) saturate(.45) brightness(.72) contrast(.95)}
+.map-text-label{display:flex;justify-content:center;align-items:center;pointer-events:none;white-space:nowrap;text-shadow:0 1px 3px #0c1720,1px 0 3px #0c1720,-1px 0 3px #0c1720}
+.map-place-label{color:#b1c0c5;font:12px/22px var(--sans);letter-spacing:.06em}
+.map-village-label{color:#aebcbf;font:11px/22px var(--sans)}
+.map-road-label{color:#8f9caa;font:10px/22px var(--sans)}
 .location-map-canvas .leaflet-control-attribution{background:rgba(11,16,24,.88);color:var(--muted);font:9px/1.7 var(--sans);padding:2px 5px}
 .location-map-canvas .leaflet-control-attribution a{color:var(--blue)}
 .location-map-canvas .leaflet-bar{border:1px solid var(--line);box-shadow:none;border-radius:0}

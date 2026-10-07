@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "source": "OpenStreetMap / Overpass API",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "license": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "coordinate_system": "WGS84",
+  "regions": {
+    "overview": {
+      "title": "长春及周边总览",
+      "bbox": [
+        123.6,
+        42.7,
+        126.15,
+        44.55
+      ],
+      "detail": false,
+      "simplify_m": 35,
+      "min_zoom": 8,
+      "max_zoom": 17,
+      "query": "[out:json][timeout:45][maxsize:134217728];(way[highway~\"^(motorway|trunk|primary|secondary)(_link)?$\"](42.7,123.6,44.55,126.15);way[railway=rail](42.7,123.6,44.55,126.15);way[waterway~\"^(river|canal)$\"](42.7,123.6,44.55,126.15);way[natural=water](42.7,123.6,44.55,126.15);relation[type=multipolygon][natural=water](42.7,123.6,44.55,126.15);node[place~\"^(city|town)$\"](42.7,123.6,44.55,126.15););out body geom;",
+      "query_sha256": "6ec3003e8e660c221f98edbccde7f51e7ca0368cedf7ea04769451a4788cf0fe",
+      "raw_sha256": "e89d430d960869e1d168ab666d3545579731e4a4edf4f5c6bed2d19b1a7642fd",
+      "file": "overview.geojson",
+      "sha256": "5db2520979951f72f83b9c36a4b6c199eb3d7e5cbd76ecfdc243ece55b4e5625",
+      "bytes": 2067254,
+      "feature_count": 2255,
+      "osm_timestamp": "2026-10-07T10:46:48Z"
+    },
+    "campus": {
+      "title": "前卫南区周边",
+      "bbox": [
+        125.245,
+        43.804,
+        125.297,
+        43.838
+      ],
+      "detail": true,
+      "simplify_m": 1.5,
+      "min_zoom": 12,
+      "max_zoom": 17,
+      "query": "[out:json][timeout:45][maxsize:134217728];(way[highway~\".\"](43.804,125.245,43.838,125.297);way[railway=rail](43.804,125.245,43.838,125.297);way[waterway~\"^(river|canal)$\"](43.804,125.245,43.838,125.297);way[natural=water](43.804,125.245,43.838,125.297);relation[type=multipolygon][natural=water](43.804,125.245,43.838,125.297);node[place~\".\"](43.804,125.245,43.838,125.297);way[building](43.804,125.245,43.838,125.297);way[landuse](43.804,125.245,43.838,125.297);way[leisure~\"^(park|garden|pitch)$\"](43.804,125.245,43.838,125.297);way[amenity=university](43.804,125.245,43.838,125.297);way[natural=wood](43.804,125.245,43.838,125.297););out body geom;",
+      "query_sha256": "7c820cd686c3550aca723da5d532e603a09be946cb04fe43e496506c44a273e3",
+      "raw_sha256": "aa06d2d522d3c024d10bfeda773ec5221b2ce507a4787d878a1ccc6a02eee199",
+      "file": "campus.geojson",
+      "sha256": "c51fd2e71cb5980dbfcd235ab9921f80b45f332400873c6b78b66b55da13a0a8",
+      "bytes": 804136,
+      "feature_count": 2047,
+      "osm_timestamp": "2026-10-07T10:47:49Z"
+    },
+    "observatory": {
+      "title": "北十字天文台周边",
+      "bbox": [
+        124.235,
+        43.976,
+        124.321,
+        44.042
+      ],
+      "detail": true,
+      "simplify_m": 2,
+      "min_zoom": 12,
+      "max_zoom": 17,
+      "query": "[out:json][timeout:45][maxsize:134217728];(way[highway~\".\"](43.976,124.235,44.042,124.321);way[railway=rail](43.976,124.235,44.042,124.321);way[waterway~\"^(river|canal)$\"](43.976,124.235,44.042,124.321);way[natural=water](43.976,124.235,44.042,124.321);relation[type=multipolygon][natural=water](43.976,124.235,44.042,124.321);node[place~\".\"](43.976,124.235,44.042,124.321);way[building](43.976,124.235,44.042,124.321);way[landuse](43.976,124.235,44.042,124.321);way[leisure~\"^(park|garden|pitch)$\"](43.976,124.235,44.042,124.321);way[amenity=university](43.976,124.235,44.042,124.321);way[natural=wood](43.976,124.235,44.042,124.321););out body geom;",
+      "query_sha256": "b88b91035072948631ebd3ecdd751d4d15fbf5382972ccef728d3c3c7d47b1a2",
+      "raw_sha256": "991c03d56b92b6532915895b9b656092e713ae50a3f4b2f9ef8854534b917e69",
+      "file": "observatory.geojson",
+      "sha256": "5c1b60950d8cd1dc4ae3175153f74090e0abcac0370b74ac29c87a08cfb04c52",
+      "bytes": 5434,
+      "feature_count": 4,
+      "osm_timestamp": "2026-10-07T10:49:51Z"
+    },
+    "field": {
+      "title": "大酱缸村农家乐周边",
+      "bbox": [
+        125.598,
+        43.067,
+        125.694,
+        43.138
+      ],
+      "detail": true,
+      "simplify_m": 2,
+      "min_zoom": 12,
+      "max_zoom": 17,
+      "query": "[out:json][timeout:45][maxsize:134217728];(way[highway~\".\"](43.067,125.598,43.138,125.694);way[railway=rail](43.067,125.598,43.138,125.694);way[waterway~\"^(river|canal)$\"](43.067,125.598,43.138,125.694);way[natural=water](43.067,125.598,43.138,125.694);relation[type=multipolygon][natural=water](43.067,125.598,43.138,125.694);node[place~\".\"](43.067,125.598,43.138,125.694);way[building](43.067,125.598,43.138,125.694);way[landuse](43.067,125.598,43.138,125.694);way[leisure~\"^(park|garden|pitch)$\"](43.067,125.598,43.138,125.694);way[amenity=university](43.067,125.598,43.138,125.694);way[natural=wood](43.067,125.598,43.138,125.694););out body geom;",
+      "query_sha256": "fa63432cb75cbfc86762b6398e8b3a9855ba75c3dcd0fd38202f1ad2fe0618a7",
+      "raw_sha256": "6ecbeefe564f1af339c657bf6a2a758f4c3a00364cc11eb05d582052fa6669ab",
+      "file": "field.geojson",
+      "sha256": "cfc84c3391ff40d0214d2cdfeec8a8448f490d3183eb6312753f2e0a8f57c586",
+      "bytes": 96652,
+      "feature_count": 104,
+      "osm_timestamp": "2026-10-07T10:49:51Z"
+    }
+  }
+}
