@@ -2,7 +2,7 @@
 
 这份文档用于帮助以后接手的 AI 理解吉林大学天文协会网站，并完成从资料整理到上线的工作。维护者可以把仓库链接和本次需求一起交给 AI；不需要提供此前聊天记录。
 
-文档按 2026 年 10 月 7 日的仓库整理。开始工作时仍须读取当前文件：后续管理层可能已更新数据、依赖或发布方式。具体字段见 [MAINTENANCE.md](MAINTENANCE.md)，项目约定见 [AGENTS.md](AGENTS.md)，新同学与维护者的入口见 [README.md](README.md)。
+文档按 2026 年 10 月 8 日的仓库整理。开始工作时仍须读取当前文件：后续管理层可能已更新数据、依赖或发布方式。具体字段见 [MAINTENANCE.md](MAINTENANCE.md)，项目约定见 [AGENTS.md](AGENTS.md)，新同学与维护者的入口见 [README.md](README.md)。
 
 ## 1. 先确认项目与本次任务
 
@@ -55,6 +55,7 @@ git status --short --branch
 | [`_layouts/`](_layouts/)、[`_includes/`](_includes/) | 页面布局与共用组件；相册组件为 `_includes/activity-album.html` |
 | [`assets/css/club.css`](assets/css/club.css)、[`assets/js/club.js`](assets/js/club.js) | 网站视觉、菜单、轮播、筛选和照片小窗 |
 | [`images/`](images/) | 已准备公开展示的网页图片副本 |
+| [`_data/photo_variants.json`](_data/photo_variants.json)、[`scripts/prepare_photo_variants.py`](scripts/prepare_photo_variants.py) | 轻量照片尺寸清单与生成脚本；清单不手工修改 |
 | [`scripts/`](scripts/) | 活动生成、预览、发布检查及可选的资料导入脚本 |
 | [`_config.yml`](_config.yml) | 正式网址、页面默认值和导出排除目录 |
 | [`.github/workflows/pages.yml`](.github/workflows/pages.yml) | 构建、资源检查与 Pages 发布流程 |
@@ -109,7 +110,7 @@ python3 scripts/preview.py
 ### 新增一场已有类型的活动
 
 1. 向维护者确认活动类型、日期或年份、简介及可公开的照片。没有具体地点时不编造。
-2. 准备网页大图与缩略图副本，放进 `images/photos/`；保留原图与来源。当前图片规格为最长边 2200 / 800 像素，完整画幅，WebP 质量 88。
+2. 准备网页大图与缩略图副本，放进 `images/photos/`；保留原图与来源。通常最长边为 2200 / 800 像素，完整画幅，WebP 质量 88。再运行 `python3 scripts/prepare_photo_variants.py` 与 `--check` 生成并核对 240 / 1400 像素副本，一并提交图片与 `_data/photo_variants.json`。生成环节需要 Pillow，普通构建不需要。
 3. 在 `albums.json` 的 `sidewalk`、`class`、`joint` 或 `field` 相册的 `images` 数组追加照片记录。同一场活动的照片共用 `drawer_key`、日期、`activity_title` 和可选的 `activity_description`。
 4. 图片保留 `id`、`title`、`image`、`thumbnail`、实际大图 `width` / `height` 等现有字段。JSON 布尔值使用 `true` / `false`，未知文字通常使用空字符串，参照邻近记录。
 5. `date_label` 是对外文字；`sort_date` 为归档资料；`date_precision` 是 `day`、`month`、`year` 或 `unknown`。只知道年月时可用 `2024 年 5 月`、`2024-05-00`、`month`；只有年份时可用 `2027 年`、`2027-00-00`、`year`，不要编造月日。
@@ -176,6 +177,10 @@ Cloudflare Web Analytics 已接入，站点为 `jasxiaoxie.github.io`。配置�
 
 `scripts/import_photos.py` 需要 Pillow、原始素材以及选片清单。它核对原图 SHA-256，以 `photo-` 加前 12 位摘要作为编号，生成两种网页副本，并写入本地来源记录。它**不会**自动给相册或作品新增记录；导入后仍需编辑 JSON。
 
+导入完成后会自动调用 `prepare_photo_variants.py`，生成小封面与展示图。直接复制网页图片时则手动调用。此脚本读取已公开的 `photo-摘要.webp`，不改原图、大图或既有缩略图；清单记录实际宽高，竖幅的最长边不能当作 `srcset` 宽度。`--check` 核对源摘要、清单与文件尺寸、大小。无变化时不重编码或重写清单。
+
+`photo-attributes.html` 共用响应式图片属性；列表小封面与活动小窗缩略图使用 240 副本，普通卡片与轮播按实际布局选择 800 / 1400 副本。轮播模板仅序列化本组预览路径和尺寸，保留原有 3 秒、悬停与减少动态规则。两个照片小窗先显示预览再换清晰大图，关闭或切换会取消旧请求，网络失败保留可用预览。修改相关组件时检查竖幅尺寸、移动端画质、快速连点与慢速/失败请求，不能用降低清晰大图质量掩盖问题。
+
 新克隆的仓库没有默认 `content/media-selection.json`。只有拿到真实素材与已核对清单后才使用脚本；可通过 `--selection` 指定清单文件，不要为通过脚本编造清单或来源。需要新增照片时，先阅读脚本并按已有规则准备副本与本地记录。
 
 `scripts/import_team.py` 可以从已确认的 Word 名录导入名单，但会更新名单数据。使用前保留现有内容，读取脚本，导入后逐项核对并查看差异，特别检查当前任期；人物资料和网站制作署名另行维护。
@@ -193,7 +198,7 @@ git diff --stat
 git status --short
 ```
 
-`check_site.py` 会检查 HTML 中的站内链接、图片、轮播的后续图片，以及是否导出了本地目录或混入 localhost。它不验证文案事实、二维码能否识别、日期分组和视觉效果；这些仍需核对。检查页面数量以当前实际内容为准，不固定为某个历史数量。
+`check_site.py` 会检查 HTML 中的站内链接、图片、响应式候选与轮播的后续图片，以及是否导出了本地目录或混入 localhost。它不验证文案事实、二维码能否识别、日期分组和视觉效果；这些仍需核对。检查页面数量以当前实际内容为准，不固定为某个历史数量。
 
 内容变化时打开相关页，核对新记录、年份、图片与链接。视觉和交互变化时，再检查桌面与手机宽度、横向溢出、小窗关闭后位置、悬停暂停和键盘操作。需要浏览器时使用当前 AI 环境提供的浏览器工具；工具不可用时明确说明未做视觉验证，不声称已经看过。
 

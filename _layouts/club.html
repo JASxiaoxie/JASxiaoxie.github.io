@@ -57,7 +57,7 @@
   <!-- 作品大图使用原生对话框，保留完整画幅与键盘焦点约束。 -->
   <dialog class="lightbox" id="photo-dialog" aria-labelledby="photo-title">
     <div class="lightbox-top"><span id="photo-count" class="eyebrow"></span><button type="button" class="lightbox-close" aria-label="关闭影像浏览">关闭 ×</button></div>
-    <div class="lightbox-stage"><button type="button" class="photo-prev" aria-label="上一幅">←</button><div class="lightbox-media"><img id="photo-image" alt="" hidden><div id="photo-placeholder" class="photo-placeholder" role="img" aria-label="照片暂未添加"><span class="placeholder-cross" aria-hidden="true"></span><span>影像待补充</span></div></div><button type="button" class="photo-next" aria-label="下一幅">→</button></div>
+    <div class="lightbox-stage"><button type="button" class="photo-prev" aria-label="上一幅">←</button><div class="lightbox-media"><img id="photo-image" alt="" hidden><div id="photo-placeholder" class="photo-placeholder" role="status"><span class="placeholder-cross" aria-hidden="true"></span><span data-photo-message>正在载入照片…</span></div></div><button type="button" class="photo-next" aria-label="下一幅">→</button></div>
     <div class="lightbox-caption"><div><p id="photo-label" class="eyebrow"></p><h2 id="photo-title"></h2><p id="photo-note"></p></div><p class="lightbox-hint">← → 切换 · Esc 关闭</p></div>
     <dl class="photo-metadata" id="photo-metadata" hidden><div><dt>作者</dt><dd id="photo-author"></dd></div><div><dt>器材</dt><dd id="photo-equipment"></dd></div><div><dt>曝光参数</dt><dd id="photo-exposure"></dd></div><div><dt>拍摄地点</dt><dd id="photo-location"></dd></div><div><dt>拍摄日期</dt><dd id="photo-date"></dd></div><div><dt>后期处理</dt><dd id="photo-processing"></dd></div></dl>
   </dialog>

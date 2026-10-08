@@ -4,6 +4,8 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 from PIL import Image, ImageOps
@@ -56,6 +58,8 @@ def main():
         json.dumps(provenance, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     total = sum(variant["bytes"] for item in provenance for variant in item["variants"].values())
     print(f"已生成 {len(provenance)} 组网页照片副本，共 {total / 1024**2:.1f} MiB；原始文件未修改。")
+    # 导入后同步轻量副本与清单，后续维护不用手填每种显示尺寸的路径。
+    subprocess.run([sys.executable, str(ROOT / "scripts/prepare_photo_variants.py")], check=True)
 
 
 if __name__ == "__main__":

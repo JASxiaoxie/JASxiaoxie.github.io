@@ -132,12 +132,17 @@
     const baseurl = root.dataset.slideshowBaseurl || '';
     const localPath = path => baseurl + path;
     const seen = new Set();
-    const slides = supplied.filter(slide => {
+    const slides = supplied.filter(entry => {
+      const slide = entry.photo;
       if (!slide?.image || seen.has(slide.image)) return false;
       seen.add(slide.image);
       return true;
-    }).map(slide => ({dataset:{
+    }).map(entry => {const slide = entry.photo; return {dataset:{
       image:localPath(slide.image),
+      preview:localPath(entry.preview || slide.thumbnail || slide.image),
+      display:localPath(entry.display || entry.preview || slide.image),
+      srcset:entry.display_width > entry.preview_width
+        ? `${localPath(entry.preview)} ${entry.preview_width}w, ${localPath(entry.display)} ${entry.display_width}w` : '',
       title:slide.activity_title || slide.title || root.getAttribute('aria-label'),
       label:slide.date_label || slide.label || '',
       note:slide.note || '',
@@ -148,7 +153,7 @@
       location:slide.parameters?.location || '',
       date:slide.parameters?.date || '',
       processing:slide.parameters?.processing || ''
-    }}));
+    }};});
     if (!slides.length) return;
     // 从现有封面开始循环，不因加入轮播而改变首次打开页面时的构图。
     const initial = slides.findIndex(slide => slide.dataset.image === root.dataset.slideshowInitial);
@@ -196,7 +201,10 @@
       const incoming = images.find(image => image !== outgoing);
       // 新图解码成功后才淡入，悬停发生在加载期间时也不会继续自动切换。
       try {
-        incoming.src = slides[destination].dataset.image;
+        const data = slides[destination].dataset;
+        incoming.sizes = outgoing.sizes;
+        incoming.srcset = data.srcset;
+        incoming.src = data.preview;
         await incoming.decode();
         if (automatic && !canPlay()) return;
         incoming.alt = slides[destination].dataset.title;
@@ -274,12 +282,66 @@
     document.querySelectorAll('.year-index a').forEach(item => item.classList.toggle('is-active', item === link));
   }));
 
+  // 预览与清晰图分别解码；每次切换废弃旧请求，迟到的上一张不会覆盖当前照片。
+  const createPhotoLoader = (image, status) => {
+    let generation = 0;
+    let pending = [];
+    const cancel = () => {
+      generation += 1;
+      pending.forEach(loader => loader.removeAttribute('src'));
+      pending = [];
+    };
+    const show = item => {
+      cancel();
+      const request = generation;
+      let fullReady = false;
+      let previewReady = false;
+      let fullFailed = false;
+      const message = status.querySelector('[data-photo-message]') || status;
+      image.hidden = true;
+      image.removeAttribute('src');
+      image.dataset.imageQuality = 'loading';
+      message.textContent = item.dataset.image ? '正在载入照片…' : '影像待补充';
+      status.hidden = false;
+      if (!item.dataset.image) return;
+      const shown = item.querySelector?.('.is-current') || item.querySelector?.('img');
+      const preview = shown?.complete && shown.naturalWidth > 240
+        ? shown.currentSrc : item.dataset.preview;
+      const load = (source, full) => {
+        const loader = new Image();
+        pending.push(loader);
+        loader.decoding = 'async';
+        const failed = () => {
+          if (request !== generation) return;
+          if (full) fullFailed = true;
+          // 清晰图失败仍保留已经显示的预览，不把网络异常写成资料缺失。
+          if (fullFailed && !previewReady && !fullReady) message.textContent = '照片暂时未能加载，请稍后重试';
+        };
+        loader.onload = async () => {
+          try {await loader.decode();} catch {failed(); return;}
+          if (request !== generation || (!full && fullReady)) return;
+          if (full) fullReady = true; else previewReady = true;
+          image.src = source;
+          image.hidden = false;
+          image.dataset.imageQuality = full ? 'full' : 'preview';
+          status.hidden = true;
+        };
+        loader.onerror = failed;
+        loader.src = source;
+      };
+      if (preview && preview !== item.dataset.image) load(preview, false);
+      load(item.dataset.image, true);
+    };
+    return {show, cancel};
+  };
+
   // 活动小窗读取本次记录的数据；正文与照片保留在原文档中，无脚本时仍能展开。
   const activityDialog = document.querySelector('#activity-dialog');
   if (activityDialog && typeof activityDialog.showModal === 'function') {
     const activityPhoto = document.querySelector('#activity-photo-image');
     const activityStatus = document.querySelector('#activity-photo-status');
     const activityThumbnails = document.querySelector('#activity-photo-thumbnails');
+    const activityLoader = createPhotoLoader(activityPhoto, activityStatus);
     const records = [...document.querySelectorAll('.album-drawer')];
     let activitySequence = [];
     let activityIndex = 0;
@@ -290,13 +352,8 @@
       if (!activitySequence.length) return;
       activityIndex = (index + activitySequence.length) % activitySequence.length;
       const item = activitySequence[activityIndex];
-      activityPhoto.hidden = true;
-      activityStatus.textContent = '正在载入照片…';
-      activityStatus.hidden = false;
       activityPhoto.alt = `${activityTitle} · 第 ${activityIndex + 1} 张照片`;
-      activityPhoto.onload = () => {activityPhoto.hidden = false; activityStatus.hidden = true;};
-      activityPhoto.onerror = () => {activityPhoto.hidden = true; activityStatus.textContent = '这张照片暂时无法显示';};
-      activityPhoto.src = item.dataset.image;
+      activityLoader.show(item);
       document.querySelector('#activity-dialog-count').textContent = `${String(activityIndex + 1).padStart(2,'0')} / ${String(activitySequence.length).padStart(2,'0')} 张照片`;
       activityThumbnails.querySelectorAll('button').forEach((button, position) => button.setAttribute('aria-pressed', String(position === activityIndex)));
       activityDialog.querySelectorAll('.activity-photo-prev,.activity-photo-next').forEach(button => {button.disabled = activitySequence.length <= 1;});
@@ -316,7 +373,7 @@
         button.setAttribute('aria-label', `查看第 ${position + 1} 张照片`);
         button.setAttribute('aria-pressed', 'false');
         const thumbnail = document.createElement('img');
-        thumbnail.src = item.querySelector('img').getAttribute('src');
+        thumbnail.src = item.dataset.thumbnail || item.querySelector('img').getAttribute('src');
         thumbnail.alt = '';
         thumbnail.width = 84;
         thumbnail.height = 58;
@@ -361,6 +418,7 @@
       if (Math.abs(displacement) > 55) showActivityPhoto(activityIndex + (displacement < 0 ? 1 : -1));
     }, {passive:true});
     activityDialog.addEventListener('close', () => {
+      activityLoader.cancel();
       document.body.classList.remove('modal-open');
       activityOpener?.focus({preventScroll:true});
     });
@@ -370,6 +428,7 @@
   if (!dialog || typeof dialog.showModal !== 'function') return;
   const photo = document.querySelector('#photo-image');
   const placeholder = document.querySelector('#photo-placeholder');
+  const photoLoader = createPhotoLoader(photo, placeholder);
   let sequence = [];
   let current = 0;
   let opener = null;
@@ -378,15 +437,8 @@
     if (!sequence.length) return;
     current = (index + sequence.length) % sequence.length;
     const item = sequence[current];
-    photo.hidden = true;
-    photo.removeAttribute('src');
-    placeholder.hidden = false;
     photo.alt = item.dataset.title;
-    if (item.dataset.image) {
-      photo.onload = () => {photo.hidden = false; placeholder.hidden = true;};
-      photo.onerror = () => {photo.hidden = true; placeholder.hidden = false;};
-      photo.src = item.dataset.image;
-    }
+    photoLoader.show(item);
     document.querySelector('#photo-title').textContent = item.dataset.title;
     document.querySelector('#photo-label').textContent = item.dataset.label;
     document.querySelector('#photo-note').textContent = item.dataset.note;
@@ -430,6 +482,7 @@
     if (Math.abs(displacement) > 55) showPhoto(current + (displacement < 0 ? 1 : -1));
   }, {passive:true});
   dialog.addEventListener('close', () => {
+    photoLoader.cancel();
     document.body.classList.remove('modal-open');
     opener?.focus({preventScroll:true});
   });

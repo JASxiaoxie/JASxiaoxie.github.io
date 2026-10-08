@@ -1,0 +1,17 @@
+{%- comment -%}按实际画幅选择网页副本；小封面只用小图，清晰大图留给放大窗口。{%- endcomment -%}
+{%- assign photo_key = include.image | replace: '-thumb.webp', '.webp' -%}
+{%- assign variants = site.data.photo_variants[photo_key] -%}
+{%- if variants -%}
+  {%- if include.mode == 'small' -%}
+    src="{{ variants.small.image | relative_url }}"
+  {%- else -%}
+    {%- if include.mode == 'card' -%}
+      {%- assign photo_sizes = include.sizes | default: '(max-width: 370px) calc(100vw - 32px), (max-width: 700px) calc((100vw - 58px) / 2), (max-width: 1000px) calc((100vw - 96px) / 2), 420px' -%}
+    {%- else -%}
+      {%- assign photo_sizes = include.sizes | default: '(max-width: 700px) calc(100vw - 40px), (max-width: 1000px) calc(100vw - 72px), 720px' -%}
+    {%- endif -%}
+    src="{{ variants.thumbnail.image | relative_url }}" srcset="{{ variants.thumbnail.image | relative_url }} {{ variants.thumbnail.width }}w{% if variants.display.width > variants.thumbnail.width %}, {{ variants.display.image | relative_url }} {{ variants.display.width }}w{% endif %}" sizes="{{ photo_sizes }}"
+  {%- endif -%}
+{%- else -%}
+  src="{{ include.image | relative_url }}"
+{%- endif -%}

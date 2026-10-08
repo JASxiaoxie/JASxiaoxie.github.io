@@ -19,9 +19,12 @@ class PageResources(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         fields = dict(attrs)
-        for name in ('src', 'href', 'data-image'):
+        for name in ('src', 'href', 'data-image', 'data-preview', 'data-thumbnail'):
             if fields.get(name):
                 self.paths.append(fields[name])
+        if fields.get('srcset'):
+            # 响应式候选也要检查，避免仅某些手机或高像素屏出现缺图。
+            self.paths.extend(candidate.strip().split()[0] for candidate in fields['srcset'].split(','))
         if tag == 'template' and 'data-slideshow-data' in fields:
             self.slideshow_text = ''
         if tag == 'script' and 'data-location-map-data' in fields:
@@ -36,8 +39,9 @@ class PageResources(HTMLParser):
     def handle_endtag(self, tag):
         if tag == 'template' and self.slideshow_text is not None:
             # 轮播中的非首张图片也必须存在，不能只检查封面。
-            for photo in json.loads(self.slideshow_text):
-                self.paths.append(photo['image'])
+            for entry in json.loads(self.slideshow_text):
+                self.paths.append(entry['photo']['image'])
+                self.paths.extend(entry[key] for key in ('preview', 'display') if entry.get(key))
             self.slideshow_text = None
         if tag == 'script' and self.map_text is not None:
             self.maps.append(json.loads(self.map_text))

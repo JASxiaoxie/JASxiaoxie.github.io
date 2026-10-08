@@ -5,7 +5,7 @@
   <div class="section-heading"><div><p class="eyebrow">PAST EVENTS / 往期活动</p><h2>{{ include.title | default: album.title }}</h2></div><div class="section-side"><p>{{ include.description | default: '点开一次活动，<br>在小窗中重访当时的影像。' }}</p><span class="album-count">{{ drawers.size }} 次活动 · {{ album.images.size }} 张照片</span></div></div>
   <div class="album-drawers">{% for drawer in drawers %}{% assign cover = drawer.items | first %}
     <details class="album-drawer" id="{{ drawer.name }}">
-      <summary><div class="drawer-label"><span class="drawer-date">{{ cover.date_label }}</span><h3>{{ cover.activity_title }}</h3><p>{{ drawer.items.size }} 张照片</p></div><img class="drawer-preview" src="{{ cover.thumbnail | relative_url }}" width="96" height="64" alt="" loading="lazy"><span class="drawer-toggle" aria-hidden="true">＋</span></summary>
+      <summary><div class="drawer-label"><span class="drawer-date">{{ cover.date_label }}</span><h3>{{ cover.activity_title }}</h3><p>{{ drawer.items.size }} 张照片</p></div><img class="drawer-preview" {% include photo-attributes.html image=cover.image mode='small' %} width="96" height="64" alt="" loading="lazy"><span class="drawer-toggle" aria-hidden="true">＋</span></summary>
       <div class="drawer-content">{% if cover.activity_description and cover.activity_description != '' %}<p class="drawer-note">{{ cover.activity_description | escape }}</p>{% else %}{% for edition in site.data.competition.editions %}{% if drawer.name == edition.album %}<p class="drawer-note">{{ edition.description }}</p>{% endif %}{% endfor %}{% endif %}<div class="gallery-grid album-grid">{% for photo in drawer.items %}{% include gallery-card.html work=photo sequence=drawer.name %}{% endfor %}</div></div>
     </details>
   {% endfor %}</div>
