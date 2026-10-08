@@ -5,6 +5,7 @@ nav: home
 photo_viewer: true
 location_map: true
 ---
+<p class="home-loading-note wrap">图片加载请耐心等待，建议使用 VPN</p>
 <section class="hero wrap">
   <div class="hero-copy"><p class="eyebrow hero-eyebrow">JILIN UNIVERSITY ASTRONOMY SOCIETY</p><h1>在吉大，<br>一起看见<br><span>更远的星空。</span></h1><p class="hero-description">{{ site.data.club.description }}</p><div class="hero-actions"><a class="button button-primary" href="{{ '/events/' | relative_url }}">看看我们的活动 <span>↗</span></a><a class="button button-quiet" href="{{ '/join/' | relative_url }}">从这里加入 <span>→</span></a></div><p class="hero-footnote"><span class="small-star" aria-hidden="true">✦</span> 从一次仰望开始，和一群人一起探索。</p></div>
   <div class="hero-visual"><div class="hero-visual-top"><span>THE NIGHT, TOGETHER</span><span>JAS / 01</span></div>{% assign hero_work = site.data.gallery | where: 'id', 'galactic-center' | first %}{% include photo-slideshow.html title=hero_work.title image=hero_work.image slides=site.data.gallery ratio='0.98' class='hero-photo' sizes='(max-width: 700px) calc(100vw - 40px), (max-width: 1200px) 45vw, 575px' eager=true %}<div class="hero-visual-bottom"><span>UNDER THE SAME SKY</span><a href="{{ '/gallery/' | relative_url }}">走进星空影像 ↗</a></div></div>
