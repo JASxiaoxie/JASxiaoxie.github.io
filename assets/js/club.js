@@ -27,6 +27,19 @@
   window.addEventListener('scroll', updateHeader, {passive:true});
   updateHeader();
 
+  // 仅首页包含加载提示，按钮与 Esc 使用原生关闭；关闭后恢复页面滚动和轮播。
+  const loadingNotice = document.querySelector('#loading-notice');
+  if (loadingNotice && typeof loadingNotice.showModal === 'function') {
+    loadingNotice.addEventListener('close', () => document.body.classList.remove('modal-open'));
+    loadingNotice.addEventListener('click', event => {
+      if (event.target !== loadingNotice) return;
+      const bounds = loadingNotice.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) loadingNotice.close();
+    });
+    loadingNotice.showModal();
+    document.body.classList.add('modal-open');
+  }
+
   // 群号与账号名仍作为正文展示；支持剪贴板时再启用复制按钮。
   document.querySelectorAll('[data-copy-text]').forEach(button => {
     if (!navigator.clipboard?.writeText) return;

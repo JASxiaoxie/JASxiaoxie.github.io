@@ -5,7 +5,16 @@ nav: home
 photo_viewer: true
 location_map: true
 ---
-<p class="home-loading-note wrap">图片加载请耐心等待，建议使用 VPN</p>
+<!-- 首页打开时先提醒图片加载；关闭提示后继续浏览原页面。 -->
+<dialog class="loading-notice" id="loading-notice" aria-labelledby="loading-notice-title" aria-describedby="loading-notice-message">
+  <form method="dialog">
+    <button class="loading-notice-close" type="submit" aria-label="关闭图片加载提示">×</button>
+    <p class="eyebrow">欢迎来到吉大天协</p>
+    <h2 id="loading-notice-title">图片加载提示</h2>
+    <p class="loading-notice-message" id="loading-notice-message">图片加载请耐心等待，<br>建议使用 <strong>VPN</strong></p>
+    <button class="button button-primary loading-notice-confirm" type="submit" autofocus>知道了，继续浏览 <span aria-hidden="true">→</span></button>
+  </form>
+</dialog>
 <section class="hero wrap">
   <div class="hero-copy"><p class="eyebrow hero-eyebrow">JILIN UNIVERSITY ASTRONOMY SOCIETY</p><h1>在吉大，<br>一起看见<br><span>更远的星空。</span></h1><p class="hero-description">{{ site.data.club.description }}</p><div class="hero-actions"><a class="button button-primary" href="{{ '/events/' | relative_url }}">看看我们的活动 <span>↗</span></a><a class="button button-quiet" href="{{ '/join/' | relative_url }}">从这里加入 <span>→</span></a></div><p class="hero-footnote"><span class="small-star" aria-hidden="true">✦</span> 从一次仰望开始，和一群人一起探索。</p></div>
   <div class="hero-visual"><div class="hero-visual-top"><span>THE NIGHT, TOGETHER</span><span>JAS / 01</span></div>{% assign hero_work = site.data.gallery | where: 'id', 'galactic-center' | first %}{% include photo-slideshow.html title=hero_work.title image=hero_work.image slides=site.data.gallery ratio='0.98' class='hero-photo' sizes='(max-width: 700px) calc(100vw - 40px), (max-width: 1200px) 45vw, 575px' eager=true %}<div class="hero-visual-bottom"><span>UNDER THE SAME SKY</span><a href="{{ '/gallery/' | relative_url }}">走进星空影像 ↗</a></div></div>
