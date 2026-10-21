@@ -81,6 +81,7 @@ Leaflet 1.9.4 和底图均随网站自托管，无需申请密钥。`map.data_ur
 - `intro`、`tagline`、`hero` 为角色概况与主图；`motifs` 是月亮、土星环、棒旋星系与星星四项形象设定。
 - `story` 保留六段角色背景，来自《小邪背景人设.docx》；`index` 为章节序号，`title`、`text` 为标题与正文。
 - `illustrations` 为单人插画，`band` 为宽幅乐队作品，`collaborations` 为联动作品；`sketches` 每组保存 `key`、`title`、`draft` 与 `finished`。
+- `travel` 为“小邪全国跑”相册，包含 `title`、`intro` 与 `photos`。照片按数组顺序展示，沿用完整画幅与放大浏览；网页副本和来源记录按下文照片导入流程维护，未确认的地点、日期与作者不补写。
 - 每幅作品包含唯一的素材 `id`、便于引用的 `key`、`title`、`label`、`alt`、`image`、`thumbnail`、实际大图 `width` / `height` 与可选 `note`。重复展示同一作品时，浏览序列使用不同的键。未确认的画师、生日日期或合作背景不猜测。
 - 插画和草稿完整显示，保留原图中的字样与签名，透明背景保留透明通道。`animation` 可指向真实 GIF，默认显示静态首帧，点“播放动图”后播放，点“暂停动图”或离开画面后恢复静态；无脚本时仍可打开原动图。
 
