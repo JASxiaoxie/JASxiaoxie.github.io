@@ -206,6 +206,16 @@ python3 scripts/import_photos.py /素材根目录的实际路径
 
 检查时先确认本次 Actions 发布成功，再在正式网页源码中检查每页只有一份统计脚本且标识正确；浏览器中核对脚本加载和上报请求。测试访问后等待几分钟，再查看后台日期、站点和路径筛选。国内访问需在实际不使用 VPN 的环境核对上报，不能仅凭维护电脑可连通就保证所有访客都计入。没有后台访问权限时，只说明已经验证的脚本或请求，不声称统计数据已到账。
 
+## 搜索引擎收录
+
+网站发布后不一定立即出现在搜索结果中。根目录的 `sitemap.xml` 在每次 Jekyll 构建时自动列出 HTML 页面，包含活动详情；`404.html` 不列入，其他不希望列入的页面可在 front matter 设置 `sitemap: false`。此字段只控制网站地图，不会禁止搜索引擎收录页面。`robots.txt` 允许抓取，并提供网站地图地址：`https://jasxiaoxie.github.io/sitemap.xml`。
+
+管理层应分别在 [百度搜索资源平台](https://ziyuan.baidu.com/)、[Bing Webmaster Tools](https://www.bing.com/webmasters/)、[Google Search Console](https://search.google.com/search-console/) 添加并验证 `https://jasxiaoxie.github.io/`，提交首页与网站地图，再查看抓取和索引状态。各平台入口和提交权限以账号当前显示为准。Google 选择“网址前缀”资源即可使用 HTML 验证，不需要管理 `github.io` 的 DNS。
+
+Google 和 Bing 的 HTML 标签验证值分别填写到 `_config.yml` 的 `google_site_verification`、`bing_site_verification`，现有 SEO 组件会输出对应标签；若选择 HTML 文件验证，将平台提供的验证文件原样放在仓库根目录并发布。验证文件不加 Jekyll front matter。公开验证标签和文件可以提交，账号密码、API 推送令牌不进入仓库。
+
+提交后用站长后台的 URL 检查或抓取诊断确认搜索爬虫能否访问。公开搜索和 `site:jasxiaoxie.github.io` 仅供参考，不能代替后台索引状态。提交不保证收录、排名或完成时间；Cloudflare 访问统计也不能证明搜索引擎已收录。换届时交接这些平台的站点权限。
+
 ## GitHub Pages 发布与交接
 
 网站发布到协会账号 `JASxiaoxie` 的 `JASxiaoxie.github.io` 仓库，网址为 `https://jasxiaoxie.github.io/`。管理层更替时交接协会账号与仓库权限，维护者使用自己的协作账号更新内容，不依赖某一位同学的个人仓库。

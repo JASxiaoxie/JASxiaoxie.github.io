@@ -1,0 +1,14 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- comment -%}仅列出可公开检索的 HTML 页面，不把构建时间当作内容更新时间。{%- endcomment -%}
+  {%- assign public_pages = site.html_pages | sort: 'url' -%}
+  {%- for entry in public_pages -%}
+    {%- unless entry.sitemap == false %}
+  <url><loc>{{ entry.url | absolute_url | xml_escape }}</loc></url>
+    {%- endunless -%}
+  {%- endfor %}
+</urlset>
