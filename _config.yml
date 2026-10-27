@@ -8,6 +8,8 @@ url: https://jasxiaoxie.github.io
 baseurl: ""
 timezone: Asia/Shanghai
 encoding: utf-8
+# Google Search Console 提供的公开网站所有权验证值。
+google_site_verification: "YNZHibZWMdndsT7A6e-3zZDkvnhnifAktNcaOBQB79Y"
 # 网页公开的统计站点标识，只用于上报访问数据，不是账号或 API 密钥。
 analytics:
   cloudflare_token: "43d3903f70334de99497304c2036d901"
