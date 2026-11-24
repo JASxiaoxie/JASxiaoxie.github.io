@@ -1,0 +1,25 @@
+{% assign notice = site.data.championship_notice %}
+{% if notice %}
+  {% assign team_photo = site.data.albums.competition.images | where: 'id', notice.photo_id | first %}
+  {% assign record_url = '/competition/' | relative_url | append: '#' | append: notice.edition %}
+<dialog class="championship-notice" id="championship-notice" aria-labelledby="championship-title" data-edition="{{ notice.edition | escape }}">
+  <form method="dialog" class="championship-close">
+    <button type="submit" aria-label="关闭喜报" autofocus>×</button>
+  </form>
+  <div class="championship-scroll">
+    <div class="championship-heading">
+      <span aria-hidden="true">✦</span>
+      <h2 id="championship-title">{{ notice.title | escape }}</h2>
+      <span aria-hidden="true">✦</span>
+    </div>
+    <figure class="championship-photo">
+      <img {% include photo-attributes.html image=team_photo.image sizes='(max-width: 700px) calc(100vw - 64px), 660px' %} width="{{ team_photo.width }}" height="{{ team_photo.height }}" alt="{{ team_photo.title | escape }}" loading="lazy" decoding="async">
+    </figure>
+    <div class="championship-story">{{ notice.body | markdownify }}</div>
+    <a class="button button-primary championship-more" href="{{ record_url }}">看完整赛况与相册 <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="championship-confetti" aria-hidden="true"></div>
+  <audio src="{{ '/assets/audio/championship-salute.wav' | relative_url }}" preload="auto"></audio>
+</dialog>
+<noscript><p class="wrap"><a class="text-link" href="{{ record_url }}">{{ notice.title | escape }} · 查看参赛记录 ↗</a></p></noscript>
+{% endif %}

@@ -27,14 +27,74 @@
   window.addEventListener('scroll', updateHeader, {passive:true});
   updateHeader();
 
-  // 仅首页包含加载提示，按钮与 Esc 使用原生关闭；关闭后恢复页面滚动和轮播。
+  // VPN 提示关闭后才接续喜报，同一标签页每届喜报只展示一次。
   const loadingNotice = document.querySelector('#loading-notice');
+  const championshipNotice = document.querySelector('#championship-notice');
   if (loadingNotice && typeof loadingNotice.showModal === 'function') {
-    loadingNotice.addEventListener('close', () => document.body.classList.remove('modal-open'));
-    loadingNotice.addEventListener('click', event => {
-      if (event.target !== loadingNotice) return;
-      const bounds = loadingNotice.getBoundingClientRect();
-      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) loadingNotice.close();
+    const salute = championshipNotice?.querySelector('audio');
+    const confetti = championshipNotice?.querySelector('.championship-confetti');
+    const sessionKey = championshipNotice && 'jas-championship-' + championshipNotice.dataset.edition;
+    let showChampionship = Boolean(championshipNotice);
+    if (sessionKey) {
+      try { showChampionship = sessionStorage.getItem(sessionKey) !== 'shown'; }
+      catch { /* 禁用会话存储时仍可展示本页喜报。 */ }
+    }
+
+    // 在访客关闭提示的操作中启动音频，保留浏览器要求的手势授权。
+    const playSalute = () => {
+      if (showChampionship && !reducedMotion.matches) salute.play().catch(() => {});
+    };
+    const scatterConfetti = () => {
+      const colors = ['#f3c572', '#e8effa', '#769bce', '#35588f', '#ffe4a7'];
+      const width = confetti.clientWidth;
+      const height = confetti.clientHeight;
+      for (const direction of [1, -1]) {
+        for (let index = 0; index < 28; index += 1) {
+          const piece = document.createElement('span');
+          piece.className = index % 3 === 0 ? 'confetti-star' : 'confetti-paper';
+          piece.style.left = direction === 1 ? '1%' : '99%';
+          piece.style.backgroundColor = colors[index % colors.length];
+          confetti.append(piece);
+          const distance = (0.16 + Math.random() * 0.67) * width * direction;
+          const lift = 34 + Math.random() * height * 0.24;
+          const fall = height * (0.38 + Math.random() * 0.45);
+          const turn = (220 + Math.random() * 530) * direction;
+          piece.animate([
+            {transform: 'translate(0, 0) rotate(0deg)', opacity: 1, offset: 0, easing: 'ease-out'},
+            {transform: `translate(${distance * 0.62}px, ${-lift}px) rotate(${turn * 0.35}deg)`, opacity: 1, offset: 0.34},
+            {transform: `translate(${distance}px, ${fall}px) rotate(${turn}deg)`, opacity: 0, offset: 1}
+          ], {duration: 1420 + Math.random() * 400, delay: direction === 1 ? 15 : 85}).onfinish = () => piece.remove();
+        }
+      }
+    };
+
+    loadingNotice.addEventListener('submit', playSalute);
+    loadingNotice.addEventListener('cancel', playSalute);
+    loadingNotice.addEventListener('close', () => {
+      if (!showChampionship) {
+        document.body.classList.remove('modal-open');
+        return;
+      }
+      showChampionship = false;
+      try { sessionStorage.setItem(sessionKey, 'shown'); }
+      catch { /* 本页仍只展示一次。 */ }
+      championshipNotice.showModal();
+      if (!reducedMotion.matches) scatterConfetti();
+    });
+    championshipNotice?.addEventListener('close', () => {
+      salute.pause();
+      confetti.replaceChildren();
+      document.body.classList.remove('modal-open');
+    });
+    [loadingNotice, championshipNotice].filter(Boolean).forEach(dialog => {
+      dialog.addEventListener('click', event => {
+        if (event.target !== dialog) return;
+        const bounds = dialog.getBoundingClientRect();
+        if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+          if (dialog === loadingNotice) playSalute();
+          dialog.close();
+        }
+      });
     });
     loadingNotice.showModal();
     document.body.classList.add('modal-open');
