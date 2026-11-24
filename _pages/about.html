@@ -11,7 +11,7 @@ nav: about
   <a class="mascot-story-image" href="{{ '/xiaoxie/' | relative_url }}" aria-label="认识小邪"><img src="{{ site.data.mascot.hero.image | relative_url }}" alt="天协看板娘小邪" width="400" height="400" loading="lazy"></a>
   <div><p class="eyebrow">MEET XIAOXIE / 角色设定</p><h2>小邪，<br>我们的宇宙来客。</h2><p>{{ site.data.mascot.intro }}</p><div class="character-details">{% for motif in site.data.mascot.motifs %}<p><span>{{ motif.name }}</span>{{ motif.feature }}</p>{% endfor %}</div><a class="text-link" href="{{ '/xiaoxie/' | relative_url }}">走进小邪的故事与插画 ↗</a></div>
 </section>
-<section class="section connections"><div class="section-heading"><div><p class="eyebrow">A BIGGER COMMUNITY</p><h2>同一片星空下，<br>有更多一起探索的人。</h2></div></div><div class="connection-list"><div><h3>兄弟院校</h3><p>在校际活动中分享知识、器材与观测经历。</p></div><div><h3>市天协与高校天文交流</h3><p>与市天协开展活动，也参与更广泛的天文社团交流。</p></div><div><h3>社团荣誉</h3><p>2025—2026 学年四星社团；2024 年第十届东北地区大学生天文知识竞赛特等奖。</p></div></div></section>
+<section class="section connections"><div class="section-heading"><div><p class="eyebrow">A BIGGER COMMUNITY</p><h2>同一片星空下，<br>有更多一起探索的人。</h2></div></div><div class="connection-list"><div><h3>兄弟院校</h3><p>在校际活动中分享知识、器材与观测经历。</p></div><div><h3>市天协与高校天文交流</h3><p>与市天协开展活动，也参与更广泛的天文社团交流。</p></div><div><h3>社团荣誉</h3><p>2025—2026 学年四星社团；2024 年第十届东北地区大学生天文知识竞赛团体亚军。</p></div></div></section>
 {% assign creator = site.data.people | where: 'id', site.data.website.creator_id | first %}
 {% if creator %}
 <section class="website-note reveal" id="website" aria-labelledby="website-note-title">
