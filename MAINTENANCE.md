@@ -39,7 +39,7 @@
 
 大天赛使用单独的 `competition` 分类与 `/competition/` 页面，不放入联合活动。2024—2026 年参赛记录按年份收进抽屉，校内天文知识竞赛另作一组，页面文字保存在 `competition.json` 中。比赛的年份与届次依据已给资料，奖项没有确认时不补写。
 
-历届获奖记录维护在 `competition.json` 的 `awards` 数组中。每条包含 `year` 年份、`edition` 届次、`host` 承办学校、`awards` 奖项列表和 `source` 资料来源。每个奖项保存原文 `label` 与获奖者 `recipient`；缺失姓名留空。页面按年份由新到旧展示，目前已录入 2011—2019 年汇总与 2024—2026 年获奖记录。原始获奖表截图保存在 `content/references/competition-awards-2011-2019.png`，仅作为本地维护依据，不参与网站导出。
+历届获奖记录维护在 `competition.json` 的 `awards` 数组中。每条包含 `year` 年份、`edition` 届次、`host` 承办学校、`awards` 奖项列表和 `source` 资料来源。每个奖项保存展示名称 `label` 与获奖者 `recipient`，缺失姓名时留空。确认名次的团体奖统一写为「团体冠军」「团体亚军」「团体季军」，其他奖项沿用资料中的名称。页面按年份由新到旧展示，目前已录入 2011—2019 年汇总与 2024—2026 年获奖记录。原始获奖表截图保存在 `content/references/competition-awards-2011-2019.png`，仅作为本地维护依据，不参与网站导出。
 
 ## 更新观测地点与地图
 

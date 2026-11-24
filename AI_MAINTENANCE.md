@@ -123,7 +123,7 @@ python3 scripts/preview.py
 
 参赛小窗的照片维护在 `albums.competition.images`；校内竞赛使用 `albums.campus-contest.images`。各届的分组键沿用 `competition-年份`，与 `competition.json` 的 `editions[].album` 对应，以便读取届次介绍。
 
-`competition.json` 的 `awards` 保存年份、届次、承办学校、奖项、姓名和来源。按维护者提供的原文录入，缺失获奖者留空；照片并不能证明获奖情况。
+`competition.json` 的 `awards` 保存年份、届次、承办学校、奖项、姓名和来源。确认名次的团体奖统一写为「团体冠军」「团体亚军」「团体季军」。其他奖项沿用资料中的名称，缺失获奖者姓名时留空。照片并不能证明获奖情况。
 
 当前还保留部分按届次命名的相册与独立历史详情。更新同一届记录时检查已有引用，复用图片路径并保持内容一致。`_layouts/competition.html` 的页内快捷导航有明确年份链接，新增年份时也需更新这些链接，不能只改数据后认定所有导航已自动更新。
 
