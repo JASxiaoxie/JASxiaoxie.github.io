@@ -27,63 +27,62 @@
   window.addEventListener('scroll', updateHeader, {passive:true});
   updateHeader();
 
-  // VPN 提示关闭后才接续喜报，同一标签页每届喜报只展示一次。
+  // 每次打开首页，VPN 提示关闭后才接续喜报。
   const loadingNotice = document.querySelector('#loading-notice');
   const championshipNotice = document.querySelector('#championship-notice');
   if (loadingNotice && typeof loadingNotice.showModal === 'function') {
     const salute = championshipNotice?.querySelector('audio');
     const confetti = championshipNotice?.querySelector('.championship-confetti');
-    const sessionKey = championshipNotice && 'jas-championship-' + championshipNotice.dataset.edition;
-    let showChampionship = Boolean(championshipNotice);
-    if (sessionKey) {
-      try { showChampionship = sessionStorage.getItem(sessionKey) !== 'shown'; }
-      catch { /* 禁用会话存储时仍可展示本页喜报。 */ }
-    }
-
     // 在访客关闭提示的操作中启动音频，保留浏览器要求的手势授权。
     const playSalute = () => {
-      if (showChampionship && !reducedMotion.matches) salute.play().catch(() => {});
+      if (salute && !reducedMotion.matches) salute.play().catch(() => {});
     };
     const scatterConfetti = () => {
-      const colors = ['#f3c572', '#e8effa', '#769bce', '#35588f', '#ffe4a7'];
+      const colors = ['#ffcb65', '#f1f6ff', '#74b7ff', '#f88973', '#ffd98c', '#9aa7fa'];
+      const shapes = ['confetti-ribbon', 'confetti-paper', 'confetti-star', 'confetti-paper', 'confetti-paper', 'confetti-star'];
       const width = confetti.clientWidth;
       const height = confetti.clientHeight;
-      for (const direction of [1, -1]) {
-        for (let index = 0; index < 28; index += 1) {
+      confetti.classList.add('is-celebrating');
+      confetti.querySelectorAll('.championship-launcher').forEach(launcher => {
+        const direction = Number(launcher.dataset.direction);
+        // 左右各一发，间隔与礼炮音效一致。
+        const delay = direction === 1 ? 40 : 205;
+        launcher.style.setProperty('--launch-delay', `${delay}ms`);
+        for (let index = 0; index < 42; index += 1) {
+          const shape = shapes[index % shapes.length];
           const piece = document.createElement('span');
-          piece.className = index % 3 === 0 ? 'confetti-star' : 'confetti-paper';
-          piece.style.left = direction === 1 ? '1%' : '99%';
-          piece.style.backgroundColor = colors[index % colors.length];
-          confetti.append(piece);
-          const distance = (0.16 + Math.random() * 0.67) * width * direction;
-          const lift = 34 + Math.random() * height * 0.24;
-          const fall = height * (0.38 + Math.random() * 0.45);
-          const turn = (220 + Math.random() * 530) * direction;
+          piece.classList.add('championship-particle', shape);
+          piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          launcher.append(piece);
+          const distance = (0.11 + Math.random() * 0.68) * width * direction;
+          const lift = height * (0.28 + Math.random() * 0.55);
+          const drift = (Math.random() - 0.5) * width * 0.22;
+          const turn = (310 + Math.random() * 650) * direction;
           piece.animate([
-            {transform: 'translate(0, 0) rotate(0deg)', opacity: 1, offset: 0, easing: 'ease-out'},
-            {transform: `translate(${distance * 0.62}px, ${-lift}px) rotate(${turn * 0.35}deg)`, opacity: 1, offset: 0.34},
-            {transform: `translate(${distance}px, ${fall}px) rotate(${turn}deg)`, opacity: 0, offset: 1}
-          ], {duration: 1420 + Math.random() * 400, delay: direction === 1 ? 15 : 85}).onfinish = () => piece.remove();
+            {transform: 'translate(0, 0) scale(.3)', opacity: 0, offset: 0, easing: 'cubic-bezier(.13,.73,.22,1)'},
+            {transform: `translate(${distance * 0.58}px, ${-lift * 0.79}px) rotate(${turn * 0.19}deg)`, opacity: 1, offset: 0.13},
+            {transform: `translate(${distance}px, ${-lift}px) rotate(${turn * 0.40}deg) rotateY(30deg)`, opacity: 1, offset: 0.32},
+            {transform: `translate(${distance + drift}px, ${-lift * 0.59}px) rotate(${turn * 0.77}deg) rotateY(195deg)`, opacity: 1, offset: 0.72},
+            {transform: `translate(${distance + drift * 1.5}px, ${height * 0.18}px) rotate(${turn}deg) rotateY(330deg)`, opacity: 0, offset: 1}
+          ], {duration: (shape === 'confetti-ribbon' ? 2300 : 1740) + Math.random() * 560, delay: delay + Math.random() * 32}).onfinish = () => piece.remove();
         }
-      }
+      });
     };
 
     loadingNotice.addEventListener('submit', playSalute);
     loadingNotice.addEventListener('cancel', playSalute);
     loadingNotice.addEventListener('close', () => {
-      if (!showChampionship) {
+      if (!championshipNotice) {
         document.body.classList.remove('modal-open');
         return;
       }
-      showChampionship = false;
-      try { sessionStorage.setItem(sessionKey, 'shown'); }
-      catch { /* 本页仍只展示一次。 */ }
       championshipNotice.showModal();
       if (!reducedMotion.matches) scatterConfetti();
     });
     championshipNotice?.addEventListener('close', () => {
       salute.pause();
-      confetti.replaceChildren();
+      confetti.classList.remove('is-celebrating');
+      confetti.querySelectorAll('.championship-particle').forEach(piece => piece.remove());
       document.body.classList.remove('modal-open');
     });
     [loadingNotice, championshipNotice].filter(Boolean).forEach(dialog => {

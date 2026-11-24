@@ -19,10 +19,10 @@
 .loading-notice-message strong{color:var(--gold);font-weight:600}
 .loading-notice-confirm{margin-top:28px;width:100%}
 @media(max-width:700px){.loading-notice{padding:32px 24px}.loading-notice h2{font-size:25px}.loading-notice-message{font-size:17px}}
-/* 喜报内容独立滚动，关闭按钮与彩纸停留在可视窗口内。 */
+/* 喜报正文独立滚动，两侧礼炮覆盖视口，关闭按钮保持可用。 */
 .championship-notice{
   position:fixed;inset:0;margin:auto;width:min(760px,calc(100% - 32px));
-  max-height:calc(100svh - 36px);padding:0;overflow:hidden;
+  max-height:calc(100svh - 36px);padding:0;overflow:visible;
   background:radial-gradient(ellipse at 50% 0,#242634 0%,#111923 48%);
   color:var(--ink);border:1px solid rgba(217,191,134,.5);border-radius:16px;
   box-shadow:0 28px 110px rgba(0,0,0,.66)
@@ -31,7 +31,7 @@
 .championship-notice[open]{animation:soft-enter .24s ease-out}
 .championship-scroll{
   max-height:calc(100svh - 38px);overflow:auto;overscroll-behavior:contain;
-  scrollbar-gutter:stable both-edges;padding:34px 36px 38px
+  scrollbar-gutter:stable both-edges;border-radius:inherit;padding:34px 36px 38px
 }
 .championship-close{position:absolute;inset:12px 12px auto auto;z-index:2}
 .championship-close button{
@@ -52,11 +52,57 @@
 .championship-story strong{color:#ffe5a9;font-weight:700}
 .championship-more{display:flex;width:fit-content;margin:26px auto 0;background:#eac884;color:#251b0d}
 .championship-more:hover{background:#f7d99a}
-.championship-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-.championship-confetti span{position:absolute;top:29%;width:8px;height:10px;opacity:0}
+.championship-confetti{
+  position:absolute;top:50%;left:50%;width:100vw;height:100svh;transform:translate(-50%,-50%);
+  pointer-events:none;overflow:hidden;visibility:hidden;z-index:1
+}
+.championship-confetti.is-celebrating{visibility:visible}
+.championship-launcher{
+  --pop-angle:38deg;--side-inset:clamp(32px,7vw,112px);
+  position:absolute;bottom:clamp(70px,16svh,160px);left:var(--side-inset);width:0;height:0
+}
+.championship-launcher[data-direction="-1"]{--pop-angle:-38deg;left:auto;right:var(--side-inset)}
+.championship-launcher::before,.championship-launcher::after{
+  content:"";position:absolute;top:0;left:0;opacity:0
+}
+.championship-launcher::before{
+  width:clamp(26px,4vw,48px);height:clamp(46px,7vw,84px);
+  clip-path:polygon(0 0,100% 0,68% 100%,32% 100%);
+  background:
+    linear-gradient(#ffe8a7 0 12%,transparent 12% 83%,#cf9140 83%),
+    repeating-linear-gradient(-33deg,#203e6f 0 10px,#dca050 10px 20px);
+  transform-origin:50% 0;transform:translateX(-50%) rotate(var(--pop-angle))
+}
+.championship-launcher::after{
+  width:clamp(54px,11vw,140px);aspect-ratio:1;
+  background:radial-gradient(closest-side,#fff5d7,#ffd47b9e 36%,transparent 84%);
+  transform:translate(-50%,-50%) scale(.30)
+}
+.is-celebrating .championship-launcher::before{
+  animation:championship-popper .8s var(--launch-delay) ease-out
+}
+.is-celebrating .championship-launcher::after{
+  animation:championship-pop-glow .38s var(--launch-delay) ease-out
+}
+@keyframes championship-popper{
+  0%{opacity:0}
+  9%{opacity:1;transform:translateX(-50%) rotate(var(--pop-angle)) scale(.90)}
+  34%,56%{opacity:1;transform:translateX(-50%) rotate(var(--pop-angle)) scale(1)}
+  100%{opacity:0;transform:translateX(-50%) rotate(var(--pop-angle)) scale(.94)}
+}
+@keyframes championship-pop-glow{
+  0%{opacity:.96}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.20)}
+}
+.championship-particle{position:absolute;top:0;left:0;width:8px;height:11px;opacity:0;backface-visibility:visible}
 .championship-confetti .confetti-star{
   width:14px;height:14px;
   clip-path:polygon(50% 0,62% 36%,100% 38%,70% 61%,79% 100%,50% 76%,21% 100%,30% 61%,0 38%,38% 36%)
+}
+.championship-confetti .confetti-ribbon{
+  width:clamp(9px,1.2vw,15px);height:clamp(38px,5.4vw,69px);
+  clip-path:polygon(26% 0,78% 0,95% 20%,71% 42%,79% 58%,100% 77%,76% 100%,21% 100%,45% 77%,24% 58%,14% 42%,40% 20%);
+  background-image:linear-gradient(158deg,#ffffff78 0 21%,transparent 26% 43%,#0b17385c 48% 60%,#ffffff50 70%,transparent 86%)
 }
 @media(max-width:700px){
   .championship-notice{width:calc(100% - 22px);border-radius:12px}

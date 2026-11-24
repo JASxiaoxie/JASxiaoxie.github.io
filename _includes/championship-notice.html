@@ -2,7 +2,7 @@
 {% if notice %}
   {% assign team_photo = site.data.albums.competition.images | where: 'id', notice.photo_id | first %}
   {% assign record_url = '/competition/' | relative_url | append: '#' | append: notice.edition %}
-<dialog class="championship-notice" id="championship-notice" aria-labelledby="championship-title" data-edition="{{ notice.edition | escape }}">
+<dialog class="championship-notice" id="championship-notice" aria-labelledby="championship-title">
   <form method="dialog" class="championship-close">
     <button type="submit" aria-label="关闭喜报" autofocus>×</button>
   </form>
@@ -18,8 +18,11 @@
     <div class="championship-story">{{ notice.body | markdownify }}</div>
     <a class="button button-primary championship-more" href="{{ record_url }}">看完整赛况与相册 <span aria-hidden="true">↗</span></a>
   </div>
-  <div class="championship-confetti" aria-hidden="true"></div>
-  <audio src="{{ '/assets/audio/championship-salute.wav' | relative_url }}" preload="auto"></audio>
+  <div class="championship-confetti" aria-hidden="true">
+    <div class="championship-launcher" data-direction="1"></div>
+    <div class="championship-launcher" data-direction="-1"></div>
+  </div>
+  <audio src="{{ '/assets/audio/championship-salute.wav' | relative_url }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}" preload="auto"></audio>
 </dialog>
 <noscript><p class="wrap"><a class="text-link" href="{{ record_url }}">{{ notice.title | escape }} · 查看参赛记录 ↗</a></p></noscript>
 {% endif %}
